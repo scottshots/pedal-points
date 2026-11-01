@@ -36,7 +36,7 @@ label{display:flex;justify-content:space-between;align-items:center;gap:8px;marg
 <div class="card">
 <div class="row" id="startRow"><button class="go" id="sErrand">Start Errand</button><button class="go" id="sLeisure">Start Leisure</button></div>
 <button class="stop" id="btn" style="display:none">End ride</button>
-<div class="row cond"><button id="fixSnow" class="mini">Snowing?</button><button id="fixRain" class="mini">Raining?</button><button id="fixHaul" class="mini">Hauling?</button></div>
+<div class="row cond" id="condRow"></div>
 <label><span>Riding my analog bike (x1.5)</span><input id="analog" type="checkbox" style="width:28px;height:28px"></label>
 <div class="row" style="text-align:center">
 <div><div class="stat" id="mi">0.00</div><div class="small">miles</div></div>
@@ -55,6 +55,9 @@ label{display:flex;justify-content:space-between;align-items:center;gap:8px;marg
 <label>Gas $/gallon <input id="cGas" type="number" step="0.01"></label>
 <label>Reward boost (x gas saved) <input id="cBoost" type="number" step="0.5"></label>
 </div>
+<div class="card"><b>Bonus buttons</b><div class="small">These show on the ride screen. Snowing and Raining fix the automatic weather if it's wrong.</div><div id="condEdit"></div>
+<input id="condName" placeholder="New button name (e.g. Windy)" style="margin-top:8px">
+<div class="row" style="margin-top:8px"><input id="condPts" type="number" placeholder="Bonus pts/mile"><button id="addCond" class="mini">Add button</button></div></div>
 <div class="card"><b>Edit prizes</b><div id="prizeEdit"></div>
 <input id="newName" placeholder="New prize name" style="margin-top:8px">
 <div class="row" style="margin-top:8px"><input id="newUsd" type="number" placeholder="Price in $"><button id="addPrize" class="mini">Add prize</button></div></div>
@@ -64,7 +67,7 @@ label{display:flex;justify-content:space-between;align-items:center;gap:8px;marg
 <div id="help" style="display:none"><div class="card"><b>How to use Pedal Points</b>
 <p><b>1. First time:</b> tap ⚙ (top right) and enter your car's mpg and your local gas price, then tap Save settings / Done at the bottom. This is how the app works out the gas money you save.</p>
 <p><b>2. Start a ride:</b> tap Start Errand if the ride replaces a car trip (grocery store, post office), or Start Leisure for a fun ride. Allow location when asked. Keep the app open and the screen on while you ride.</p>
-<p><b>3. Bonuses:</b> night, freezing temperatures, snow and rain are detected automatically. If the weather is wrong, tap Snowing? or Raining? to fix it. Tap Hauling? if you're carrying a heavy load. Tick the analog bike box if you're riding without a motor.</p>
+<p><b>3. Bonuses:</b> night, freezing temperatures, heat (95°F or hotter), snow and rain are detected automatically. If the weather is wrong, tap Snowing? or Raining? to fix it. Tap Hauling? if you're carrying a heavy load. To add your own bonus buttons (like Windy) or delete ones you don't need, tap ⚙ and use Bonus buttons. In extreme heat, ride early or late and carry water. Tick the analog bike box if you're riding without a motor.</p>
 <p><b>4. End the ride:</b> tap End ride. Your points go into your bank, including climbing and streak bonuses.</p>
 <p><b>5. Spend points:</b> in the Prize menu, tap Cash in when you've earned enough for a treat. The gold bar shows how close you are.</p>
 <p class="small" style="border-left:3px solid #ffd54a;padding-left:8px"><b>Please note:</b> Pedal Points does not pay out real money or gift cards. Points and reward dollars are just a game. Cashing in is your own permission to treat yourself, paid for with the money you're saving on gas by riding instead of driving.</p>
@@ -77,7 +80,7 @@ label{display:flex;justify-content:space-between;align-items:center;gap:8px;marg
 <script>
 const DEFAULT_PRIZES=[["Coffee",6],["Ice cream",9],["Nice dinner out",30],["Bike gear treat",40],["Photo gear fund",65]];
 const S=JSON.parse(localStorage.getItem("pur")||'{"bank":0,"total":0,"miles":0,"carMiles":0,"days":[],"badges":[],"streak":0}');
-S.cfg=S.cfg||{mpg:16,gas:7,boost:3};S.prizes=S.prizes||DEFAULT_PRIZES;S.errands=S.errands||0;
+S.cfg=S.cfg||{mpg:16,gas:7,boost:3};S.prizes=S.prizes||DEFAULT_PRIZES;S.errands=S.errands||0;S.conds=S.conds||[{n:"Snowing?",w:"snow"},{n:"Raining?",w:"rain"},{n:"Hauling?",b:10}];
 const save=()=>localStorage.setItem("pur",JSON.stringify(S));
 const $=id=>document.getElementById(id);
 function toast(t){const e=$("toast");e.textContent=t;e.style.display="block";clearTimeout(e._t);e._t=setTimeout(()=>e.style.display="none",2000);}
@@ -100,19 +103,19 @@ const BADGES=[
 ["Gas saver","Save $50 in gas","⛽"],
 ["Century","Reach 100 lifetime miles","💯"]];
 
-let type="leisure",riding=false,watch=null,last=null,dist=0,pts=0,climb=0,lastAlt=null,wx={},wake=null,M={},haul=false;
+let type="leisure",riding=false,watch=null,last=null,dist=0,pts=0,climb=0,lastAlt=null,wx={},wake=null,M={},act={};
 function say(t){try{speechSynthesis.speak(new SpeechSynthesisUtterance(t))}catch(e){}if(navigator.vibrate)navigator.vibrate([200,100,200]);}
 function hav(a,b){const R=3958.8,r=x=>x*Math.PI/180,dLa=r(b.latitude-a.latitude),dLo=r(b.longitude-a.longitude);const h=Math.sin(dLa/2)**2+Math.cos(r(a.latitude))*Math.cos(r(b.latitude))*Math.sin(dLo/2)**2;return 2*R*Math.asin(Math.sqrt(h));}
 const winter=()=>{const m=new Date().getMonth();return m===11||m<=2;};
 const night=()=>wx.sunrise&&(Date.now()<wx.sunrise||Date.now()>wx.sunset);
-function rate(){let p=10;if(type==="errand")p*=2;if(night())p+=10;if(wx.temp!=null&&wx.temp<=32)p+=5;if(wx.snow)p+=15;else if(wx.rain)p+=5;if(haul)p+=10;if(winter())p*=1.5;if(S.analog)p*=1.5;return p;}
+function rate(){let p=10;if(type==="errand")p*=2;if(night())p+=10;if(wx.temp!=null&&wx.temp<=32)p+=5;if(wx.snow)p+=15;else if(wx.rain)p+=5;p+=custBonus();if(wx.temp!=null&&wx.temp>=95)p+=3;if(winter())p*=1.5;if(S.analog)p*=1.5;return p;}
 const climbPts=()=>Math.floor(climb/100)*5;
 function conds(){const t=[];if(type==="errand")t.push("Errand x2");if(night())t.push("Night +10");
 if(wx.temp!=null)t.push(wx.temp<=32?`Freezing ${Math.round(wx.temp)}°F +5`:`${Math.round(wx.temp)}°F`);
-if(wx.snow)t.push("Snow +15");else if(wx.rain)t.push("Rain +5");if(haul)t.push("Hauling +10");
+if(wx.snow)t.push("Snow +15");else if(wx.rain)t.push("Rain +5");if(wx.temp!=null&&wx.temp>=95)t.push("Heat +3");S.conds.filter(c=>!c.w&&act[c.n]).forEach(c=>t.push(c.n.replace("?","")+" +"+c.b));
 if(winter())t.push("Winter x1.5");if(S.analog)t.push("Analog x1.5");
 $("conds").innerHTML=t.map(x=>`<span class="tag">${x}</span>`).join("");$("ppm").textContent=Math.round(rate());
-$("fixSnow").className="mini"+(wx.snow?" on":"");$("fixRain").className="mini"+(wx.rain?" on":"");$("fixHaul").className="mini"+(haul?" on":"");}
+condBtns();}
 async function getWx(lat,lon){try{const r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&daily=sunrise,sunset&temperature_unit=fahrenheit&timezone=auto&forecast_days=1`);const j=await r.json(),c=j.current.weather_code;
 wx={temp:j.current.temperature_2m,snow:[71,73,75,77,85,86].includes(c),rain:[51,53,55,61,63,65,66,67,80,81,82].includes(c),sunrise:new Date(j.daily.sunrise[0]).getTime(),sunset:new Date(j.daily.sunset[0]).getTime(),...(M.on?{snow:M.snow,rain:M.rain}:{})};render();}catch(e){}}
 function onPos(p){const c=p.coords;if(c.accuracy>30)return;
@@ -139,11 +142,11 @@ if(type==="errand"){S.carMiles+=dist;if(dist>0.1)S.errands++;}
 if(dist>0.1)badge("First ride");
 if(wx.snow)badge("First snow ride");if(wx.sunrise&&Date.now()<wx.sunrise)badge("Before sunrise");
 if(wx.sunset&&Date.now()>wx.sunset)badge("Night owl");
-if(wx.temp!=null&&wx.temp<=20)badge("Polar bear");if(haul&&dist>0.1)badge("Hauler");
+if(wx.temp!=null&&wx.temp<=20)badge("Polar bear");if(act["Hauling?"]&&dist>0.1)badge("Hauler");
 if(climb>=1000)badge("Hill climber");if(S.errands>=10)badge("Errand runner");
 if(S.streak>=7)badge("Week streak");if(S.carMiles*gasPerMile()>=50)badge("Gas saver");
 if(S.miles>=100)badge("Century");
-haul=false;save();render();
+act={};save();render();
 const saved=type==="errand"?dist*gasPerMile():0;
 say(`Ride done. ${dist.toFixed(1)} miles, ${total} points, worth ${usd(total*ptVal())} in rewards.`+(saved?` You saved ${usd(saved)} in gas.`:""));
 setTimeout(afterRide,4000);}
@@ -151,7 +154,7 @@ function render(){$("bank").textContent=S.bank;$("bankUsd").textContent=`Worth $
 $("prizes").innerHTML=sorted().map(([n,d,i])=>`<li class="row"><span>${n} — ${usd(d)} (${cost(d)} pts)<div style="height:6px;background:#0006;border-radius:3px;margin-top:4px"><div style="height:6px;border-radius:3px;background:#ffd54a;width:${Math.min(100,S.bank/cost(d)*100)}%"></div></div></span><button class="mini" ${S.bank<cost(d)?"disabled":""} onclick="cash(${i})">Cash in</button></li>`).join("");
 $("badges").innerHTML=BADGES.map(([n,h,ic])=>{const got=S.badges.includes(n);return `<div class="badge${got?"":" locked"}"><span style="font-size:1.8em;${got?"":"filter:grayscale(1)"}">${ic}</span><span><span class="tag${got?" on":""}">${got?"":"🔒 "}${n}</span><br><span class="small">${h}</span></span></div>`}).join("");
 $("stats").innerHTML=`Lifetime miles (all rides): ${S.miles.toFixed(1)}<br>Errand miles (car miles replaced): ${S.carMiles.toFixed(1)}<br>Leisure miles: ${Math.max(0,S.miles-S.carMiles).toFixed(1)}<br>Real gas money saved: ${usd(S.carMiles*gasPerMile())}<br>Errand rides: ${S.errands}<br>Streak: ${S.streak} day(s)<br>Lifetime points: ${S.total}`;
-editList();$("cMpg").value=S.cfg.mpg;$("cGas").value=S.cfg.gas;$("cBoost").value=S.cfg.boost;$("analog").checked=!!S.analog;conds();}
+editList();condEdit();$("cMpg").value=S.cfg.mpg;$("cGas").value=S.cfg.gas;$("cBoost").value=S.cfg.boost;$("analog").checked=!!S.analog;conds();}
 function cash(i){const[n,d]=S.prizes[i],c=cost(d);if(S.bank>=c&&confirm(`Spend ${c} points on ${n}?`)){S.bank-=c;save();render();say("Enjoy your "+n);}}
 function editList(){$("prizeEdit").innerHTML=sorted().map(([n,d,i])=>`<label><span>${n}</span><span class="row" style="flex:0 0 auto"><input type="number" value="${d}" style="width:70px" onchange="setPrice(${i},this.value)"><button class="mini" onclick="delPrize(${i})">Delete</button></span></label>`).join("");}
 function setPrice(i,v){S.prizes[i][1]=+v||S.prizes[i][1];save();render();toast("Price updated");}
@@ -173,9 +176,12 @@ if(!S.seenHelp){S.seenHelp=true;save();setTimeout(()=>show("help"),300);}
 $("closeSet").onclick=()=>{saveCfg();$("settings").style.display="none";$("main").style.display="block";window.scrollTo(0,0);};
 $("btn").onclick=end;
 $("sErrand").onclick=()=>start("errand");$("sLeisure").onclick=()=>start("leisure");
-$("fixSnow").onclick=()=>{M={on:true,snow:!wx.snow,rain:false};wx.snow=M.snow;wx.rain=false;render()};
-$("fixRain").onclick=()=>{M={on:true,rain:!wx.rain,snow:false};wx.rain=M.rain;wx.snow=false;render()};
-$("fixHaul").onclick=()=>{haul=!haul;render()};
+function custBonus(){return S.conds.filter(c=>!c.w&&act[c.n]).reduce((a,c)=>a+c.b,0);}
+function condBtns(){$("condRow").innerHTML=S.conds.map((c,i)=>{const on=c.w?wx[c.w]:act[c.n];return `<button class="mini${on?" on":""}" onclick="tapCond(${i})">${c.n}</button>`}).join("");}
+function tapCond(i){const c=S.conds[i];if(c.w==="snow"){M={on:true,snow:!wx.snow,rain:false};wx.snow=M.snow;wx.rain=false;}else if(c.w==="rain"){M={on:true,rain:!wx.rain,snow:false};wx.rain=M.rain;wx.snow=false;}else act[c.n]=!act[c.n];render();}
+function condEdit(){$("condEdit").innerHTML=S.conds.map((c,i)=>`<label><span>${c.n}${c.w?" (weather fix)":" +"+c.b+" pts/mile"}</span><button class="mini" onclick="delCond(${i})">Delete</button></label>`).join("");}
+function delCond(i){if(confirm("Delete "+S.conds[i].n+"?")){delete act[S.conds[i].n];S.conds.splice(i,1);save();render();toast("Button deleted");}}
+$("addCond").onclick=()=>{let n=$("condName").value.trim(),b=+$("condPts").value;if(n&&b>0){if(!n.endsWith("?"))n+="?";S.conds.push({n,b});$("condName").value="";$("condPts").value="";save();render();toast("Button added");}else toast("Enter a name and bonus points");};
 $("analog").onchange=e=>{S.analog=e.target.checked;save();render()};
 render();
 </script></body></html>

@@ -3,6 +3,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0f2a22">
 <title>Pedal Points</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:system-ui,sans-serif;color:#f3f6f1;background:linear-gradient(rgba(10,25,30,.55),rgba(10,25,30,.85)),url(background.jpg) center/cover fixed,linear-gradient(#1d3b4f,#0f2a22) fixed;min-height:100vh}
@@ -23,6 +26,7 @@ input{width:100%;font-size:1em;padding:8px;border-radius:8px;border:0}
 label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:8px 0}label input{width:90px}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#ffd54a;color:#222;padding:10px 18px;border-radius:20px;font-weight:700;display:none}
 #settings{display:none}
+.cond button{flex:1 1 0;width:100%;margin:0;padding:10px 4px;text-align:center}
 </style></head><body>
 <header><svg viewBox="0 0 300 60" width="100%" height="60"><polygon points="0,60 50,20 80,40 130,5 170,35 210,15 250,40 300,25 300,60" fill="#e8eef0" opacity=".85"/><polygon points="0,60 30,45 60,55 100,38 140,55 190,42 230,55 270,44 300,52 300,60" fill="#2f5d3a"/></svg>
 <button class="gear" id="gearBtn" aria-label="Settings">⚙</button><button class="gear" id="helpBtn" aria-label="How to use" style="right:auto;left:12px">?</button>
@@ -32,7 +36,7 @@ label{display:flex;justify-content:space-between;align-items:center;gap:8px;marg
 <div class="card">
 <div class="row" id="startRow"><button class="go" id="sErrand">Start Errand</button><button class="go" id="sLeisure">Start Leisure</button></div>
 <button class="stop" id="btn" style="display:none">End ride</button>
-<div class="row"><button id="fixSnow" class="mini">Snowing?</button><button id="fixRain" class="mini">Raining?</button><button id="fixHaul" class="mini">Hauling?</button></div>
+<div class="row cond"><button id="fixSnow" class="mini">Snowing?</button><button id="fixRain" class="mini">Raining?</button><button id="fixHaul" class="mini">Hauling?</button></div>
 <label><span>Riding my analog bike (x1.5)</span><input id="analog" type="checkbox" style="width:28px;height:28px"></label>
 <div class="row" style="text-align:center">
 <div><div class="stat" id="mi">0.00</div><div class="small">miles</div></div>
@@ -50,19 +54,20 @@ label{display:flex;justify-content:space-between;align-items:center;gap:8px;marg
 <label>Car mpg <input id="cMpg" type="number" step="0.1"></label>
 <label>Gas $/gallon <input id="cGas" type="number" step="0.01"></label>
 <label>Reward boost (x gas saved) <input id="cBoost" type="number" step="0.5"></label>
-<button id="saveCfg">Save settings</button></div>
+</div>
 <div class="card"><b>Edit prizes</b><div id="prizeEdit"></div>
 <input id="newName" placeholder="New prize name" style="margin-top:8px">
 <div class="row" style="margin-top:8px"><input id="newUsd" type="number" placeholder="Price in $"><button id="addPrize" class="mini">Add prize</button></div></div>
 <div class="card"><b>Backup</b><button id="backup">Save backup file</button><button id="restoreBtn">Restore from file</button><input id="restoreFile" type="file" accept=".json" style="display:none"></div>
-<div class="card"><button id="closeSet" class="go">Done</button></div>
+<div class="card"><button id="closeSet" class="go">Save settings / Done</button></div>
 </div>
 <div id="help" style="display:none"><div class="card"><b>How to use Pedal Points</b>
-<p><b>1. First time:</b> tap ⚙ (top right) and enter your car's mpg and your local gas price, then tap Save settings. This is how the app works out the gas money you save.</p>
+<p><b>1. First time:</b> tap ⚙ (top right) and enter your car's mpg and your local gas price, then tap Save settings / Done at the bottom. This is how the app works out the gas money you save.</p>
 <p><b>2. Start a ride:</b> tap Start Errand if the ride replaces a car trip (grocery store, post office), or Start Leisure for a fun ride. Allow location when asked. Keep the app open and the screen on while you ride.</p>
 <p><b>3. Bonuses:</b> night, freezing temperatures, snow and rain are detected automatically. If the weather is wrong, tap Snowing? or Raining? to fix it. Tap Hauling? if you're carrying a heavy load. Tick the analog bike box if you're riding without a motor.</p>
 <p><b>4. End the ride:</b> tap End ride. Your points go into your bank, including climbing and streak bonuses.</p>
 <p><b>5. Spend points:</b> in the Prize menu, tap Cash in when you've earned enough for a treat. The gold bar shows how close you are.</p>
+<p class="small" style="border-left:3px solid #ffd54a;padding-left:8px"><b>Please note:</b> Pedal Points does not pay out real money or gift cards. Points and reward dollars are just a game. Cashing in is your own permission to treat yourself, paid for with the money you're saving on gas by riding instead of driving.</p>
 <p><b>6. Change prizes:</b> tap ⚙, then use Edit prizes. Change a price, tap Delete to remove one, or type a name and price and tap Add prize to make your own.</p>
 <p><b>7. Badges:</b> locked badges show a hint for how to earn them.</p>
 <p><b>8. Back up:</b> tap ⚙, then Save backup file. Use Restore from file on a new phone. The app reminds you every 5 rides.</p>
@@ -83,17 +88,17 @@ const cost=d=>Math.ceil(d/ptVal());
 const sorted=()=>S.prizes.map((p,i)=>[p[0],p[1],i]).sort((a,b)=>a[1]-b[1]);
 
 const BADGES=[
-["First ride","Finish your first ride"],
-["First snow ride","Ride while it's snowing"],
-["Before sunrise","Finish a ride before the sun is up"],
-["Night owl","Ride after sunset"],
-["Polar bear","Ride at 20°F or colder"],
-["Hauler","Do a ride carrying a heavy load"],
-["Hill climber","Climb 1,000 ft in one ride"],
-["Errand runner","Do 10 errand rides"],
-["Week streak","Ride 7 days in a row"],
-["Gas saver","Save $50 in gas"],
-["Century","Reach 100 lifetime miles"]];
+["First ride","Finish your first ride","🚲"],
+["First snow ride","Ride while it's snowing","❄️"],
+["Before sunrise","Finish a ride before the sun is up","🌅"],
+["Night owl","Ride after sunset","🦉"],
+["Polar bear","Ride at 20°F or colder","🐻‍❄️"],
+["Hauler","Do a ride carrying a heavy load","📦"],
+["Hill climber","Climb 1,000 ft in one ride","⛰️"],
+["Errand runner","Do 10 errand rides","🛒"],
+["Week streak","Ride 7 days in a row","🔥"],
+["Gas saver","Save $50 in gas","⛽"],
+["Century","Reach 100 lifetime miles","💯"]];
 
 let type="leisure",riding=false,watch=null,last=null,dist=0,pts=0,climb=0,lastAlt=null,wx={},wake=null,M={},haul=false;
 function say(t){try{speechSynthesis.speak(new SpeechSynthesisUtterance(t))}catch(e){}if(navigator.vibrate)navigator.vibrate([200,100,200]);}
@@ -144,8 +149,8 @@ say(`Ride done. ${dist.toFixed(1)} miles, ${total} points, worth ${usd(total*ptV
 setTimeout(afterRide,4000);}
 function render(){$("bank").textContent=S.bank;$("bankUsd").textContent=`Worth ${usd(S.bank*ptVal())} in rewards`;
 $("prizes").innerHTML=sorted().map(([n,d,i])=>`<li class="row"><span>${n} — ${usd(d)} (${cost(d)} pts)<div style="height:6px;background:#0006;border-radius:3px;margin-top:4px"><div style="height:6px;border-radius:3px;background:#ffd54a;width:${Math.min(100,S.bank/cost(d)*100)}%"></div></div></span><button class="mini" ${S.bank<cost(d)?"disabled":""} onclick="cash(${i})">Cash in</button></li>`).join("");
-$("badges").innerHTML=BADGES.map(([n,h])=>{const got=S.badges.includes(n);return `<div class="badge${got?"":" locked"}"><span class="tag${got?" on":""}">${got?"★":"🔒"} ${n}</span><span class="small">${h}</span></div>`}).join("");
-$("stats").innerHTML=`Lifetime miles: ${S.miles.toFixed(1)}<br>Car miles replaced: ${S.carMiles.toFixed(1)}<br>Real gas money saved: ${usd(S.carMiles*gasPerMile())}<br>Errand rides: ${S.errands}<br>Streak: ${S.streak} day(s)<br>Lifetime points: ${S.total}`;
+$("badges").innerHTML=BADGES.map(([n,h,ic])=>{const got=S.badges.includes(n);return `<div class="badge${got?"":" locked"}"><span style="font-size:1.8em;${got?"":"filter:grayscale(1)"}">${ic}</span><span><span class="tag${got?" on":""}">${got?"":"🔒 "}${n}</span><br><span class="small">${h}</span></span></div>`}).join("");
+$("stats").innerHTML=`Lifetime miles (all rides): ${S.miles.toFixed(1)}<br>Errand miles (car miles replaced): ${S.carMiles.toFixed(1)}<br>Leisure miles: ${Math.max(0,S.miles-S.carMiles).toFixed(1)}<br>Real gas money saved: ${usd(S.carMiles*gasPerMile())}<br>Errand rides: ${S.errands}<br>Streak: ${S.streak} day(s)<br>Lifetime points: ${S.total}`;
 editList();$("cMpg").value=S.cfg.mpg;$("cGas").value=S.cfg.gas;$("cBoost").value=S.cfg.boost;$("analog").checked=!!S.analog;conds();}
 function cash(i){const[n,d]=S.prizes[i],c=cost(d);if(S.bank>=c&&confirm(`Spend ${c} points on ${n}?`)){S.bank-=c;save();render();say("Enjoy your "+n);}}
 function editList(){$("prizeEdit").innerHTML=sorted().map(([n,d,i])=>`<label><span>${n}</span><span class="row" style="flex:0 0 auto"><input type="number" value="${d}" style="width:70px" onchange="setPrice(${i},this.value)"><button class="mini" onclick="delPrize(${i})">Delete</button></span></label>`).join("");}
@@ -159,13 +164,13 @@ $("backup").onclick=saveBackup;
 $("restoreBtn").onclick=()=>$("restoreFile").click();
 $("restoreFile").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(d.bank==null)throw 0;if(confirm("Replace current data with this backup?")){localStorage.setItem("pur",JSON.stringify(d));location.reload();}}catch(x){alert("That doesn't look like a Pedal Points backup.")}};r.readAsText(f);};
 $("addPrize").onclick=()=>{const n=$("newName").value.trim(),d=+$("newUsd").value;if(n&&d>0){S.prizes.push([n,d]);$("newName").value="";$("newUsd").value="";save();render();toast("Prize added");}else toast("Enter a name and a price");};
-$("saveCfg").onclick=()=>{S.cfg={mpg:+$("cMpg").value||16,gas:+$("cGas").value||7,boost:+$("cBoost").value||3};save();render();toast("Settings saved");};
+function saveCfg(){S.cfg={mpg:+$("cMpg").value||16,gas:+$("cGas").value||7,boost:+$("cBoost").value||3};save();render();toast("Settings saved");}
 $("gearBtn").onclick=()=>show($("settings").style.display==="block"?"main":"settings");
 function show(v){["main","settings","help"].forEach(x=>$(x).style.display=x===v?"block":"none");window.scrollTo(0,0);}
 $("helpBtn").onclick=()=>show($("help").style.display==="block"?"main":"help");
 $("closeHelp").onclick=()=>show("main");
 if(!S.seenHelp){S.seenHelp=true;save();setTimeout(()=>show("help"),300);}
-$("closeSet").onclick=()=>{$("settings").style.display="none";$("main").style.display="block";window.scrollTo(0,0);};
+$("closeSet").onclick=()=>{saveCfg();$("settings").style.display="none";$("main").style.display="block";window.scrollTo(0,0);};
 $("btn").onclick=end;
 $("sErrand").onclick=()=>start("errand");$("sLeisure").onclick=()=>start("leisure");
 $("fixSnow").onclick=()=>{M={on:true,snow:!wx.snow,rain:false};wx.snow=M.snow;wx.rain=false;render()};

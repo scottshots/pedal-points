@@ -227,7 +227,7 @@ body[data-theme=winter]{--rider:#1f3550;--hillB:#ffffff;--hillF:#d6e6f2;--bar:rg
 <p><b>5. Bonus buttons:</b> cold, heat, rain and snow are worked out automatically from the weather. If it's raining and the app missed it, tap Raining?. Tap Hauling? if you're carrying a heavy load, and Windy? when you're riding into the wind. A gold button means it's on. The night bonus only counts if you've said in Settings that you ride with front and rear lights.</p>
 <p><b>6. Riding your other bike?</b> Tick the box under the bonus buttons before you start. Classic bike miles earn 1.5x.</p>
 <p><b>7. End the ride:</b> tap End ride. You'll see your points, bonuses, any trophies and quests you finished, and the approximate gas money you saved.</p>
-<p><b>8. Your road trip:</b> at the bottom of the Ride tab, every mile you ride moves your bike along the road toward the next stop.</p>
+<p><b>8. Your road trip:</b> at the bottom of the Ride tab, every mile you ride moves your bike along the road toward the next stop. Finish the 1,000-mile trip to earn a gold star 🌟 next to your name, and the road starts fresh for another lap.</p>
 <p><b>9. Daily bonus:</b> open the app each day and tap the gold Daily bonus button for a few surprise points.</p></div>
 
 <div class="card"><h2>🏆 Rewards tab</h2>
@@ -240,7 +240,7 @@ body[data-theme=winter]{--rider:#1f3550;--hillB:#ffffff;--hillF:#d6e6f2;--bar:rg
 <div class="card"><h2>📊 Stats tab and levels</h2>
 <p>Stats shows your total, errand and leisure miles, the approximate gas money you've saved, your streak and your points.</p>
 <p><b>Forgot to track a ride?</b> Tap the button at the top of the Stats tab, type the miles, and tick what applied. It earns the same points.</p>
-<p>Every point you ever earn counts toward your level, from Kickstand Rookie up to Pedal Legend. Spending points never lowers your level. New levels unlock new color themes.</p></div>
+<p>Every point you ever earn counts toward your level, from Kickstand Rookie through Pedal Legend and beyond, up to Pedal Points Immortal. Spending points never lowers your level. New levels unlock new color themes.</p></div>
 
 <div class="card"><h2>⚙ Settings</h2>
 <p>Tap the ⚙ gear button at the top right to change your name, main bike, lights, theme, car mileage, gas price and reward boost, mile announcements and sounds, phone battery saver options, bonus buttons and prizes, and to save backups.</p>
@@ -278,6 +278,8 @@ body[data-theme=winter]{--rider:#1f3550;--hillB:#ffffff;--hillF:#d6e6f2;--bar:rg
 <input id="wName" maxlength="20" placeholder="First name or nickname">
 <p style="text-align:left;margin:14px 0 4px">What kind of bike do you ride most?</p>
 <div class="row"><button id="wE">⚡ E-bike</button><button id="wC">🚲 Classic bike</button></div>
+<p style="text-align:left;margin:14px 0 4px">Your car, so the app can estimate the gas you save: <span class="small">(you can change these later)</span></p>
+<div class="row"><div><div class="small" style="text-align:left">Miles per gallon</div><input id="wMpg" type="number" inputmode="decimal" placeholder="e.g. 25"></div><div><div class="small" style="text-align:left">Gas $ per gallon</div><input id="wGas" type="number" inputmode="decimal" placeholder="e.g. 3.50"></div></div>
 <button class="big go" id="wGo" style="margin-top:14px">Let's ride!</button>
 </div></div>
 
@@ -324,7 +326,7 @@ const TERMS_VERSION=1;
 let S;try{S=JSON.parse(localStorage.getItem("pur")||"{}")||{}}catch(e){S={}}
 const DEF={bank:0,total:0,miles:0,carMiles:0,days:[],badges:[],streak:0,errands:0};
 for(const k in DEF)if(S[k]==null)S[k]=DEF[k];
-S.cfg=Object.assign({mpg:16,gas:7,boost:1.5,bike:"ebike",announce:5,voice:true,sound:true,lights:false,map:true,anim:true,theme:"pine"},S.cfg||{});
+S.cfg=Object.assign({mpg:25,gas:3.5,boost:1.5,bike:"ebike",announce:5,voice:true,sound:true,lights:false,map:true,anim:true,theme:"pine"},S.cfg||{});
 if(S.analog)S.cfg.bike="classic";delete S.analog;
 S.prizes=S.prizes||DEFAULT_PRIZES.map(p=>p.slice());
 S.conds=S.conds||DEFAULT_CONDS.map(c=>Object.assign({},c));
@@ -351,8 +353,10 @@ function confetti(){const c=$("confetti"),x=c.getContext("2d");c.width=innerWidt
 function countUp(el,to){const t0=performance.now(),dur=1300;let lastTick=0;function f(now){const k=Math.min(1,(now-t0)/dur);el.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1&&now-lastTick>90){tone(1100+500*k,.03,0,"square",.03);lastTick=now;}if(k<1)requestAnimationFrame(f);}requestAnimationFrame(f);}
 
 /* ===== LEVELS, BADGES, QUESTS ===== */
-const LEVELS=[[0,"Kickstand Rookie"],[250,"Bike Lane Beginner"],[750,"Neighborhood Cruiser"],[1500,"Main Street Regular"],[3000,"Crosstown Commuter"],[5000,"Gas Pump Dodger"],[8000,"Car-Free Captain"],[12000,"Pedal Legend"]];
+const LEVELS=[[0,"Kickstand Rookie"],[250,"Bike Lane Beginner"],[750,"Neighborhood Cruiser"],[1500,"Main Street Regular"],[3000,"Crosstown Commuter"],[5000,"Gas Pump Dodger"],[8000,"Car-Free Captain"],[12000,"Pedal Legend"],[18000,"Bike Lane Hall of Famer"],[26000,"Car-Free Icon"],[36000,"Pedal Points Immortal"]];
 const THEMES=[["pine","🌲 Pine",0],["sunset","🌅 Sunset",2],["night","🌌 Night Sky",4],["winter","❄️ Winter",6]];
+const starCount=()=>Math.floor(S.miles/STOPS[STOPS.length-1][0]);
+const starText=()=>{const n=starCount();return n<=0?"":n<=5?"🌟".repeat(n):`🌟×${n}`;};
 const STOPS=[[0,"Home"],[5,"Corner store"],[15,"Post office"],[30,"Downtown"],[60,"Across town"],[100,"Next town"],[200,"County line"],[350,"Over the pass"],[500,"State line"],[1000,"Legend"]];
 function levelOf(p){let i=0;while(i<LEVELS.length-1&&p>=LEVELS[i+1][0])i++;return i;}
 const BADGES=[
@@ -367,6 +371,9 @@ const BADGES=[
 ["Rain or shine","Ride at least once a week, 4 weeks in a row","☂️"],
 ["Gas saver","Save $50 in gas","⛽"],
 ["Century","Reach 100 lifetime miles","💯"],
+["Gold star","Finish the 1,000-mile road trip","🌟"],
+["Road warrior","Reach 2,500 lifetime miles","🏅"],
+["Five grand","Reach 5,000 lifetime miles","🏆"],
 ["Quest crusher","Finish all 4 weekly quests in one week","🎯"]];
 const QUESTS=[
 {id:"err3",t:"Do 3 errand rides",goal:3,key:"errands",pts:100},
@@ -452,13 +459,15 @@ function awardRide(r){
  const ridePts=Math.round(r.points),total=ridePts+bonus;
  S.bank+=total;S.total+=total;S.miles+=miles;
  if(r.type==="errand"){S.carMiles+=miles;S.errands++;}
- const b=n=>{if(!S.badges.includes(n)){S.badges.push(n);const B=BADGES.find(x=>x[0]===n);ev.push(`${B?B[2]:"🏅"} Badge unlocked: ${n}`);}};
+ const b=n=>{if(!S.badges.includes(n)){S.badges.push(n);const B=BADGES.find(x=>x[0]===n);ev.push(`${B?B[2]:"🏅"} Trophy unlocked: ${n}`);}};
  b("First ride");if(r.early)b("Early bird");if(weekendPair(day))b("Weekend rider");if(miles>=10)b("Long haul");if(rainOrShine())b("Rain or shine");
  if(r.haul)b("Hauler");if((r.climb||0)>=1000)b("Hill climber");
- if(S.errands>=10)b("Errand runner");if(S.streak>=7)b("Week streak");if(S.carMiles*gasPerMile()>=50)b("Gas saver");if(S.miles>=100)b("Century");
+ if(S.errands>=10)b("Errand runner");if(S.streak>=7)b("Week streak");if(S.carMiles*gasPerMile()>=50)b("Gas saver");if(S.miles>=100)b("Century");if(S.miles>=1000)b("Gold star");if(S.miles>=2500)b("Road warrior");if(S.miles>=5000)b("Five grand");
  if(week().done.length>=QUESTS.length)b("Quest crusher");
  const lvAfter=levelOf(S.total);if(lvAfter>lvBefore){ev.unshift(`⭐ Level up! You're now a ${LEVELS[lvAfter][1]}`);THEMES.forEach(t=>{if(t[2]>lvBefore&&t[2]<=lvAfter)ev.push(`🎨 New theme unlocked: ${t[1]}. Pick it in Settings (the ⚙ gear button, top right).`);});}
- const stopBefore=STOPS.filter(s=>s[0]<=S.miles-miles).length,stopAfter=STOPS.filter(s=>s[0]<=S.miles).length;if(stopAfter>stopBefore)ev.push(`🛣️ Road trip: you reached ${STOPS[stopAfter-1][1]}!`);
+ const LAP=STOPS[STOPS.length-1][0],prevMi=S.miles-miles,lapB=Math.floor(prevMi/LAP),lapA=Math.floor(S.miles/LAP);
+ if(lapA>lapB){for(let k=lapB+1;k<=lapA;k++)ev.push(`🌟 Road trip complete! Gold star #${k}. The road starts fresh.`);}
+ else{const inB=prevMi-lapB*LAP,inA=S.miles-lapA*LAP,stB=STOPS.filter(x=>x[0]<=inB).length,stA=STOPS.filter(x=>x[0]<=inA).length;if(stA>stB)ev.push(`🛣️ Road trip: you reached ${STOPS[stA-1][1]}!`);}
  save();renderAll();
  const saved=r.type==="errand"?miles*gasPerMile():0;
  showSummary({miles,ridePts,total,saved,lines,ev,manual:r.manual});
@@ -502,7 +511,7 @@ document.addEventListener("touchstart",e=>{if(pageOpen||tourOn){tx=null;return;}
 document.addEventListener("touchend",e=>{if(tx==null)return;const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;tx=null;if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.5){const i=TABS.indexOf(curTab)+(dx<0?1:-1);if(i>=0&&i<TABS.length){sfx.click();showTab(TABS[i]);}}},{passive:true});
 
 /* ===== RENDER ===== */
-function renderHeader(){const li=levelOf(S.total),n=S.profile.name;$("hello").textContent=(n?`Hey ${n}! `:"")+`Level ${li+1} · ${LEVELS[li][1]}`;}
+function renderHeader(){const li=levelOf(S.total),n=S.profile.name,st=starText();$("hello").textContent=(n?`Hey ${n}${st?" "+st:""}! `:(st?st+" ":""))+`Level ${li+1} · ${LEVELS[li][1]}`;}
 function renderBank(){const li=levelOf(S.total),cur=LEVELS[li][0],nx=LEVELS[li+1];
  $("lvlName").textContent=`⭐ Level ${li+1}: ${LEVELS[li][1]}`;
  $("lvlNext").textContent=nx?`${nx[0]-S.total} pts to ${nx[1]}`:"Top level!";
@@ -513,13 +522,13 @@ function renderBank(){const li=levelOf(S.total),cur=LEVELS[li][0],nx=LEVELS[li+1
 function claimDaily(){const today=new Date().toDateString();if(S.lastBonus===today)return;const lb=levelOf(S.total),n=5+Math.floor(Math.random()*11);S.lastBonus=today;S.bank+=n;S.total+=n;save();renderAll();sfx.coin();confetti();
  const la=levelOf(S.total);toast(la>lb?`🎁 +${n} points! ⭐ Level up: ${LEVELS[la][1]}!`:`🎁 +${n} bonus points! Come back tomorrow for another.`);}
 function renderTrail(){const road=$("road");let L;try{L=road.getTotalLength();}catch(e){return;}if(!L)return;
- const n=STOPS.length,m=S.miles,last=STOPS[n-1][0];let pos;
+ const n=STOPS.length,last=STOPS[n-1][0],laps=starCount(),m=S.miles-laps*last;let pos;
  if(m>=last)pos=L;else{let i=0;while(i<n-2&&m>=STOPS[i+1][0])i++;pos=L*(i+(m-STOPS[i][0])/(STOPS[i+1][0]-STOPS[i][0]))/(n-1);}
  $("roadDone").setAttribute("stroke-dasharray",`${pos} ${L}`);
  $("stops").innerHTML=STOPS.map(([mi,name],i)=>{const p=road.getPointAtLength(L*i/(n-1)),got=m>=mi,up=i%2===0;return `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="5" fill="${got?"#ffd54a":"#14231c"}" stroke="${got?"#fff":"#6fcf8f"}" stroke-width="1.5"/><text x="${p.x.toFixed(1)}" y="${(p.y+(up?-11:18)).toFixed(1)}" text-anchor="${p.x>295?"end":p.x<45?"start":"middle"}" font-size="10" font-weight="600" font-family="Fredoka,system-ui" fill="${got?"#ffd54a":"#f3f6f1"}" opacity="${got?1:.75}">${name}</text>`}).join("");
  const a=road.getPointAtLength(Math.max(0,pos-1)),b=road.getPointAtLength(Math.min(L,pos+1)),p=road.getPointAtLength(pos);let ang=Math.atan2(b.y-a.y,b.x-a.x)*180/Math.PI;const flip=Math.abs(ang)>90;if(flip)ang+=180;
  $("trailRider").setAttribute("transform",`translate(${p.x.toFixed(1)},${(p.y-2).toFixed(1)}) rotate(${ang.toFixed(1)}) scale(${flip?-1.4:1.4},1.4)`);
- const next=STOPS.find(s=>s[0]>m);$("trailTxt").textContent=next?`${m.toFixed(1)} miles so far. Next stop: ${next[1]}, ${(next[0]-m).toFixed(1)} miles away.`:`${m.toFixed(1)} miles. You've reached Legend status! Keep riding.`;}
+ const next=STOPS.find(s=>s[0]>m),lapTxt=laps?`Lap ${laps+1} · `:"";$("trailTxt").textContent=`${lapTxt}${m.toFixed(1)} miles on this trip. Next stop: ${next[1]}, ${(next[0]-m).toFixed(1)} miles away.`+(laps?` You have ${laps} gold star${laps>1?"s":""}.`:" Finish the trip to earn a gold star!");}
 function applyTheme(){const lv=levelOf(S.total),t=THEMES.find(x=>x[0]===S.cfg.theme);if(!t||t[2]>lv)S.cfg.theme="pine";document.body.dataset.theme=S.cfg.theme;}
 function themePick(){const lv=levelOf(S.total);$("themePick").innerHTML=THEMES.map(([id,name,need])=>need>lv?`<button disabled>🔒 ${name.replace(/^\S+\s/,"")}<br><span class="small">Level ${need+1}</span></button>`:`<button class="${S.cfg.theme===id?"on":""}" onclick="setTheme('${id}')">${name}</button>`).join("");}
 function setTheme(id){sfx.click();S.cfg.theme=id;save();applyTheme();themePick();toast("Theme saved ✓");}
@@ -541,7 +550,7 @@ function renderRewards(){const w=week(),nextMon=new Date(w.id);nextMon.setDate(n
  $("badges").innerHTML=BADGES.map(([n,h,ic],i)=>{const got=S.badges.includes(n);return `<div class="trophy${got?"":" locked"}" onclick="trophyTap(${i})"><div class="ti">${ic}</div><div class="tn">${got?"":"🔒 "}${n}</div></div>`}).join("");}
 function trophyTap(i){const[n,h]=BADGES[i];sfx.click();toast(S.badges.includes(n)?`🏆 ${n}: ${h}. Earned!`:`🔒 ${n}: ${h}`);}
 function renderStats(){const g=S.carMiles*gasPerMile();
- $("stats").innerHTML=[["🚲 Lifetime miles (all rides)",S.miles.toFixed(1)],["🛒 Errand miles (car miles replaced)",S.carMiles.toFixed(1)],["🌲 Leisure miles",Math.max(0,S.miles-S.carMiles).toFixed(1)],["⛽ Approximate gas money saved",usd(g)],["🧾 Errand rides",S.errands],["🔥 Current streak",calcStreak()+" day(s)"],["⭐ Lifetime points",S.total],["💰 Points in the bank",S.bank]].map(([a,b])=>`<div class="lvl" style="margin:9px 0"><span>${a}</span><b>${b}</b></div>`).join("");
+ $("stats").innerHTML=[["🚲 Lifetime miles (all rides)",S.miles.toFixed(1)],["🛒 Errand miles (car miles replaced)",S.carMiles.toFixed(1)],["🌲 Leisure miles",Math.max(0,S.miles-S.carMiles).toFixed(1)],["⛽ Approximate gas money saved",usd(g)],["🧾 Errand rides",S.errands],["🔥 Current streak",calcStreak()+" day(s)"],["🌟 Road trips finished (gold stars)",starCount()],["⭐ Lifetime points",S.total],["💰 Points in the bank",S.bank]].map(([a,b])=>`<div class="lvl" style="margin:9px 0"><span>${a}</span><b>${b}</b></div>`).join("");
  $("levels").innerHTML=LEVELS.map(([p,n],i)=>{const got=S.total>=p;return `<div class="lvl" style="margin:8px 0;${got?"":"opacity:.5"}"><span>${got?"⭐":"🔒"} ${i+1}. ${n}</span><span class="small">${p} pts</span></div>`}).join("");}
 function renderAll(){applyTheme();renderHeader();renderBank();renderRide();renderRewards();renderStats();renderTrail();}
 
@@ -552,7 +561,7 @@ function renderSettings(){$("cName").value=S.profile.name||"";bikeBtns();$("cMpg
 function bikeBtns(){$("bE").className=S.cfg.bike==="ebike"?"on":"";$("bC").className=S.cfg.bike==="classic"?"on":"";}
 $("bE").onclick=()=>{sfx.click();S.cfg.bike="ebike";save();bikeBtns();renderRide();};
 $("bC").onclick=()=>{sfx.click();S.cfg.bike="classic";save();bikeBtns();renderRide();};
-function saveCfg(quiet){S.profile.name=$("cName").value.trim().slice(0,20);S.cfg.mpg=+$("cMpg").value||16;S.cfg.gas=+$("cGas").value||7;S.cfg.boost=+$("cBoost").value||1.5;S.cfg.announce=+$("cAnn").value;S.cfg.voice=$("cVoice").value==="1";S.cfg.sound=$("cSound").checked;S.cfg.lights=$("cLights").checked;S.cfg.map=$("cMap").checked;S.cfg.anim=$("cAnim").checked;save();renderAll();applyAnim();toast(quiet?"Saved ✓":"Settings saved ✓");}
+function saveCfg(quiet){S.profile.name=$("cName").value.trim().slice(0,20);S.cfg.mpg=+$("cMpg").value||25;S.cfg.gas=+$("cGas").value||3.5;S.cfg.boost=+$("cBoost").value||1.5;S.cfg.announce=+$("cAnn").value;S.cfg.voice=$("cVoice").value==="1";S.cfg.sound=$("cSound").checked;S.cfg.lights=$("cLights").checked;S.cfg.map=$("cMap").checked;S.cfg.anim=$("cAnim").checked;save();renderAll();applyAnim();toast(quiet?"Saved ✓":"Settings saved ✓");}
 ["cName","cMpg","cGas","cBoost","cAnn","cVoice","cSound","cLights","cMap","cAnim"].forEach(id=>$(id).addEventListener("change",()=>saveCfg(true)));
 $("closeSet").onclick=()=>{sfx.click();closePage();};
 function condEdit(){$("condEdit").innerHTML=S.conds.map((c,i)=>`<div class="lvl" style="margin:10px 0;align-items:center"><span>${esc(c.n)}<br><span class="small">+${condBonus(c)} pts/mile${c.w?" (auto-detected)":""}</span></span><span class="row" style="flex:0 0 auto;gap:4px"><button class="mini" ${i===0?"disabled":""} onclick="moveCond(${i},-1)" aria-label="Move up">▲</button><button class="mini" ${i===S.conds.length-1?"disabled":""} onclick="moveCond(${i},1)" aria-label="Move down">▼</button><button class="mini" onclick="delCond(${i})">Delete</button></span></div>`).join("")||'<div class="small" style="margin-top:8px">No bonus buttons. Add one below.</div>';}
@@ -580,7 +589,7 @@ let wBike=S.cfg.bike;
 function wSet(){$("wE").className=wBike==="ebike"?"on":"";$("wC").className=wBike==="classic"?"on":"";}
 function showWelcome(){$("wName").value=S.profile.name||"";wBike=S.cfg.bike;wSet();$("welcome").classList.add("show");}
 $("wE").onclick=()=>{wBike="ebike";wSet();sfx.click()};$("wC").onclick=()=>{wBike="classic";wSet();sfx.click()};
-$("wGo").onclick=()=>{S.profile.name=$("wName").value.trim().slice(0,20);S.cfg.bike=wBike;S.profile.setup=true;S.seenHelp=true;save();$("welcome").classList.remove("show");renderAll();sfx.click();showTerms(true);};
+$("wGo").onclick=()=>{S.profile.name=$("wName").value.trim().slice(0,20);S.cfg.bike=wBike;const wm=+$("wMpg").value,wg=+$("wGas").value;S.cfg.mpg=wm>0?wm:25;S.cfg.gas=wg>0?wg:3.5;S.profile.setup=true;S.seenHelp=true;save();$("welcome").classList.remove("show");renderAll();sfx.click();showTerms(true);};
 const termsHtml=()=>TERMS.map(([ic,t])=>`<li>${ic} ${t}</li>`).join("");
 let termsThenTour=false;
 function showTerms(thenTour){termsThenTour=thenTour;$("termsList").innerHTML=termsHtml();$("tAgree").checked=false;$("tGo").disabled=true;$("terms").classList.add("show");}
@@ -592,7 +601,7 @@ const TOUR=[
 {tab:"ride",el:"condRow",t:"Bonus buttons. Cold, heat, rain and snow are picked up from the weather automatically. If rain was missed, tap Raining?. Tap Hauling? when you carry a heavy load, and Windy? when riding into the wind. Gold means on."},
 {tab:"ride",el:"altBikeRow",t:"Riding your other bike today? Tick this box before you start."},
 {tab:"ride",el:"levelCard",t:"Your level, points bank and riding streak. Every point you earn moves you toward the next level, and new levels unlock color themes."},
-{tab:"ride",el:"trailCard",t:"Your road trip. Every mile you ride moves your bike along the road toward the next stop."},
+{tab:"ride",el:"trailCard",t:"Your road trip. Every mile you ride moves your bike along the road toward the next stop. Finish the whole trip to earn a gold star, then start a new lap."},
 {tab:"rewards",el:"prizeCard",t:"The Rewards tab: spend points on prizes with Cash in. Please note: points are just a game. They aren't real money, cash or gift cards. Cashing in is your own permission to treat yourself. Weekly quests and your trophy case are here too."},
 {tab:"stats",el:"addRideBtn",t:"The Stats tab shows your miles and the approximate gas money you've saved. Forgot to track a ride? Add it here. It earns the same points."},
 {tab:"ride",el:"tabbar",top:true,t:"Switch between Ride, Rewards and Stats here, or swipe left and right."},

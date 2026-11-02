@@ -87,12 +87,25 @@ body.noanim *,body.noanim *::before{animation:none!important;transition:none!imp
 body[data-theme=sunset]{--hillB:#f6c7a1;--hillF:#5a2e45;--bar:rgba(45,20,32,.96);--card:rgba(58,28,40,.86);--pine:#8a4b5a;--pine2:#6d3a48;--line:#ffb38a;background:linear-gradient(rgba(20,10,20,.35),rgba(20,10,20,.7)),url(background.jpg) center/cover fixed,linear-gradient(#3b1f3a,#c0603f) fixed}
 body[data-theme=night]{--hillB:#7d88b3;--hillF:#151d3d;--bar:rgba(8,12,32,.96);--card:rgba(14,20,48,.86);--pine:#2c3e70;--pine2:#22305a;--line:#8fa8ff;background:linear-gradient(rgba(5,8,20,.4),rgba(5,8,20,.8)),url(background.jpg) center/cover fixed,linear-gradient(#050a1f,#1a2350) fixed}
 body[data-theme=winter]{--rider:#1f3550;--hillB:#ffffff;--hillF:#d6e6f2;--bar:rgba(20,40,60,.96);--card:rgba(28,52,74,.84);--pine:#4a7fa3;--pine2:#3a6585;--line:#cfeeff;background:linear-gradient(rgba(10,25,40,.3),rgba(10,25,40,.7)),url(background.jpg) center/cover fixed,linear-gradient(#7f9fc0,#1f3550) fixed}
+.ibtn{width:26px;height:26px;min-width:26px;padding:0;margin:0 0 0 6px;border-radius:50%;font-size:.8em;font-weight:700;font-style:italic;font-family:Georgia,serif;line-height:1;background:transparent;border:2px solid var(--line);box-shadow:none;vertical-align:middle;display:inline-flex;align-items:center;justify-content:center}
+.coffee{text-decoration:none;display:block}
+.ihead{display:flex;align-items:center;justify-content:space-between;gap:8px}.ihead h2{margin:0}
+#startRow button{font-size:1.02em}
+.checkin{display:flex;align-items:center;justify-content:center;gap:8px;width:auto;margin:10px auto 0;padding:9px 16px;font-size:.95em;border-radius:22px;background:transparent;border:2px dashed var(--gold);color:var(--gold);box-shadow:none}
+.tipbox{background:#0004;border-left:4px solid var(--gold);border-radius:8px;padding:10px 12px;text-align:left;margin:12px 0}
+.ico{width:1.15em;height:1.15em;vertical-align:-.2em;display:inline-block;flex:none;overflow:visible}
+.kref{display:inline-flex;align-items:center;justify-content:center;width:1.55em;height:1.55em;border-radius:50%;background:var(--pine);border:2px solid var(--line);color:#fff;font-weight:700;font-size:.85em;vertical-align:-.25em;line-height:1;font-style:normal}
+.kref .ico{width:1em;height:1em;vertical-align:0}
+.hbtn .ico{width:1.05em;height:1.05em;vertical-align:-.15em}
+.trophy .ti .ico{width:1.3em;height:1.3em}
+#tabbar button .ico{width:1em;height:1em;vertical-align:0}
 #tourBox{position:fixed;left:12px;right:12px;bottom:16px;z-index:1002;display:none;background:#14372c;border:2px solid var(--gold);border-radius:18px;padding:14px;max-width:520px;margin:0 auto}
 </style></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="i-gear" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6.4"/><circle cx="12" cy="12" r="2.4" stroke="#ffd54a"/><line x1="19.60" y1="12.00" x2="22.00" y2="12.00" stroke-width="3.2"/><line x1="17.37" y1="17.37" x2="19.07" y2="19.07" stroke-width="3.2"/><line x1="12.00" y1="19.60" x2="12.00" y2="22.00" stroke-width="3.2"/><line x1="6.63" y1="17.37" x2="4.93" y2="19.07" stroke-width="3.2"/><line x1="4.40" y1="12.00" x2="2.00" y2="12.00" stroke-width="3.2"/><line x1="6.63" y1="6.63" x2="4.93" y2="4.93" stroke-width="3.2"/><line x1="12.00" y1="4.40" x2="12.00" y2="2.00" stroke-width="3.2"/><line x1="17.37" y1="6.63" x2="19.07" y2="4.93" stroke-width="3.2"/></g></symbol><symbol id="i-bike" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="16" r="4" stroke="#ffd54a"/><circle cx="18" cy="16" r="4" stroke="#ffd54a"/><path d="M6 16l4-7h6l2 7M12 16l-2-7M6 16h6l4-7M16 9l-1-3h2.5M8.5 7.5h3"/></g></symbol><symbol id="i-star" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12,3 14.6,8.6 20.6,9.3 16.1,13.4 17.3,19.4 12,16.4 6.7,19.4 7.9,13.4 3.4,9.3 9.4,8.6" fill="#ffd54a" stroke="#ffd54a"/></g></symbol><symbol id="i-gstar" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12,3 14.6,8.6 20.6,9.3 16.1,13.4 17.3,19.4 12,16.4 6.7,19.4 7.9,13.4 3.4,9.3 9.4,8.6" fill="#ffd54a" stroke="#ffd54a"/><path d="M12 9.5v3M10.5 11h3" stroke="#fff" stroke-width="1.4"/></g></symbol><symbol id="i-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5,12.5 10,17 19,7"/></g></symbol><symbol id="i-trophy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v5a5 5 0 0 1-10 0z" fill="#ffd54a" stroke="#ffd54a"/><path d="M7 6H4.5a2.8 2.8 0 0 0 3 4.2M17 6h2.5a2.8 2.8 0 0 1-3 4.2M12 14v3M8 20.5h8M9.5 17h5"/></g></symbol><symbol id="i-cart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2.2l2.4 11h10.2l2-7.5H6.4"/><circle cx="9" cy="19.2" r="1.6" stroke="#ffd54a"/><circle cx="16.4" cy="19.2" r="1.6" stroke="#ffd54a"/></g></symbol><symbol id="i-fuel" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="4" width="9" height="16.5" rx="1.6"/><rect x="6.8" y="6.6" width="4.4" height="3.8" rx=".6" fill="#ffd54a" stroke="#ffd54a" stroke-width="1"/><path d="M13.5 9.5h1.8l2.2 2.2v5.6a1.4 1.4 0 0 0 2.8 0V8.2L18.3 6.2M3 20.5h12"/></g></symbol><symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10.5" rx="2.2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/><circle cx="12" cy="15.5" r="1.4" fill="#ffd54a" stroke="#ffd54a" stroke-width="1"/></g></symbol><symbol id="i-flame" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5c.8 3.2 5.5 5.3 5.5 10.6a5.5 5.5 0 0 1-11 0c0-3.2 2.1-4.5 2.4-6.8 1.2 1 1.7 2.3 1.7 3.4 1.2-1.9 1.6-4.3 1.4-7.2z" fill="#ff8a3d" stroke="#ff8a3d"/><path d="M12 13c1 1.4 2.4 2.1 2.4 4a2.4 2.4 0 0 1-4.8 0c0-1.5 1.4-2.4 2.4-4z" fill="#ffd54a" stroke="#ffd54a" stroke-width="1.2"/></g></symbol><symbol id="i-checkin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15.5" rx="2.2"/><path d="M4 9.5h16M8 3v4M16 3v4"/><polyline points="9,14.6 11.2,16.8 15.4,12.4" stroke="#ffd54a"/></g></symbol><symbol id="i-calendar" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15.5" rx="2.2"/><path d="M4 9.5h16M8 3v4M16 3v4"/><circle cx="9" cy="14" r=".9" fill="#ffd54a" stroke="#ffd54a"/><circle cx="12" cy="14" r=".9" fill="#ffd54a" stroke="#ffd54a"/><circle cx="15" cy="14" r=".9" fill="#ffd54a" stroke="#ffd54a"/><circle cx="9" cy="17.4" r=".9" fill="#ffd54a" stroke="#ffd54a"/></g></symbol><symbol id="i-tree" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l-5.2 7.2h2.6L5 15.8h14l-4.4-6.1h2.6z"/><path d="M12 15.8v5"/></g></symbol><symbol id="i-road" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 21L10.8 3M16.5 21L13.2 3"/><path d="M12 19v2M12 13v2.2M12 7.5v1.8M12 3.5v1" stroke="#ffd54a"/></g></symbol><symbol id="i-target" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.2"/><circle cx="12" cy="12" r="1.6" fill="#ffd54a" stroke="#ffd54a"/></g></symbol><symbol id="i-gift" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="1.4"/><rect x="3" y="7" width="18" height="3.5" rx="1"/><path d="M12 7v13.5" stroke="#ffd54a"/><path d="M12 7C10.3 3.3 6.2 3.8 7.6 6.6 8.3 7.5 12 7 12 7zM12 7c1.7-3.7 5.8-3.2 4.4-.4C15.7 7.5 12 7 12 7z" stroke="#ffd54a"/></g></symbol><symbol id="i-chart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5h17"/><rect x="5.5" y="12" width="3.2" height="8.5" rx=".8"/><rect x="10.4" y="7.5" width="3.2" height="13" rx=".8" fill="#ffd54a" stroke="#ffd54a"/><rect x="15.3" y="4" width="3.2" height="16.5" rx=".8"/></g></symbol><symbol id="i-pencil" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.4 19.6L18 10l-4-4-9.6 9.6z"/><path d="M4.4 15.6L3.5 20.5l4.9-.9z" fill="#ffd54a" stroke="#ffd54a"/><path d="M16 4l4 4"/></g></symbol><symbol id="i-mountain" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20L9 8l4 6.2 3-4.2 6 10z"/><path d="M7.2 11.1L9 8l1.9 2.9-1 .8-1-1z" fill="#ffd54a" stroke="#ffd54a" stroke-width="1.2"/></g></symbol><symbol id="i-doc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2.2"/><path d="M8.5 8h7M8.5 12h7M8.5 16h4" stroke="#ffd54a"/></g></symbol><symbol id="i-flag" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21.5V3.5"/><path d="M5 4h13l-2.6 4 2.6 4H5z"/><path d="M8.5 4v8M12 4v8" stroke="#ffd54a"/></g></symbol><symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.5s-6.5-6.2-6.5-11.5a6.5 6.5 0 0 1 13 0c0 5.3-6.5 11.5-6.5 11.5z"/><circle cx="12" cy="10" r="2.3" fill="#ffd54a" stroke="#ffd54a"/></g></symbol><symbol id="i-cup" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 9h11.5v5a5 5 0 0 1-5 5h-1.5a5 5 0 0 1-5-5z"/><path d="M16 10.5h1.5a2.6 2.6 0 0 1 0 5.2H16"/><path d="M8.5 2.5c-1.2 1.6 1.2 2.3 0 4M12.5 2.5c-1.2 1.6 1.2 2.3 0 4" stroke="#ffd54a"/><path d="M3.5 21.5h13"/></g></symbol><symbol id="i-save" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3.5h11l3.5 3.5v13.5H5z"/><path d="M8.5 3.5v4.2h6.5V3.5"/><rect x="8" y="13" width="8" height="7.5" rx=".8" fill="#ffd54a" stroke="#ffd54a"/></g></symbol><symbol id="i-bolt" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13.5,2 4.5,13.8 11.2,13.8 10.3,22 19.5,9.4 12.8,9.4" fill="currentColor" stroke="currentColor"/></g></symbol><symbol id="i-palette" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 0 0 0 18c1.6 0 2.2-1 2.2-2 0-1.2-1-1.6-1-2.6s.9-1.6 2-1.6h2a3.9 3.9 0 0 0 3.8-4C21 6.6 17 3 12 3z"/><circle cx="7.5" cy="11" r="1.4" fill="#ffd54a" stroke="#ffd54a"/><circle cx="10.5" cy="7" r="1.4" fill="#6fcf8f" stroke="#6fcf8f"/><circle cx="15.2" cy="7.6" r="1.4" fill="#ff9a8f" stroke="#ff9a8f"/></g></symbol><symbol id="i-sunrise" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17a5 5 0 0 1 10 0" stroke="#ffd54a"/><path d="M12 6.5v2.5M5.2 10.2l1.6 1.6M18.8 10.2l-1.6 1.6M2.5 17h19M7.5 20.5h9" /><path d="M12 6.5v2.5" stroke="#ffd54a"/></g></symbol><symbol id="i-snow" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9"/><path d="M9.8 4.6L12 6.4l2.2-1.8M9.8 19.4L12 17.6l2.2 1.8" stroke="#ffd54a"/></g></symbol><symbol id="i-medal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.5l2.3 6.2M16 2.5l-2.3 6.2"/><circle cx="12" cy="15" r="5.8" fill="#ffd54a" stroke="#ffd54a"/><polygon points="12,11.8 13,14 15.3,14.2 13.5,15.6 14.1,17.9 12,16.6 9.9,17.9 10.5,15.6 8.7,14.2 11,14" fill="#fff" stroke="none"/></g></symbol><symbol id="i-coins" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7" ry="2.6" stroke="#ffd54a"/><path d="M5 6v4c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6V6M5 10v4c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6v-4M5 14v4c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6v-4"/></g></symbol><symbol id="i-sound" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.2h3.2l5-4.2v14l-5-4.2H4z"/><path d="M15.6 9a4.2 4.2 0 0 1 0 6M18.2 6.4a8 8 0 0 1 0 11.2" stroke="#ffd54a"/></g></symbol><symbol id="i-battery" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="7" width="16.5" height="10" rx="2.2"/><path d="M21.5 10.2v3.6"/><rect x="5" y="9.5" width="8" height="5" rx=".8" fill="#ffd54a" stroke="#ffd54a"/></g></symbol><symbol id="i-plus" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v9M7.5 12h9" stroke="#ffd54a"/></g></symbol><symbol id="i-help" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.4 9.3a2.7 2.7 0 1 1 3.7 2.5c-.8.4-1.1.9-1.1 1.8" stroke="#ffd54a"/><circle cx="12" cy="17" r=".8" fill="#ffd54a" stroke="#ffd54a"/></g></symbol><symbol id="i-chat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H10l-5.5 4.2V16H4z"/><path d="M8 9.5h8M8 12.5h5" stroke="#ffd54a"/></g></symbol><symbol id="i-smile" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r=".9" fill="currentColor"/><circle cx="15" cy="10" r=".9" fill="currentColor"/><path d="M8 14a4.4 4.4 0 0 0 8 0" stroke="#ffd54a"/></g></symbol><symbol id="i-signal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7.5" y="2.5" width="9" height="19" rx="3"/><circle cx="12" cy="7" r="1.8" fill="#ff7a6b" stroke="#ff7a6b"/><circle cx="12" cy="12" r="1.8" fill="#ffd54a" stroke="#ffd54a"/><circle cx="12" cy="17" r="1.8" fill="#2ecc71" stroke="#2ecc71"/></g></symbol><symbol id="i-storm" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16.5a4 4 0 0 1 .4-8 5.2 5.2 0 0 1 9.8 1.4 3.3 3.3 0 0 1-.2 6.6z"/><path d="M12.5 14.5l-2.2 3.6h3l-2 3.9" stroke="#ffd54a"/></g></symbol><symbol id="i-heart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.3s-7.5-4.6-7.5-10.4A4.2 4.2 0 0 1 12 7.3a4.2 4.2 0 0 1 7.5 2.6c0 5.8-7.5 10.4-7.5 10.4z"/><path d="M6.5 12.5h3l1.4-2.5 2.2 4.5 1.4-2h3" stroke="#ffd54a" stroke-width="1.6"/></g></symbol><symbol id="i-cloudsun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="3" stroke="#ffd54a"/><path d="M8 2.5v1.2M2.5 8h1.2M4.1 4.1l.9.9M11.9 4.1l-.9.9" stroke="#ffd54a"/><path d="M10 20a3.6 3.6 0 0 1 .3-7.2 4.6 4.6 0 0 1 8.7 1.3 3 3 0 0 1-.2 5.9z"/></g></symbol><symbol id="i-wrench" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.8 6.2a4.2 4.2 0 0 0-5.6 5.6L3.5 17.5l3 3 5.7-5.7a4.2 4.2 0 0 0 5.6-5.6l-2.7 2.7-2.4-.6-.6-2.4z"/><circle cx="5.3" cy="18.7" r=".6" fill="#ffd54a" stroke="#ffd54a"/></g></symbol><symbol id="i-people" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7.5" r="3.2"/><path d="M3 20.5a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.4" stroke="#ffd54a"/><path d="M15.6 15a4.6 4.6 0 0 1 6 4.5" stroke="#ffd54a"/></g></symbol><symbol id="i-moon" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 14.6A8 8 0 1 1 9.4 4.5a6.4 6.4 0 0 0 10.1 10.1z" fill="#ffd54a" stroke="#ffd54a"/><path d="M16.5 3.5v2.6M15.2 4.8h2.6" stroke-width="1.5"/></g></symbol><symbol id="i-box" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5l9-4 9 4v9.5l-9 4-9-4z"/><path d="M3 7.5l9 4 9-4M12 11.5v9.5"/><path d="M7.5 5.5l9 4" stroke="#ffd54a"/></g></symbol><symbol id="i-umbrella" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 18 0z" fill="#ffd54a" stroke="#ffd54a"/><path d="M12 12v6.5a2 2 0 0 1-4 0M12 2.5V3"/></g></symbol><symbol id="i-hundred" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5" stroke="#ffd54a"/><text x="12" y="15.4" text-anchor="middle" font-size="9.5" font-weight="700" font-family="Fredoka,system-ui,sans-serif" fill="currentColor" stroke="none">100</text></g></symbol><symbol id="i-bulb" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0-3.6 10.8c.6.5.8 1.1.8 1.8v.9h5.6v-.9c0-.7.2-1.3.8-1.8A6 6 0 0 0 12 3z" fill="#ffd54a" stroke="#ffd54a"/><path d="M9.5 19h5M10.5 21.5h3"/></g></symbol><symbol id="i-book" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15.5H6.5A2.5 2.5 0 0 0 4 21z"/><path d="M4 18.5V5.5M20 18.5v3H6.5"/><path d="M9.5 3v6.5l2-1.5 2 1.5V3" stroke="#ffd54a"/></g></symbol><symbol id="i-cold" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13.6V5a2 2 0 0 1 4 0v8.6a4 4 0 1 1-4 0z"/><circle cx="12" cy="17" r="1.8" fill="#8fd0ff" stroke="#8fd0ff"/><path d="M18 4.5v5M15.8 7h4.4" stroke="#8fd0ff" stroke-width="1.6"/></g></symbol><symbol id="i-hot" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13.6V5a2 2 0 0 1 4 0v8.6a4 4 0 1 1-4 0z"/><path d="M12 15.2V8.5" stroke="#ff7a59"/><circle cx="12" cy="17" r="1.8" fill="#ff7a59" stroke="#ff7a59"/><path d="M17.5 5.5c-.9 1.2.9 1.8 0 3M20 5.5c-.9 1.2.9 1.8 0 3" stroke="#ff7a59" stroke-width="1.5"/></g></symbol><symbol id="i-thermo" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13.6V5a2 2 0 0 1 4 0v8.6a4 4 0 1 1-4 0z"/><circle cx="12" cy="17" r="1.8" fill="#ffd54a" stroke="#ffd54a"/></g></symbol><symbol id="i-rain" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16.5a4 4 0 0 1 .4-8 5.2 5.2 0 0 1 9.8 1.4 3.3 3.3 0 0 1-.2 6.6z"/><path d="M8.5 19l-1 2M12.5 19l-1 2M16.5 19l-1 2" stroke="#8fd0ff"/></g></symbol><symbol id="i-boxempty" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="4.5" width="15" height="15" rx="3.5"/></g></symbol><symbol id="i-boxcheck" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="4.5" width="15" height="15" rx="3.5" fill="#ffd54a" stroke="#ffd54a"/><polyline points="8.2,12.3 10.8,14.9 15.8,9.4" stroke="#14372c" stroke-width="2.4"/></g></symbol><symbol id="i-receipt" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-2-1.4-2 1.4-2-1.4-2 1.4-2-1.4-2 1.4z"/><path d="M9 8h6M9 11.5h6M9 15h3.5" stroke="#ffd54a"/></g></symbol><symbol id="i-sparkle" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l2 6.5 6.5 2-6.5 2-2 6.5-2-6.5-6.5-2 6.5-2z" fill="#ffd54a" stroke="#ffd54a" stroke-width="1.4"/><path d="M19 17v4M17 19h4" stroke-width="1.6"/></g></symbol><symbol id="i-wave" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11.5V6.2a1.5 1.5 0 0 1 3 0v4.8M10 10.5V4.7a1.5 1.5 0 0 1 3 0v5.8M13 10.5V5.7a1.5 1.5 0 0 1 3 0v6.6M16 9.5a1.5 1.5 0 0 1 3 0v4.2a7 7 0 0 1-7 7h-.5a6.5 6.5 0 0 1-5.2-2.6L3.6 14.4a1.6 1.6 0 0 1 2.4-2l1 1.1V11"/><path d="M19.5 2.8c1.2.6 2 1.7 2.1 3" stroke="#ffd54a" stroke-width="1.6"/></g></symbol></defs></svg>
 
 <header>
 <button class="hbtn" id="helpBtn" style="left:10px" aria-label="Help">?</button>
-<button class="hbtn" id="gearBtn" style="right:10px" aria-label="Settings">⚙</button>
+<button class="hbtn" id="gearBtn" style="right:10px" aria-label="Settings"><svg class=ico><use href=#i-gear></use></svg></button>
 <svg id="hills" viewBox="0 0 300 74" aria-hidden="true">
 <defs>
 <g id="wheel"><circle r="4" fill="none" stroke="#ffd54a" stroke-width="1.4"/><g stroke="#ffd54a" stroke-width=".6"><line x1="-4" y1="0" x2="4" y2="0"/><line x1="0" y1="-4" x2="0" y2="4"/><line x1="-2.8" y1="-2.8" x2="2.8" y2="2.8"/><line x1="-2.8" y1="2.8" x2="2.8" y2="-2.8"/></g><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="1s" repeatCount="indefinite"/></g>
@@ -115,18 +128,18 @@ body[data-theme=winter]{--rider:#1f3550;--hillB:#ffffff;--hillF:#d6e6f2;--bar:rg
 <!-- ================= RIDE TAB ================= -->
 <section class="tab show" id="tab-ride">
 <div class="card" id="levelCard">
- <div class="lvl"><span class="lvlname" id="lvlName"></span><span class="small" id="lvlNext"></span></div>
+ <div class="lvl" style="align-items:flex-start"><span class="lvlname" id="lvlName"></span><span style="display:flex;align-items:center"><span class="small" id="lvlNext" style="text-align:right"></span><button class="ibtn" onclick="info('level')" aria-label="More info">i</button></span></div>
  <div class="bar"><div id="lvlBar"></div></div>
  <div class="row" style="align-items:flex-end;margin-top:6px"><div><div class="small">Points bank</div><div class="bank" id="bank">0</div></div><div style="text-align:right"><div class="small" id="bankUsd"></div><div class="small" id="streakTxt"></div></div></div>
+ <button class="checkin" id="dailyBtn" style="display:none"><svg class=ico><use href=#i-wave></use></svg> Daily check-in: tap for today's tip</button>
 </div>
-<div style="margin:0 12px"><button class="big" id="dailyBtn" style="display:none;background:#c98a12;border-color:#ffd54a">🎁 Daily bonus is ready! Tap to open</button></div>
 <div class="card" id="rideCard">
- <div class="row" id="startRow"><button class="big go pulse" id="sErrand"><span class="ic">🛒</span>Start Errand</button><button class="big go pulse" id="sLeisure"><span class="ic">🌲</span>Start Leisure</button></div>
- <button class="big stop" id="btnEnd" style="display:none">🏁 End ride</button>
- <div class="small" style="text-align:center;margin:2px 0 6px">Keep the app open on your screen while you ride.</div>
+ <div class="ihead" style="margin-bottom:6px"><h2><svg class=ico><use href=#i-bike></use></svg> Ride</h2><button class="ibtn" onclick="info('ride')" aria-label="More info">i</button></div>
+ <div class="row" id="startRow"><button class="big go pulse" id="sErrand"><span class="ic"><svg class=ico><use href=#i-cart></use></svg></span>Start errand ride</button><button class="big go pulse" id="sLeisure"><span class="ic"><svg class=ico><use href=#i-tree></use></svg></span>Start leisure ride</button></div>
+ <button class="big stop" id="btnEnd" style="display:none"><svg class=ico><use href=#i-flag></use></svg> End ride</button>
  <div class="row cond" id="condRow"></div>
  <label id="altBikeRow"><span id="altBikeLbl"></span><input type="checkbox" id="altBike"></label>
- <div class="row live">
+ <div class="row live" id="liveRow" style="display:none">
   <div><div class="stat" id="mi">0.00</div><div class="small">miles</div></div>
   <div><div class="stat" id="pts">0</div><div class="small">ride pts</div></div>
   <div><div class="stat" id="ppm">10</div><div class="small">pts/mile</div></div>
@@ -134,8 +147,8 @@ body[data-theme=winter]{--rider:#1f3550;--hillB:#ffffff;--hillF:#d6e6f2;--bar:rg
  </div>
  <div id="conds"></div>
 </div>
-<div class="card" id="mapCard" style="display:none"><h2>📍 Where you are</h2><div id="map"></div><div class="small" id="mapMsg" style="margin-top:6px"></div></div>
-<div class="card" id="trailCard"><h2>🛣️ Your road trip</h2><div class="small" id="trailTxt"></div>
+<div class="card" id="mapCard" style="display:none"><div class="ihead"><h2><svg class=ico><use href=#i-pin></use></svg> Where you are</h2><button class="ibtn" onclick="info('map')" aria-label="More info">i</button></div><div id="map"></div><div class="small" id="mapMsg" style="margin-top:6px"></div></div>
+<div class="card" id="trailCard"><div class="ihead"><h2><svg class=ico><use href=#i-road></use></svg> Your road trip</h2><button class="ibtn" onclick="info('trail')" aria-label="More info">i</button></div><div class="small" id="trailTxt"></div>
 <svg id="trailSvg" viewBox="0 0 340 236" width="100%" style="display:block;margin-top:6px">
 <path id="road" d="M20,212 C80,212 110,180 165,184 S285,210 312,170 S255,118 180,128 S35,130 48,86 S150,44 212,60 S300,64 322,24" fill="none" stroke="#14231c" stroke-width="18" stroke-linecap="round"/>
 <path d="M20,212 C80,212 110,180 165,184 S285,210 312,170 S255,118 180,128 S35,130 48,86 S150,44 212,60 S300,64 322,24" fill="none" stroke="#ffffff66" stroke-width="1.5" stroke-dasharray="6 6"/>
@@ -146,64 +159,63 @@ body[data-theme=winter]{--rider:#1f3550;--hillB:#ffffff;--hillF:#d6e6f2;--bar:rg
 
 <!-- ================= REWARDS TAB ================= -->
 <section class="tab" id="tab-rewards">
-<div class="hint">Spend your points on rewards, finish weekly quests for bonus points, and fill your trophy case.</div>
 <div class="card" style="text-align:center"><div class="small">Points bank</div><div class="bank" id="bank2">0</div><div class="small" id="bankUsd2"></div></div>
-<div class="card" id="questCard"><h2>🎯 Weekly quests</h2><div class="small" id="questReset"></div><div id="quests"></div></div>
-<div class="card" id="prizeCard"><h2>🎁 Prize menu</h2><div class="small">Tap Cash in when you've earned enough. Change prizes in Settings (the ⚙ gear button, top right).</div><ul id="prizes"></ul></div>
-<div class="card"><h2>🏆 Trophy case</h2><div class="small" id="badgeCount"></div><div class="trophies" id="badges"></div><div class="small" style="margin-top:8px">Tap a trophy to see how to earn it.</div></div>
+<div class="card" id="questCard"><div class="ihead"><h2><svg class=ico><use href=#i-target></use></svg> Weekly quests</h2><button class="ibtn" onclick="info('quests')" aria-label="More info">i</button></div><div class="small" id="questReset"></div><div id="quests"></div></div>
+<div class="card" id="prizeCard"><div class="ihead"><h2><svg class=ico><use href=#i-gift></use></svg> Prize menu</h2><button class="ibtn" onclick="info('prizes')" aria-label="More info">i</button></div><ul id="prizes"></ul></div>
+<div class="card"><div class="ihead"><h2><svg class=ico><use href=#i-trophy></use></svg> Trophy case</h2><button class="ibtn" onclick="info('trophies')" aria-label="More info">i</button></div><div class="small" id="badgeCount"></div><div class="trophies" id="badges"></div></div>
+<div class="card" style="text-align:center"><div class="small" style="margin-bottom:6px">Enjoying Pedal Points? It's free, made by one local rider.</div><a class="coffee" href="https://paypal.me/scottshotsphoto" target="_blank" rel="noopener"><button class="ghost" style="margin:0"><svg class=ico><use href=#i-cup></use></svg> Buy the maker a coffee</button></a><div class="small" style="margin-top:6px">Optional, through PayPal. Tips don't earn points.</div></div>
 </section>
 
 <!-- ================= STATS TAB ================= -->
 <section class="tab" id="tab-stats">
-<div class="hint">Your riding totals and the approximate money you've saved on gas.</div>
-<div style="margin:0 12px"><button class="ghost" id="addRideBtn">✏️ Forgot to track a ride? Add it here</button></div>
-<div class="card" id="statsCard"><h2>📊 Your stats</h2><div id="stats"></div></div>
-<div class="card"><h2>⛰️ Levels</h2><div class="small">Every point you earn counts. Spending points never lowers your level.</div><div id="levels"></div></div>
+<div style="margin:0 12px"><button class="ghost" id="addRideBtn"><svg class=ico><use href=#i-pencil></use></svg> Forgot to track a ride? Add it here</button></div>
+<div class="card" id="statsCard"><div class="ihead"><h2><svg class=ico><use href=#i-chart></use></svg> Your stats</h2><button class="ibtn" onclick="info('stats')" aria-label="More info">i</button></div><div id="stats"></div></div>
+<div class="card"><div class="ihead"><h2><svg class=ico><use href=#i-mountain></use></svg> Levels</h2><button class="ibtn" onclick="info('level')" aria-label="More info">i</button></div><div id="levels"></div></div>
 </section>
 
 <!-- ================= SETTINGS PAGE ================= -->
 <section class="page" id="page-settings">
-<div class="card" style="border-color:var(--gold)"><b>💾 Your changes save automatically.</b> When you're finished, tap <b>Save settings / Done</b> at the bottom to go back.</div>
-<div class="card"><h2>⚙ Settings</h2>
+<div class="card" style="border-color:var(--gold)"><b><svg class=ico><use href=#i-save></use></svg> Your changes save automatically.</b> When you're finished, tap <b>Save settings / Done</b> at the bottom to go back.</div>
+<div class="card"><h2><svg class=ico><use href=#i-gear></use></svg> Settings</h2>
 <label>Your first name <input id="cName" maxlength="20" placeholder="Optional" style="width:160px"></label>
 <p style="margin:10px 0 4px">My main bike</p>
-<div class="row"><button id="bE">⚡ E-bike</button><button id="bC">🚲 Classic bike</button></div>
+<div class="row"><button id="bE"><svg class=ico><use href=#i-bolt></use></svg> E-bike</button><button id="bC"><svg class=ico><use href=#i-bike></use></svg> Classic bike</button></div>
 <div class="small">Classic bike miles earn 1.5x points. You can switch bikes for a single ride on the Ride tab.</div>
 <label style="margin-top:14px">I ride with front and rear lights after dark (turns on the night bonus) <input type="checkbox" id="cLights"></label>
 </div>
-<div class="card"><h2>🎨 Theme</h2><div class="small">Unlock new looks as you level up.</div><div class="themes" id="themePick" style="margin-top:8px"></div></div>
-<div class="card"><h2>⛽ Your car</h2><div class="small">Used to estimate the gas money you save on errand rides.</div>
+<div class="card"><h2><svg class=ico><use href=#i-palette></use></svg> Theme</h2><div class="small">Unlock new looks as you level up.</div><div class="themes" id="themePick" style="margin-top:8px"></div></div>
+<div class="card"><h2><svg class=ico><use href=#i-fuel></use></svg> Your car</h2><div class="small">Used to estimate the gas money you save on errand rides.</div>
 <label>Car miles per gallon <input id="cMpg" type="number" step="0.1" inputmode="decimal"></label>
 <label>Gas price per gallon ($) <input id="cGas" type="number" step="0.01" inputmode="decimal"></label>
-<label>Reward boost <input id="cBoost" type="number" step="0.5" inputmode="decimal"></label>
-<div class="small">Reward boost: 3 means every $1 of gas you save earns about $3 in rewards.</div></div>
-<div class="card"><h2>🔊 Sounds and announcements</h2>
+<label>Reward boost (1 = real gas savings) <input id="cBoost" type="number" step="0.5" min="0.5" inputmode="decimal"></label>
+<div class="small">At 1, a plain errand mile earns exactly the gas money it saved. Raise it to earn rewards faster: 2 doubles it, 3 triples it. Tap <span class=kref>?</span> at the top left for the full explanation.</div></div>
+<div class="card"><h2><svg class=ico><use href=#i-sound></use></svg> Sounds and announcements</h2>
 <label>Mile announcements <select id="cAnn"><option value="1">Every mile</option><option value="5">Every 5 miles</option><option value="10">Every 10 miles</option><option value="20">Every 20 miles</option><option value="0">Off</option></select></label>
 <label>Announce with <select id="cVoice"><option value="1">Voice + buzz</option><option value="0">Buzz only</option></select></label>
 <label>Game sound effects <input type="checkbox" id="cSound"></label>
 </div>
-<div class="card"><h2>🔋 Phone battery saver</h2><div class="small">GPS and keeping the screen on use the most phone battery, and the app needs both during a ride. These extras use a little more, so turn them off to stretch your phone battery on long rides.</div>
+<div class="card"><h2><svg class=ico><use href=#i-battery></use></svg> Phone battery saver</h2><div class="small">GPS and keeping the screen on use the most phone battery, and the app needs both during a ride. These extras use a little more, so turn them off to stretch your phone battery on long rides.</div>
 <label>Live map during rides <input type="checkbox" id="cMap"></label>
 <label>Moving pictures (bikes, flame, glowing buttons) <input type="checkbox" id="cAnim"></label>
 <div class="small">The moving pictures pause by themselves during a ride.</div></div>
-<div class="card"><h2>➕ Bonus buttons</h2><div class="small">These appear on the Ride tab. Use ▲ ▼ to change the order. Raining? fixes the automatic weather if it's wrong.</div><div id="condEdit"></div>
+<div class="card"><h2><svg class=ico><use href=#i-plus></use></svg> Bonus buttons</h2><div class="small">These appear on the Ride tab. Use ▲ ▼ to change the order. Raining? fixes the automatic weather if it's wrong.</div><div id="condEdit"></div>
 <input id="condName" maxlength="28" placeholder="New button name, up to 28 letters (e.g. Windy)" style="margin-top:8px">
 <div class="row" style="margin-top:8px"><input id="condPts" type="number" inputmode="numeric" placeholder="Bonus points per mile"><button id="addCond" class="mini">Add button</button></div>
 <button class="ghost" id="resetConds" style="margin-top:10px">Reset to the starting buttons</button></div>
-<div class="card"><h2>🎁 Edit prizes</h2><div class="small">Change a price, delete a prize, or add your own. The app works out the points.</div><div id="prizeEdit"></div>
+<div class="card"><h2><svg class=ico><use href=#i-gift></use></svg> Edit prizes</h2><div class="small">Change a price, delete a prize, or add your own. The app works out the points.</div><div id="prizeEdit"></div>
 <input id="newName" maxlength="30" placeholder="New prize name" style="margin-top:8px">
 <div class="row" style="margin-top:8px"><input id="newUsd" type="number" inputmode="decimal" placeholder="Price in $"><button id="addPrize" class="mini">Add prize</button></div></div>
-<div class="card"><h2>💾 Backup</h2><div class="small">Save a backup file to keep your points safe or move them to a new phone.</div><button id="backup">Save backup file</button><button id="restoreBtn">Restore from file</button><input id="restoreFile" type="file" accept=".json,application/json" style="display:none"></div>
+<div class="card"><h2><svg class=ico><use href=#i-save></use></svg> Backup</h2><div class="small">Save a backup file to keep your points safe or move them to a new phone.</div><button id="backup">Save backup file</button><button id="restoreBtn">Restore from file</button><input id="restoreFile" type="file" accept=".json,application/json" style="display:none"></div>
 <div class="card"><button id="tourAgain2" class="ghost">Show me the tour again</button><button id="closeSet" class="big go">Save settings / Done</button></div>
 </section>
 
 <!-- ================= ADD A RIDE PAGE ================= -->
 <section class="page" id="page-add">
-<div class="card"><h2>✏️ Add a ride</h2><p class="small">For rides you forgot to track. It earns the same points as a tracked ride.</p>
+<div class="card"><h2><svg class=ico><use href=#i-pencil></use></svg> Add a ride</h2><p class="small">For rides you forgot to track. It earns the same points as a tracked ride.</p>
 <label>Miles ridden <input id="mMiles" type="number" step="0.1" min="0" inputmode="decimal" placeholder="e.g. 4.5"></label>
 <label>When <select id="mWhen"><option value="0">Today</option><option value="1">Yesterday</option></select></label>
 <p style="margin:10px 0 4px">What kind of ride?</p>
-<div class="row"><button id="mErr">🛒 Errand</button><button id="mLei">🌲 Leisure</button></div>
+<div class="row"><button id="mErr"><svg class=ico><use href=#i-cart></use></svg> Errand</button><button id="mLei"><svg class=ico><use href=#i-tree></use></svg> Leisure</button></div>
 <p style="margin:12px 0 4px">Tick anything that applied:</p>
 <label class="check"><input type="checkbox" id="mClassic"> Rode a classic bike (x1.5)</label>
 <label class="check"><input type="checkbox" id="mNight"> Rode after dark with front and rear lights</label>
@@ -215,80 +227,89 @@ body[data-theme=winter]{--rider:#1f3550;--hillB:#ffffff;--hillF:#d6e6f2;--bar:rg
 
 <!-- ================= HELP PAGE ================= -->
 <section class="page" id="page-help">
-<div class="card"><h2>❓ How to use Pedal Points</h2>
-<p><b>The short version:</b> tap Start Errand or Start Leisure when you ride, keep the app open, tap End ride when you're done, and spend your points on rewards.</p>
+<div class="card"><h2><svg class=ico><use href=#i-help></use></svg> How to use Pedal Points</h2>
+<p><b>The short version:</b> tap Start errand ride or Start leisure ride when you ride, keep the app open, tap End ride when you're done, and spend your points on rewards.</p>
 <button class="go" id="tourAgain">Show me the tour again</button></div>
 
-<div class="card"><h2>🚲 Ride tab, step by step</h2>
-<p><b>1. Before your first ride:</b> tap the ⚙ gear button at the top right. Enter your name, pick your main bike, and enter your car's miles per gallon and your local gas price. Tap Save settings / Done at the bottom.</p>
-<p><b>2. Start a ride:</b> tap Start Errand if this ride replaces a car trip, like going to the store or the post office. Errand miles earn double points. Tap Start Leisure for a fun ride.</p>
+<div class="card"><h2><svg class=ico><use href=#i-bike></use></svg> Ride tab, step by step</h2>
+<p><b>1. Before your first ride:</b> tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button at the top right. Enter your name, pick your main bike, and enter your car's miles per gallon and your local gas price. Tap Save settings / Done at the bottom.</p>
+<p><b>2. Start a ride:</b> tap Start errand ride if this ride replaces a car trip, like going to the store or the post office. Errand miles earn double points. Tap Start leisure ride for a fun ride.</p>
 <p><b>3. Allow location:</b> the first time, your phone asks to share your location. Tap Allow. The app needs it to count your miles.</p>
 <p><b>4. While you ride:</b> keep the app open on your screen. A handlebar phone mount works best, and never handle your phone while moving. If you switch to another app or the screen turns off, miles may stop counting. A live map shows where you are and the route you've ridden.</p>
 <p><b>5. Bonus buttons:</b> cold, heat, rain and snow are worked out automatically from the weather. If it's raining and the app missed it, tap Raining?. Tap Hauling? if you're carrying a heavy load, and Windy? when you're riding into the wind. A gold button means it's on. The night bonus only counts if you've said in Settings that you ride with front and rear lights.</p>
 <p><b>6. Riding your other bike?</b> Tick the box under the bonus buttons before you start. Classic bike miles earn 1.5x.</p>
 <p><b>7. End the ride:</b> tap End ride. You'll see your points, bonuses, any trophies and quests you finished, and the approximate gas money you saved.</p>
-<p><b>8. Your road trip:</b> at the bottom of the Ride tab, every mile you ride moves your bike along the road toward the next stop. Finish the 1,000-mile trip to earn a gold star 🌟 next to your name, and the road starts fresh for another lap.</p>
-<p><b>9. Daily bonus:</b> open the app each day and tap the gold Daily bonus button for a few surprise points.</p></div>
+<p><b>8. Your road trip:</b> at the bottom of the Ride tab, every mile you ride moves your bike along the road toward the next stop. Finish the 1,000-mile trip to earn a gold star <svg class=ico><use href=#i-gstar></use></svg> next to your name, and the road starts fresh for another lap.</p>
+<p><b>9. Daily check-in:</b> tap "Daily check-in" once a day for a ride tip or fun fact and to build a check-in streak. It doesn't add points. Points only come from riding.</p>
+<p><b>Want more detail?</b> Tap any little <b>i</b> button next to a heading.</p></div>
 
-<div class="card"><h2>🏆 Rewards tab</h2>
+<div class="card"><h2><svg class=ico><use href=#i-trophy></use></svg> Rewards tab</h2>
 <p><b>Points bank:</b> every point you earn goes here.</p>
 <p><b>Weekly quests:</b> four small goals that reset every Monday. Finish one for bonus points.</p>
 <p><b>Prize menu:</b> the gold bar shows how close you are. When you have enough points, tap Cash in, and the points come out of your bank.</p>
 <p><b>Trophy case:</b> locked trophies are grey. Tap one to see how to earn it.</p>
+<p><b><svg class=ico><use href=#i-cup></use></svg> Buy the maker a coffee:</b> Pedal Points is free. If you enjoy it, the button at the bottom of the Rewards tab lets you send an optional tip through PayPal. Tips don't earn points.</p>
 <p class="small" style="border-left:3px solid var(--gold);padding-left:8px"><b>Please note:</b> Pedal Points does not pay out real money or gift cards. Points and reward dollars are just a game. Cashing in is your own permission to treat yourself, paid for with the money you're saving on gas by riding instead of driving.</p></div>
 
-<div class="card"><h2>📊 Stats tab and levels</h2>
+<div class="card"><h2><svg class=ico><use href=#i-fuel></use></svg> How points and gas savings work</h2><p><b>Gas saved per mile</b> = your gas price ÷ your car's miles per gallon. For example, $3.50 a gallon ÷ 25 mpg = about 14¢ for every mile you ride instead of drive.</p><p><b>Reward dollars per errand mile</b> = gas saved × your <b>reward boost</b>. At a boost of 1, a plain errand mile earns exactly the gas money it really saved. At 2, it earns twice that, and so on.</p><p><b>Example:</b> at 14¢ a mile, a $6 coffee takes about 43 plain errand miles at a boost of 1, about 21 at 2, and about 14 at 3. If gas is pricier or your car uses more fuel, rewards come faster.</p><p><b>Why reward dollars can be higher than gas saved:</b> bonuses for weather, climbing, hauling and riding a classic bike are extra credit for effort. Leisure rides earn points too, even though they don't replace a car trip. Quests and streaks add a little more.</p><p><b>Your real number</b> is "Approximate gas money saved" on the Stats tab. It only counts errand miles and isn't changed by the boost or bonuses.</p><p class="small">The app uses miles, gallons and dollars. If you use other units, convert your car's mileage and fuel price before entering them.</p></div>
+
+<div class="card"><h2><svg class=ico><use href=#i-chart></use></svg> Stats tab and levels</h2>
 <p>Stats shows your total, errand and leisure miles, the approximate gas money you've saved, your streak and your points.</p>
 <p><b>Forgot to track a ride?</b> Tap the button at the top of the Stats tab, type the miles, and tick what applied. It earns the same points.</p>
 <p>Every point you ever earn counts toward your level, from Kickstand Rookie through Pedal Legend and beyond, up to Pedal Points Immortal. Spending points never lowers your level. New levels unlock new color themes.</p></div>
 
-<div class="card"><h2>⚙ Settings</h2>
-<p>Tap the ⚙ gear button at the top right to change your name, main bike, lights, theme, car mileage, gas price and reward boost, mile announcements and sounds, phone battery saver options, bonus buttons and prizes, and to save backups.</p>
+<div class="card"><h2><svg class=ico><use href=#i-gear></use></svg> Settings</h2>
+<p>Tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button at the top right to change your name, main bike, lights, theme, car mileage, gas price and reward boost, mile announcements and sounds, phone battery saver options, bonus buttons and prizes, and to save backups.</p>
 <p><b>Saving:</b> your changes save automatically as you make them. When you're finished, tap <b>Save settings / Done</b> at the bottom to go back.</p></div>
 
-<div class="card"><h2>📜 Please read</h2><ul class="terms" id="helpTerms"></ul></div>
+<div class="card"><h2><svg class=ico><use href=#i-doc></use></svg> Please read</h2><ul class="terms" id="helpTerms"></ul></div>
 
-<div class="card"><h2>💬 Common questions</h2><div class="small">Tap a question to see the answer.</div>
+<div class="card"><h2><svg class=ico><use href=#i-chat></use></svg> Common questions</h2><div class="small">Tap a question to see the answer.</div>
 <details><summary>Why didn't my miles count?</summary><p>Make sure you tapped Allow for location, kept the app open with the screen on, and had a clear view of the sky. Very short rides, under about a tenth of a mile, don't count. If a ride didn't record, add it with "Forgot to track a ride?"</p></details>
 <details><summary>It says there's a location problem.</summary><p>Open Chrome, tap the three dots, then Settings, Site settings, Location, and make sure this site is allowed. Also check that location is turned on in your phone's settings.</p></details>
+<details><summary>How much are points worth?</summary><p>A plain errand mile (20 points) is worth the gas money that mile saved, times your reward boost. At a boost of 1, rewards match your real gas savings. See "How points and gas savings work" on this page.</p></details>
 <details><summary>How are points worked out?</summary><p>Each mile earns 10 points, and errand miles count double. Bonuses are added per mile: freezing +5, heat +3, snow +15, rain +5, night +10 (only with lights turned on in Settings), plus any bonus buttons you turn on. From December through March everything earns 1.5x, and classic bike miles earn 1.5x too. You also get +5 points for every 100 feet you climb, plus a streak bonus on the first ride of each day in a row.</p></details>
 <details><summary>What's the difference between Errand and Leisure?</summary><p>Errand rides replace a trip you'd otherwise drive, so they save gas and earn double points. Leisure rides are for fun, like a ride around the lake.</p></details>
 <details><summary>What's a classic bike?</summary><p>A regular bike with no motor. Set your main bike in Settings, and switch for a single ride on the Ride tab.</p></details>
-<details><summary>How do I add, change or delete a prize?</summary><p>Tap the ⚙ gear button (top right) and scroll to Edit prizes. Change a price in its box, tap Delete to remove a prize, or type a name and price at the bottom and tap Add prize. Prizes sort themselves from cheapest to most expensive.</p></details>
-<details><summary>How do I add or reorder bonus buttons?</summary><p>Tap the ⚙ gear button (top right) and scroll to Bonus buttons. Use ▲ and ▼ to change the order, Delete to remove one, or type a name and bonus points at the bottom and tap Add button. If you delete one by mistake, tap "Reset to the starting buttons."</p></details>
-<details><summary>My settings didn't save.</summary><p>Settings save automatically as you change them. If something looks wrong, tap the ⚙ gear button (top right), set it again, and tap Save settings / Done to go back. If it still won't stick, Chrome may be set to clear site data. Check Chrome's settings.</p></details>
-<details><summary>How do I save phone battery?</summary><p>GPS and keeping the screen on use the most phone battery, and both are needed to count miles. To stretch your phone battery, tap the ⚙ gear button (top right) and under Phone battery saver turn off the live map and moving pictures. Turning your screen brightness down helps a lot too.</p></details>
-<details><summary>The map is blank or won't load.</summary><p>The map needs a data connection and your location. Your miles still count without it. You can turn the map off in Settings (the ⚙ gear button, top right) under Phone battery saver.</p></details>
-<details><summary>How do I stop the mile announcements?</summary><p>Tap the ⚙ gear button (top right), then under Sounds and announcements choose every mile, every 5, 10 or 20 miles, or Off. You can also choose a buzz only, with no voice.</p></details>
+<details><summary>How do I add, change or delete a prize?</summary><p>Tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button (top right) and scroll to Edit prizes. Change a price in its box, tap Delete to remove a prize, or type a name and price at the bottom and tap Add prize. Prizes sort themselves from cheapest to most expensive.</p></details>
+<details><summary>How do I add or reorder bonus buttons?</summary><p>Tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button (top right) and scroll to Bonus buttons. Use ▲ and ▼ to change the order, Delete to remove one, or type a name and bonus points at the bottom and tap Add button. If you delete one by mistake, tap "Reset to the starting buttons."</p></details>
+<details><summary>My settings didn't save.</summary><p>Settings save automatically as you change them. If something looks wrong, tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button (top right), set it again, and tap Save settings / Done to go back. If it still won't stick, Chrome may be set to clear site data. Check Chrome's settings.</p></details>
+<details><summary>How do I save phone battery?</summary><p>GPS and keeping the screen on use the most phone battery, and both are needed to count miles. To stretch your phone battery, tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button (top right) and under Phone battery saver turn off the live map and moving pictures. Turning your screen brightness down helps a lot too.</p></details>
+<details><summary>The map is blank or won't load.</summary><p>The map needs a data connection and your location. Your miles still count without it. You can turn the map off in Settings (the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button, top right) under Phone battery saver.</p></details>
+<details><summary>How do I stop the mile announcements?</summary><p>Tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button (top right), then under Sounds and announcements choose every mile, every 5, 10 or 20 miles, or Off. You can also choose a buzz only, with no voice.</p></details>
 <details><summary>How do levels and quests work?</summary><p>Levels go up with every point you earn and never go down. Weekly quests reset every Monday, and each one you finish adds bonus points to your bank.</p></details>
-<details><summary>How do I move to a new phone?</summary><p>Tap the ⚙ gear button (top right), then Save backup file. Send that file to your new phone, by email for example. On the new phone, open the app, tap the ⚙ gear button (top right), then Restore from file and choose it. The app reminds you to back up every 5 rides.</p></details>
-<details><summary>Will an app update erase my points?</summary><p>No. Your points, prizes and settings stay on your phone when the app updates. Clearing Chrome's site data would erase them, so keep a backup.</p><p><b>Moving to a Google Play or App Store version?</b> If Pedal Points comes out in an app store, that will be a separate app, and your points won't move over by themselves. Save a backup file here first (⚙ gear button, then Save backup file), then use Restore from file in the new app.</p></details>
+<details><summary>How do I move to a new phone?</summary><p>Tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button (top right), then Save backup file. Send that file to your new phone, by email for example. On the new phone, open the app, tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button (top right), then Restore from file and choose it. The app reminds you to back up every 5 rides.</p></details>
+<details><summary>Will an app update erase my points?</summary><p>No. Your points, prizes and settings stay on your phone when the app updates. Clearing Chrome's site data would erase them, so keep a backup.</p><p><b>Moving to a Google Play or App Store version?</b> If Pedal Points comes out in an app store, that will be a separate app, and your points won't move over by themselves. Save a backup file here first (<span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button, then Save backup file), then use Restore from file in the new app.</p></details>
 <details><summary>Is my location shared or tracked?</summary><p>There are no accounts and no tracking. Your rides, routes and points stay on your phone. When you start a ride, the app sends your approximate location to a free weather service (Open-Meteo) for the temperature and weather, and the live map loads map pictures of your area from OpenStreetMap. Nothing else leaves your phone.</p></details>
 </div>
 <div class="card"><button class="big go" id="closeHelp">Back to the app</button></div>
 </section>
 </main>
 
-<nav id="tabbar"><button data-tab="ride" class="active">🚲<span>Ride</span></button><button data-tab="rewards">🏆<span>Rewards</span></button><button data-tab="stats">📊<span>Stats</span></button></nav>
+<nav id="tabbar"><button data-tab="ride" class="active"><svg class=ico><use href=#i-bike></use></svg><span>Ride</span></button><button data-tab="rewards"><svg class=ico><use href=#i-trophy></use></svg><span>Rewards</span></button><button data-tab="stats"><svg class=ico><use href=#i-chart></use></svg><span>Stats</span></button></nav>
 
 <div class="overlay" id="welcome"><div class="pop">
-<h2>Welcome to Pedal Points! 🚲</h2>
+<h2>Welcome to Pedal Points! <svg class=ico><use href=#i-bike></use></svg></h2>
 <p>Ride your bike instead of driving, earn points, level up, and spend your points on rewards.</p>
 <p style="text-align:left;margin:12px 0 4px">What's your first name? <span class="small">(optional, stays on this phone)</span></p>
 <input id="wName" maxlength="20" placeholder="First name or nickname">
 <p style="text-align:left;margin:14px 0 4px">What kind of bike do you ride most?</p>
-<div class="row"><button id="wE">⚡ E-bike</button><button id="wC">🚲 Classic bike</button></div>
+<div class="row"><button id="wE"><svg class=ico><use href=#i-bolt></use></svg> E-bike</button><button id="wC"><svg class=ico><use href=#i-bike></use></svg> Classic bike</button></div>
 <p style="text-align:left;margin:14px 0 4px">Your car, so the app can estimate the gas you save: <span class="small">(you can change these later)</span></p>
 <div class="row"><div><div class="small" style="text-align:left">Miles per gallon</div><input id="wMpg" type="number" inputmode="decimal" placeholder="e.g. 25"></div><div><div class="small" style="text-align:left">Gas $ per gallon</div><input id="wGas" type="number" inputmode="decimal" placeholder="e.g. 3.50"></div></div>
 <button class="big go" id="wGo" style="margin-top:14px">Let's ride!</button>
 </div></div>
 
 <div class="overlay" id="terms"><div class="pop" style="text-align:left">
-<h2 style="text-align:center">📜 Please read before you ride</h2>
+<h2 style="text-align:center"><svg class=ico><use href=#i-doc></use></svg> Please read before you ride</h2>
 <ul class="terms" id="termsList"></ul>
 <label class="check" style="font-weight:600"><input type="checkbox" id="tAgree"> I've read this and I understand</label>
 <button class="big go" id="tGo" disabled>Continue</button>
 </div></div>
+
+<div class="overlay" id="infoBox" style="z-index:2550"><div class="pop" style="text-align:left"><h2 id="infoTitle" style="text-align:center"></h2><div id="infoBody"></div><button class="big go" id="infoOk">Got it</button></div></div>
+
+<div class="overlay" id="checkBox"><div class="pop"><h2><svg class=ico><use href=#i-wave></use></svg> Checked in!</h2><div id="checkStreak" style="font-size:1.15em;font-weight:600"></div><div class="tipbox"><div class="small" id="tipKind"></div><div id="tipText" style="margin-top:4px"></div></div><div class="small">Check-ins don't add points. Points come from riding.</div><button class="big go" id="checkOk" style="margin-top:12px">See you tomorrow!</button></div></div>
 
 <div class="overlay" id="askBox" style="z-index:2600"><div class="pop"><p id="askMsg" style="font-size:1.1em;margin:4px 0 14px"></p><div class="row"><button class="ghost" id="askNo">Cancel</button><button class="go" id="askYes">Yes</button></div></div></div>
 
@@ -311,22 +332,22 @@ const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"
 const DEFAULT_PRIZES=[["Coffee",6],["Ice cream",9],["Nice dinner out",30],["Bike gear treat",40],["Photo gear fund",65]];
 const DEFAULT_CONDS=[{n:"Hauling?",b:10},{n:"Raining?",w:"rain"},{n:"Windy?",b:5}];
 const TERMS=[
-["🎮","<b>For fun only.</b> Miles, points and gas savings are estimates and may not be accurate. Don't use them for taxes, business mileage, expense claims or anything official."],
-["💵","<b>No real money.</b> Points and reward dollars aren't cash, gift cards or prizes. Cashing in is just your own permission to treat yourself."],
-["🚦","<b>Ride safely.</b> Keep your eyes on the road and don't handle your phone while riding. Follow traffic laws and wear a helmet."],
-["⛈️","<b>Your choice, your risk.</b> Never ride in unsafe weather, heat, darkness or traffic just to earn points."],
-["🩺","<b>Your health.</b> Check with a doctor before starting a new exercise routine."],
-["📜","<b>Local laws.</b> E-bike rules and trail access vary by area. Following them is up to you."],
-["🌦️","<b>Outside data.</b> Weather and map information come from free outside services and may not always be right."],
-["🛠️","<b>Provided as is.</b> The app may have bugs or lose data, so save backups. You use it at your own risk."],
-["👨‍👩‍👧","<b>Made for adults.</b> Anyone under 18 should use it only with a parent's permission."],
-["🔒","<b>Privacy.</b> No accounts and no tracking. Your rides stay on your phone. Only your approximate location goes to the weather and map services."],
-["🚲","<b>No brand ties.</b> Pedal Points isn't connected to or endorsed by any bike company."]];
+["<svg class=ico><use href=#i-smile></use></svg>","<b>For fun only.</b> Miles, points and gas savings are estimates and may not be accurate. Don't use them for taxes, business mileage, expense claims or anything official."],
+["<svg class=ico><use href=#i-coins></use></svg>","<b>No real money.</b> Points and reward dollars aren't cash, gift cards or prizes. Cashing in is just your own permission to treat yourself."],
+["<svg class=ico><use href=#i-signal></use></svg>","<b>Ride safely.</b> Keep your eyes on the road and don't handle your phone while riding. Follow traffic laws and wear a helmet."],
+["<svg class=ico><use href=#i-storm></use></svg>","<b>Your choice, your risk.</b> Never ride in unsafe weather, heat, darkness or traffic just to earn points."],
+["<svg class=ico><use href=#i-heart></use></svg>","<b>Your health.</b> Check with a doctor before starting a new exercise routine."],
+["<svg class=ico><use href=#i-doc></use></svg>","<b>Local laws.</b> E-bike rules and trail access vary by area. Following them is up to you."],
+["<svg class=ico><use href=#i-cloudsun></use></svg>","<b>Outside data.</b> Weather and map information come from free outside services and may not always be right."],
+["<svg class=ico><use href=#i-wrench></use></svg>","<b>Provided as is.</b> The app may have bugs or lose data, so save backups. You use it at your own risk."],
+["<svg class=ico><use href=#i-people></use></svg>","<b>Made for adults.</b> Anyone under 18 should use it only with a parent's permission."],
+["<svg class=ico><use href=#i-lock></use></svg>","<b>Privacy.</b> No accounts and no tracking. Your rides stay on your phone. Only your approximate location goes to the weather and map services."],
+["<svg class=ico><use href=#i-bike></use></svg>","<b>No brand ties.</b> Pedal Points isn't connected to or endorsed by any bike company."]];
 const TERMS_VERSION=1;
 let S;try{S=JSON.parse(localStorage.getItem("pur")||"{}")||{}}catch(e){S={}}
 const DEF={bank:0,total:0,miles:0,carMiles:0,days:[],badges:[],streak:0,errands:0};
 for(const k in DEF)if(S[k]==null)S[k]=DEF[k];
-S.cfg=Object.assign({mpg:25,gas:3.5,boost:1.5,bike:"ebike",announce:5,voice:true,sound:true,lights:false,map:true,anim:true,theme:"pine"},S.cfg||{});
+S.cfg=Object.assign({mpg:25,gas:3.5,boost:1,bike:"ebike",announce:5,voice:true,sound:true,lights:false,map:true,anim:true,theme:"pine"},S.cfg||{});
 if(S.analog)S.cfg.bike="classic";delete S.analog;
 S.prizes=S.prizes||DEFAULT_PRIZES.map(p=>p.slice());
 S.conds=S.conds||DEFAULT_CONDS.map(c=>Object.assign({},c));
@@ -334,7 +355,7 @@ S.profile=S.profile||{name:""};
 S.week=S.week||{};
 function save(){try{localStorage.setItem("pur",JSON.stringify(S))}catch(e){}}
 
-function toast(t){const e=$("toast");e.textContent=t;e.style.display="block";clearTimeout(e._t);e._t=setTimeout(()=>e.style.display="none",2400);}
+function toast(t){const e=$("toast");e.innerHTML=t;e.style.display="block";clearTimeout(e._t);e._t=setTimeout(()=>e.style.display="none",2400);}
 const gasPerMile=()=>S.cfg.gas/S.cfg.mpg;
 const ptVal=()=>gasPerMile()/20*S.cfg.boost;
 const usd=x=>"$"+x.toFixed(2);
@@ -354,27 +375,30 @@ function countUp(el,to){const t0=performance.now(),dur=1300;let lastTick=0;funct
 
 /* ===== LEVELS, BADGES, QUESTS ===== */
 const LEVELS=[[0,"Kickstand Rookie"],[250,"Bike Lane Beginner"],[750,"Neighborhood Cruiser"],[1500,"Main Street Regular"],[3000,"Crosstown Commuter"],[5000,"Gas Pump Dodger"],[8000,"Car-Free Captain"],[12000,"Pedal Legend"],[18000,"Bike Lane Hall of Famer"],[26000,"Car-Free Icon"],[36000,"Pedal Points Immortal"]];
-const THEMES=[["pine","🌲 Pine",0],["sunset","🌅 Sunset",2],["night","🌌 Night Sky",4],["winter","❄️ Winter",6]];
+const THEMES=[["pine","<svg class=ico><use href=#i-tree></use></svg> Pine",0],["sunset","<svg class=ico><use href=#i-sunrise></use></svg> Sunset",2],["night","<svg class=ico><use href=#i-moon></use></svg> Night Sky",4],["winter","<svg class=ico><use href=#i-snow></use></svg> Winter",6]];
 const starCount=()=>Math.floor(S.miles/STOPS[STOPS.length-1][0]);
-const starText=()=>{const n=starCount();return n<=0?"":n<=5?"🌟".repeat(n):`🌟×${n}`;};
+const starText=()=>{const n=starCount();return n<=0?"":n<=5?"<svg class=ico><use href=#i-gstar></use></svg>".repeat(n):`<svg class=ico><use href=#i-gstar></use></svg>×${n}`;};
 const STOPS=[[0,"Home"],[5,"Corner store"],[15,"Post office"],[30,"Downtown"],[60,"Across town"],[100,"Next town"],[200,"County line"],[350,"Over the pass"],[500,"State line"],[1000,"Legend"]];
 function levelOf(p){let i=0;while(i<LEVELS.length-1&&p>=LEVELS[i+1][0])i++;return i;}
 const BADGES=[
-["First ride","Finish your first ride","🚲"],
-["Early bird","Finish a tracked ride between sunrise and 9 a.m.","🌅"],
-["Weekend rider","Ride on a Saturday and the Sunday after it","📅"],
-["Long haul","Do one ride of 10 miles or more","🛣️"],
-["Hauler","Do a ride carrying a heavy load","📦"],
-["Hill climber","Climb 1,000 ft in one ride","⛰️"],
-["Errand runner","Do 10 errand rides","🛒"],
-["Week streak","Ride 7 days in a row","🔥"],
-["Rain or shine","Ride at least once a week, 4 weeks in a row","☂️"],
-["Gas saver","Save $50 in gas","⛽"],
-["Century","Reach 100 lifetime miles","💯"],
-["Gold star","Finish the 1,000-mile road trip","🌟"],
-["Road warrior","Reach 2,500 lifetime miles","🏅"],
-["Five grand","Reach 5,000 lifetime miles","🏆"],
-["Quest crusher","Finish all 4 weekly quests in one week","🎯"]];
+["First ride","Finish your first ride","<svg class=ico><use href=#i-bike></use></svg>"],
+["Early bird","Finish a tracked ride between sunrise and 9 a.m.","<svg class=ico><use href=#i-sunrise></use></svg>"],
+["Weekend rider","Ride on a Saturday and the Sunday after it","<svg class=ico><use href=#i-checkin></use></svg>"],
+["Long haul","Do one ride of 10 miles or more","<svg class=ico><use href=#i-road></use></svg>"],
+["Hauler","Do a ride carrying a heavy load","<svg class=ico><use href=#i-box></use></svg>"],
+["Hill climber","Climb 1,000 ft in one ride","<svg class=ico><use href=#i-mountain></use></svg>"],
+["Errand runner","Do 10 errand rides","<svg class=ico><use href=#i-cart></use></svg>"],
+["Week streak","Ride 7 days in a row","<svg class=ico><use href=#i-flame></use></svg>"],
+["Rain or shine","Ride at least once a week, 4 weeks in a row","<svg class=ico><use href=#i-umbrella></use></svg>"],
+["Gas saver","Save $50 in gas","<svg class=ico><use href=#i-fuel></use></svg>"],
+["Century","Reach 100 lifetime miles","<svg class=ico><use href=#i-hundred></use></svg>"],
+["Daily regular","Check in 7 days in a row","<svg class=ico><use href=#i-checkin></use></svg>"],
+["Habit formed","Check in 30 days in a row","<svg class=ico><use href=#i-calendar></use></svg>"],
+["Check-in legend","Check in 100 days in a row","<svg class=ico><use href=#i-medal></use></svg>"],
+["Gold star","Finish the 1,000-mile road trip","<svg class=ico><use href=#i-gstar></use></svg>"],
+["Road warrior","Reach 2,500 lifetime miles","<svg class=ico><use href=#i-medal></use></svg>"],
+["Five grand","Reach 5,000 lifetime miles","<svg class=ico><use href=#i-trophy></use></svg>"],
+["Quest crusher","Finish all 4 weekly quests in one week","<svg class=ico><use href=#i-target></use></svg>"]];
 const QUESTS=[
 {id:"err3",t:"Do 3 errand rides",goal:3,key:"errands",pts:100},
 {id:"long1",t:"Do one ride of 3 miles or more",goal:1,key:"long",pts:75},
@@ -434,13 +458,13 @@ document.addEventListener("visibilitychange",()=>{if(riding&&document.visibility
 
 /* ===== RIDES ===== */
 async function start(t){sfx.click();type=t;riding=true;dist=0;pts=0;climb=0;last=null;lastAlt=null;nextAnn=+S.cfg.announce||0;
-$("btnEnd").style.display="block";$("startRow").style.display="none";liveNums();renderRide();applyAnim();mapStart();
+$("btnEnd").style.display="block";$("startRow").style.display="none";$("liveRow").style.display="flex";liveNums();renderRide();applyAnim();mapStart();
 await keepAwake();
 if(!navigator.geolocation){toast("This phone can't share its location with the app.");return;}
-watch=navigator.geolocation.watchPosition(onPos,e=>toast(e.code===1?"Location is blocked. Tap the ? button (top left), then \"It says there's a location problem.\"":"Still looking for your location. Make sure location is on."),{enableHighAccuracy:true,maximumAge:0});
+watch=navigator.geolocation.watchPosition(onPos,e=>toast(e.code===1?"Location is blocked. Tap the <span class=kref>?</span> button (top left), then \"It says there's a location problem.\"":"Still looking for your location. Make sure location is on."),{enableHighAccuracy:true,maximumAge:0});
 say(t==="errand"?"Errand ride started. Let's earn some points.":"Ride started. Let's earn some points.");}
 function end(){riding=false;if(watch!=null)navigator.geolocation.clearWatch(watch);watch=null;try{wake&&wake.release()}catch(e){}wake=null;
-$("btnEnd").style.display="none";$("startRow").style.display="flex";applyAnim();
+$("btnEnd").style.display="none";$("startRow").style.display="flex";$("liveRow").style.display="none";applyAnim();
 if(dist<0.05){toast("That ride was too short to count. Check that location is allowed.");}
 else{const c=liveCtx(),now=new Date();awardRide({miles:dist,points:pts,climb,type,night:c.night,early:!!wx.sunrise&&now.getTime()>wx.sunrise&&now.getHours()<9,snow:!!wx.snow,temp:wx.temp,haul:!!act["Hauling?"],when:now});pendingBackup=true;}
 mapStop();
@@ -448,39 +472,39 @@ act={};M={};$("altBike").checked=false;dist=0;pts=0;climb=0;liveNums();renderRid
 
 function awardRide(r){
  const ev=[],lines=[],lvBefore=levelOf(S.total),miles=r.miles,day=r.when.toDateString();let bonus=0;
- const cp=climbPts(r.climb||0);if(cp){bonus+=cp;lines.push(`⛰️ Climbing bonus: +${cp} (${Math.round(r.climb)} ft)`);}
+ const cp=climbPts(r.climb||0);if(cp){bonus+=cp;lines.push(`<svg class=ico><use href=#i-mountain></use></svg> Climbing bonus: +${cp} (${Math.round(r.climb)} ft)`);}
  if(miles>=0.05){
   if(!S.days.includes(day)){S.days.push(day);if(S.days.length>500)S.days=S.days.slice(-500);S.streak=calcStreak();
-   if(S.streak>1){const sb=Math.min(S.streak,7)*10;bonus+=sb;lines.push(`🔥 ${S.streak}-day streak bonus: +${sb}`);}}
+   if(S.streak>1){const sb=Math.min(S.streak,7)*10;bonus+=sb;lines.push(`<svg class=ico><use href=#i-flame></use></svg> ${S.streak}-day streak bonus: +${sb}`);}}
   const w=week();
   if(r.when.getTime()>=new Date(w.id).getTime()){w.miles+=miles;if(r.type==="errand")w.errands++;if(miles>=3)w.long=(w.long||0)+1;if(!w.days.includes(day))w.days.push(day);}
-  QUESTS.forEach(q=>{if(!w.done.includes(q.id)&&qVal(q)>=q.goal){w.done.push(q.id);bonus+=q.pts;ev.push(`🎯 Quest complete: ${q.t} (+${q.pts})`);}});
+  QUESTS.forEach(q=>{if(!w.done.includes(q.id)&&qVal(q)>=q.goal){w.done.push(q.id);bonus+=q.pts;ev.push(`<svg class=ico><use href=#i-target></use></svg> Quest complete: ${q.t} (+${q.pts})`);}});
  }
  const ridePts=Math.round(r.points),total=ridePts+bonus;
  S.bank+=total;S.total+=total;S.miles+=miles;
  if(r.type==="errand"){S.carMiles+=miles;S.errands++;}
- const b=n=>{if(!S.badges.includes(n)){S.badges.push(n);const B=BADGES.find(x=>x[0]===n);ev.push(`${B?B[2]:"🏅"} Trophy unlocked: ${n}`);}};
+ const b=n=>{if(!S.badges.includes(n)){S.badges.push(n);const B=BADGES.find(x=>x[0]===n);ev.push(`${B?B[2]:"<svg class=ico><use href=#i-medal></use></svg>"} Trophy unlocked: ${n}`);}};
  b("First ride");if(r.early)b("Early bird");if(weekendPair(day))b("Weekend rider");if(miles>=10)b("Long haul");if(rainOrShine())b("Rain or shine");
  if(r.haul)b("Hauler");if((r.climb||0)>=1000)b("Hill climber");
  if(S.errands>=10)b("Errand runner");if(S.streak>=7)b("Week streak");if(S.carMiles*gasPerMile()>=50)b("Gas saver");if(S.miles>=100)b("Century");if(S.miles>=1000)b("Gold star");if(S.miles>=2500)b("Road warrior");if(S.miles>=5000)b("Five grand");
  if(week().done.length>=QUESTS.length)b("Quest crusher");
- const lvAfter=levelOf(S.total);if(lvAfter>lvBefore){ev.unshift(`⭐ Level up! You're now a ${LEVELS[lvAfter][1]}`);THEMES.forEach(t=>{if(t[2]>lvBefore&&t[2]<=lvAfter)ev.push(`🎨 New theme unlocked: ${t[1]}. Pick it in Settings (the ⚙ gear button, top right).`);});}
+ const lvAfter=levelOf(S.total);if(lvAfter>lvBefore){ev.unshift(`<svg class=ico><use href=#i-star></use></svg> Level up! You're now a ${LEVELS[lvAfter][1]}`);THEMES.forEach(t=>{if(t[2]>lvBefore&&t[2]<=lvAfter)ev.push(`<svg class=ico><use href=#i-palette></use></svg> New theme unlocked: ${t[1]}. Pick it in Settings (the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button, top right).`);});}
  const LAP=STOPS[STOPS.length-1][0],prevMi=S.miles-miles,lapB=Math.floor(prevMi/LAP),lapA=Math.floor(S.miles/LAP);
- if(lapA>lapB){for(let k=lapB+1;k<=lapA;k++)ev.push(`🌟 Road trip complete! Gold star #${k}. The road starts fresh.`);}
- else{const inB=prevMi-lapB*LAP,inA=S.miles-lapA*LAP,stB=STOPS.filter(x=>x[0]<=inB).length,stA=STOPS.filter(x=>x[0]<=inA).length;if(stA>stB)ev.push(`🛣️ Road trip: you reached ${STOPS[stA-1][1]}!`);}
+ if(lapA>lapB){for(let k=lapB+1;k<=lapA;k++)ev.push(`<svg class=ico><use href=#i-gstar></use></svg> Road trip complete! Gold star #${k}. The road starts fresh.`);}
+ else{const inB=prevMi-lapB*LAP,inA=S.miles-lapA*LAP,stB=STOPS.filter(x=>x[0]<=inB).length,stA=STOPS.filter(x=>x[0]<=inA).length;if(stA>stB)ev.push(`<svg class=ico><use href=#i-road></use></svg> Road trip: you reached ${STOPS[stA-1][1]}!`);}
  save();renderAll();
  const saved=r.type==="errand"?miles*gasPerMile():0;
  showSummary({miles,ridePts,total,saved,lines,ev,manual:r.manual});
 }
 function showSummary(o){
- $("sumTitle").textContent=o.manual?"Ride added! ✏️":"Ride complete! 🏁";
- const L=[`🚲 ${o.miles.toFixed(1)} miles: ${o.ridePts} points`,...o.lines];
- if(o.saved)L.push(`⛽ Approximate gas money saved: ${usd(o.saved)}`);
- L.push(`💰 Worth ${usd(o.total*ptVal())} in rewards. Bank: ${S.bank} points`);
+ $("sumTitle").innerHTML=o.manual?"Ride added! <svg class=ico><use href=#i-pencil></use></svg>":"Ride complete! <svg class=ico><use href=#i-flag></use></svg>";
+ const L=[`<svg class=ico><use href=#i-bike></use></svg> ${o.miles.toFixed(1)} miles: ${o.ridePts} points`,...o.lines];
+ if(o.saved)L.push(`<svg class=ico><use href=#i-fuel></use></svg> Approximate gas money saved: ${usd(o.saved)}`);
+ L.push(`<svg class=ico><use href=#i-coins></use></svg> Worth ${usd(o.total*ptVal())} in rewards. Bank: ${S.bank} points`);
  $("sumLines").innerHTML=L.map(x=>`<div style="margin:5px 0">${x}</div>`).join("")+(o.ev.length?`<div style="margin-top:12px;font-weight:700;color:var(--gold)">${o.ev.map(x=>`<div style="margin:5px 0">${x}</div>`).join("")}</div>`:"");
  $("sumPts").textContent="0";$("summary").classList.add("show");countUp($("sumPts"),o.total);
  if(o.ev.length){setTimeout(()=>{sfx.fanfare();confetti();},1300);}else setTimeout(sfx.coin,1300);
- if(!o.manual)say(`Ride done. ${o.miles.toFixed(1)} miles, ${o.total} points.`+(o.saved?` You saved about ${usd(o.saved)} in gas.`:"")+(o.ev.length?" "+o.ev.map(x=>x.replace(/^\S+\s/,"")).join(". "):""));
+ if(!o.manual)say(`Ride done. ${o.miles.toFixed(1)} miles, ${o.total} points.`+(o.saved?` You saved about ${usd(o.saved)} in gas.`:"")+(o.ev.length?" "+o.ev.map(x=>x.replace(/<[^>]*>/g,"").trim()).join(". "):""));
 }
 $("sumOk").onclick=()=>{sfx.click();$("summary").classList.remove("show");if(pendingBackup){pendingBackup=false;setTimeout(afterRide,400);}};
 
@@ -511,16 +535,62 @@ document.addEventListener("touchstart",e=>{if(pageOpen||tourOn){tx=null;return;}
 document.addEventListener("touchend",e=>{if(tx==null)return;const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;tx=null;if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.5){const i=TABS.indexOf(curTab)+(dx<0?1:-1);if(i>=0&&i<TABS.length){sfx.click();showTab(TABS[i]);}}},{passive:true});
 
 /* ===== RENDER ===== */
-function renderHeader(){const li=levelOf(S.total),n=S.profile.name,st=starText();$("hello").textContent=(n?`Hey ${n}${st?" "+st:""}! `:(st?st+" ":""))+`Level ${li+1} · ${LEVELS[li][1]}`;}
+function renderHeader(){const li=levelOf(S.total),n=S.profile.name,st=starText();$("hello").innerHTML=(n?`Hey ${esc(n)}${st?" "+st:""}! `:(st?st+" ":""))+`Level ${li+1} · ${LEVELS[li][1]}`;}
 function renderBank(){const li=levelOf(S.total),cur=LEVELS[li][0],nx=LEVELS[li+1];
- $("lvlName").textContent=`⭐ Level ${li+1}: ${LEVELS[li][1]}`;
+ $("lvlName").innerHTML=`<svg class=ico><use href=#i-star></use></svg> Level ${li+1}: ${LEVELS[li][1]}`;
  $("lvlNext").textContent=nx?`${nx[0]-S.total} pts to ${nx[1]}`:"Top level!";
  $("lvlBar").style.width=(nx?Math.min(100,(S.total-cur)/(nx[0]-cur)*100):100)+"%";
  const u=`Worth ${usd(S.bank*ptVal())} in rewards`;$("bank").textContent=S.bank;$("bank2").textContent=S.bank;$("bankUsd").textContent=u;$("bankUsd2").textContent=u;
- const st=calcStreak();$("streakTxt").innerHTML=st>0?`<span class="flame" style="font-size:${(1.1+Math.min(st,14)*0.12).toFixed(2)}em">🔥</span> ${st}-day streak`:"";
- $("dailyBtn").style.display=S.lastBonus===new Date().toDateString()?"none":"block";}
-function claimDaily(){const today=new Date().toDateString();if(S.lastBonus===today)return;const lb=levelOf(S.total),n=5+Math.floor(Math.random()*11);S.lastBonus=today;S.bank+=n;S.total+=n;save();renderAll();sfx.coin();confetti();
- const la=levelOf(S.total);toast(la>lb?`🎁 +${n} points! ⭐ Level up: ${LEVELS[la][1]}!`:`🎁 +${n} bonus points! Come back tomorrow for another.`);}
+ const st=calcStreak();$("streakTxt").innerHTML=st>0?`<span class="flame" style="font-size:${(1.1+Math.min(st,14)*0.12).toFixed(2)}em"><svg class=ico><use href=#i-flame></use></svg></span> ${st}-day streak`:"";
+ $("dailyBtn").style.display=(S.checkins||[]).includes(new Date().toDateString())?"none":"flex";}
+const TIPS=[
+["Ride tip","Do a quick ABC check before you ride: Air in the tires, Brakes working, Chain clean and oiled."],
+["Ride tip","Check your tire pressure about once a week. The right pressure is printed on the side of the tire."],
+["Ride tip","Use a white front light and a red rear light whenever light is low, even in the daytime."],
+["Ride tip","Ride outside the \"door zone\" next to parked cars, so a door opening suddenly can't catch you."],
+["Ride tip","Ride with traffic, not against it, and be predictable: hold your line and signal your turns."],
+["Ride tip","Bright or reflective clothing helps drivers see you, especially at dawn and dusk."],
+["Ride tip","Panniers or a rear basket carry groceries more comfortably than a heavy backpack."],
+["Ride tip","Combine errands into one ride: post office, then the store, then home."],
+["Ride tip","Replace your helmet after any crash, even if it looks fine. It's built to protect you once."],
+["Ride tip","Carry a small pump and a patch kit or spare tube so a flat doesn't end your ride."],
+["Ride tip","Wipe and oil your chain every few weeks, more often after wet or dusty rides."],
+["Ride tip","E-bike batteries last longer stored partly charged in a cool, dry place."],
+["Ride tip","In cold weather, bring your e-bike battery indoors and let it warm up before charging."],
+["Ride tip","Dress in layers for cold rides. You warm up fast once you start pedaling."],
+["Ride tip","Bring water on longer or hot rides, and sip before you feel thirsty."],
+["Ride tip","Make eye contact with drivers at intersections before you assume they've seen you."],
+["Ride tip","Brake before a turn, not in the middle of it, especially on wet roads."],
+["Ride tip","Lock your bike through the frame, not just a wheel, to something solid."],
+["Ride tip","Snap a photo of your bike and its serial number. It helps if it's ever stolen."],
+["Fun fact","One of the earliest bikes, Karl Drais's \"running machine\" of 1817, had no pedals. Riders pushed it along with their feet."],
+["Fun fact","Before they built airplanes, the Wright brothers ran a bicycle shop in Dayton, Ohio."],
+["Fun fact","The first Tour de France was raced in 1903."],
+["Fun fact","Early bikes with iron-rimmed wheels were nicknamed \"boneshakers\" for their rough ride."],
+["Fun fact","The air-filled bike tire took off after John Boyd Dunlop developed one in the late 1880s."],
+["Fun fact","Short car trips are some of the least fuel-efficient driving, because the engine never fully warms up. They're perfect trips to swap for a bike."],
+["Fun fact","Several bikes can park in the space one car takes up."],
+["Fun fact","The \"safety bicycle,\" with two same-size wheels and a chain drive, is the basic design most bikes still use today."]];
+const checkStreak=()=>{let n=0;const d=new Date();d.setHours(0,0,0,0);const C=S.checkins||[];if(!C.includes(d.toDateString()))d.setDate(d.getDate()-1);while(C.includes(d.toDateString())){n++;d.setDate(d.getDate()-1);}return n;};
+function claimDaily(){const today=new Date().toDateString();S.checkins=S.checkins||[];if(S.checkins.includes(today))return;S.checkins.push(today);if(S.checkins.length>400)S.checkins=S.checkins.slice(-400);
+ S.tipIdx=((S.tipIdx==null?Math.floor(Math.random()*TIPS.length):S.tipIdx)+1)%TIPS.length;const t=TIPS[S.tipIdx],cs=checkStreak(),newT=[];
+ [[7,"Daily regular"],[30,"Habit formed"],[100,"Check-in legend"]].forEach(([n,b])=>{if(cs>=n&&!S.badges.includes(b)){S.badges.push(b);newT.push(b);}});
+ save();renderAll();
+ $("checkStreak").innerHTML=`<span class="flame"><svg class=ico><use href=#i-checkin></use></svg></span> ${cs}-day check-in streak`+(newT.length?`<div style="color:var(--gold);margin-top:6px"><svg class=ico><use href=#i-trophy></use></svg> Trophy unlocked: ${newT.join(", ")}</div>`:"");
+ $("tipKind").innerHTML=(t[0]==="Fun fact"?"<svg class=ico><use href=#i-book></use></svg> ":"<svg class=ico><use href=#i-bulb></use></svg> ")+t[0];$("tipText").textContent=t[1];$("checkBox").classList.add("show");
+ if(newT.length){sfx.fanfare();confetti();}else sfx.coin();}
+$("checkOk").onclick=()=>{sfx.click();$("checkBox").classList.remove("show");};
+const INFO={
+ride:["<svg class=ico><use href=#i-bike></use></svg> How rides work",`<p><b>Start errand ride</b> when the ride replaces a car trip, like the store or post office. Errand miles earn double points and count toward your gas savings.</p><p><b>Start leisure ride</b> for a fun ride.</p><p><b>Keep the app open on your screen</b> while you ride. If you switch apps or the screen turns off, miles may stop counting. Never handle your phone while moving.</p><p><b>Bonus buttons</b> add points per mile when they're gold. Cold, heat, rain and snow are picked up from the weather automatically. Tap Raining? if rain was missed.</p><p><b>Classic bike</b> miles earn 1.5x. Tick the box if you're riding your other bike today.</p><p>While you ride you'll see your miles, points, points per mile and feet climbed.</p>`],
+level:["<svg class=ico><use href=#i-star></use></svg> Levels and points",`<p><b>Points bank:</b> every point you earn goes here, and you spend it on prizes.</p><p><b>Worth in rewards</b> is the bank's value in reward dollars. It's a game value, not real money. At a reward boost of 1, a plain errand mile earns exactly the gas money it saved. Bonuses add extra credit on top.</p><p><b>Levels</b> go up with every point you ever earn and never go down, even when you cash in. New levels unlock color themes.</p><p><b><svg class=ico><use href=#i-flame></use></svg> Riding streak:</b> ride on days in a row for a small bonus.</p><p><b><svg class=ico><use href=#i-wave></use></svg> Daily check-in:</b> tap once a day for a ride tip or fun fact and to build a check-in streak. It doesn't add points.</p>`],
+map:["<svg class=ico><use href=#i-pin></use></svg> Live map",`<p>During a ride, the blue dot is you and the gold line is your route this ride. Your route stays on your phone.</p><p>The map needs a data connection. Your miles still count without it.</p><p>To save phone battery, turn the map off in Settings (the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button, top right) under Phone battery saver.</p>`],
+trail:["<svg class=ico><use href=#i-road></use></svg> Your road trip",`<p>Every mile you ride moves your bike along the road, from Home toward Legend at 1,000 miles.</p><p>Finish the trip to earn a <b>gold star <svg class=ico><use href=#i-gstar></use></svg></b> next to your name, and the road starts fresh for another lap. After five stars, it shows as a number, like <svg class=ico><use href=#i-gstar></use></svg>×7.</p>`],
+quests:["<svg class=ico><use href=#i-target></use></svg> Weekly quests",`<p>Four small goals that reset every Monday. Finish one and its bonus points go straight into your bank.</p>`],
+prizes:["<svg class=ico><use href=#i-gift></use></svg> Prize menu",`<p>The gold bar shows how close you are. When you have enough points, tap <b>Cash in</b>, and the points come out of your bank.</p><p>Prices are in real dollars. The app turns them into points based on your gas savings and reward boost. At a boost of 1, the points for a $6 coffee equal $6 of gas saved by plain errand riding.</p><p>To change, add or delete prizes, open Settings (the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button, top right).</p><p style="border-left:3px solid var(--gold);padding-left:8px"><b>Please note:</b> points are just a game. They aren't real money, cash or gift cards. Cashing in is your own permission to treat yourself, paid for with the money you save on gas.</p>`],
+trophies:["<svg class=ico><use href=#i-trophy></use></svg> Trophy case",`<p>Locked trophies are grey. Tap any trophy to see how to earn it.</p>`],
+stats:["<svg class=ico><use href=#i-chart></use></svg> Your stats",`<p>Your riding totals and the <b>approximate</b> money you've saved on gas.</p><p><b>Gas saved per mile</b> = your gas price ÷ your car's miles per gallon. For example, $3.50 a gallon ÷ 25 mpg = about 14¢ for every mile you ride instead of drive.</p><p><b>Reward dollars per errand mile</b> = gas saved × your <b>reward boost</b>. At a boost of 1, a plain errand mile earns exactly the gas money it really saved. At 2, it earns twice that, and so on.</p><p><b>Example:</b> at 14¢ a mile, a $6 coffee takes about 43 plain errand miles at a boost of 1, about 21 at 2, and about 14 at 3. If gas is pricier or your car uses more fuel, rewards come faster.</p><p><b>Why reward dollars can be higher than gas saved:</b> bonuses for weather, climbing, hauling and riding a classic bike are extra credit for effort. Leisure rides earn points too, even though they don't replace a car trip. Quests and streaks add a little more.</p><p><b>Your real number</b> is "Approximate gas money saved" on the Stats tab. It only counts errand miles and isn't changed by the boost or bonuses.</p><p class="small">The app uses miles, gallons and dollars. If you use other units, convert your car's mileage and fuel price before entering them.</p><p>These are estimates for fun, not for taxes, business mileage or anything official.</p><p>Forgot to track a ride? Use the button at the top of this tab. It earns the same points.</p>`]};
+function info(k){const x=INFO[k];if(!x)return;sfx.click();$("infoTitle").innerHTML=x[0];$("infoBody").innerHTML=x[1];$("infoBox").classList.add("show");}
+$("infoOk").onclick=()=>{sfx.click();$("infoBox").classList.remove("show");};
 function renderTrail(){const road=$("road");let L;try{L=road.getTotalLength();}catch(e){return;}if(!L)return;
  const n=STOPS.length,last=STOPS[n-1][0],laps=starCount(),m=S.miles-laps*last;let pos;
  if(m>=last)pos=L;else{let i=0;while(i<n-2&&m>=STOPS[i+1][0])i++;pos=L*(i+(m-STOPS[i][0])/(STOPS[i+1][0]-STOPS[i][0]))/(n-1);}
@@ -528,58 +598,58 @@ function renderTrail(){const road=$("road");let L;try{L=road.getTotalLength();}c
  $("stops").innerHTML=STOPS.map(([mi,name],i)=>{const p=road.getPointAtLength(L*i/(n-1)),got=m>=mi,up=i%2===0;return `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="5" fill="${got?"#ffd54a":"#14231c"}" stroke="${got?"#fff":"#6fcf8f"}" stroke-width="1.5"/><text x="${p.x.toFixed(1)}" y="${(p.y+(up?-11:18)).toFixed(1)}" text-anchor="${p.x>295?"end":p.x<45?"start":"middle"}" font-size="10" font-weight="600" font-family="Fredoka,system-ui" fill="${got?"#ffd54a":"#f3f6f1"}" opacity="${got?1:.75}">${name}</text>`}).join("");
  const a=road.getPointAtLength(Math.max(0,pos-1)),b=road.getPointAtLength(Math.min(L,pos+1)),p=road.getPointAtLength(pos);let ang=Math.atan2(b.y-a.y,b.x-a.x)*180/Math.PI;const flip=Math.abs(ang)>90;if(flip)ang+=180;
  $("trailRider").setAttribute("transform",`translate(${p.x.toFixed(1)},${(p.y-2).toFixed(1)}) rotate(${ang.toFixed(1)}) scale(${flip?-1.4:1.4},1.4)`);
- const next=STOPS.find(s=>s[0]>m),lapTxt=laps?`Lap ${laps+1} · `:"";$("trailTxt").textContent=`${lapTxt}${m.toFixed(1)} miles on this trip. Next stop: ${next[1]}, ${(next[0]-m).toFixed(1)} miles away.`+(laps?` You have ${laps} gold star${laps>1?"s":""}.`:" Finish the trip to earn a gold star!");}
+ const next=STOPS.find(s=>s[0]>m),lapTxt=laps?`Lap ${laps+1} · `:"";$("trailTxt").textContent=`${lapTxt}Next stop: ${next[1]}, ${(next[0]-m).toFixed(1)} miles away`;}
 function applyTheme(){const lv=levelOf(S.total),t=THEMES.find(x=>x[0]===S.cfg.theme);if(!t||t[2]>lv)S.cfg.theme="pine";document.body.dataset.theme=S.cfg.theme;}
-function themePick(){const lv=levelOf(S.total);$("themePick").innerHTML=THEMES.map(([id,name,need])=>need>lv?`<button disabled>🔒 ${name.replace(/^\S+\s/,"")}<br><span class="small">Level ${need+1}</span></button>`:`<button class="${S.cfg.theme===id?"on":""}" onclick="setTheme('${id}')">${name}</button>`).join("");}
-function setTheme(id){sfx.click();S.cfg.theme=id;save();applyTheme();themePick();toast("Theme saved ✓");}
+function themePick(){const lv=levelOf(S.total);$("themePick").innerHTML=THEMES.map(([id,name,need])=>need>lv?`<button disabled><svg class=ico><use href=#i-lock></use></svg> ${name.replace(/^<svg.*?<\/svg>\s*/,"")}<br><span class="small">Level ${need+1}</span></button>`:`<button class="${S.cfg.theme===id?"on":""}" onclick="setTheme('${id}')">${name}</button>`).join("");}
+function setTheme(id){sfx.click();S.cfg.theme=id;save();applyTheme();themePick();toast("Theme saved <svg class=ico><use href=#i-check></use></svg>");}
 function condBtns(){$("condRow").innerHTML=S.conds.map((c,i)=>{const on=c.w?wx[c.w]:act[c.n];return `<button class="${on?"on":""}" onclick="tapCond(${i})">${esc(c.n)}</button>`}).join("");$("condRow").style.display=S.conds.length?"flex":"none";}
 function tapCond(i){sfx.click();const c=S.conds[i];if(!c)return;if(c.w==="snow"){M={on:true,snow:!wx.snow,rain:false};wx.snow=M.snow;wx.rain=false;}else if(c.w==="rain"){M={on:true,rain:!wx.rain,snow:false};wx.rain=M.rain;wx.snow=false;}else act[c.n]=!act[c.n];renderRide();}
 function renderRide(){condBtns();
- $("altBikeLbl").textContent=S.cfg.bike==="classic"?"Riding my e-bike today":"Riding my classic bike today (x1.5)";
- const c=liveCtx(),t=[];if(riding&&type==="errand")t.push("🛒 Errand x2");if(c.night)t.push("🌙 Night +10");
- if(c.temp!=null)t.push(c.temp<=32?`🥶 ${Math.round(c.temp)}°F +5`:c.temp>=95?`🥵 ${Math.round(c.temp)}°F +3`:`🌡️ ${Math.round(c.temp)}°F`);
- if(c.snow)t.push("❄️ Snow +15");else if(c.rain)t.push("🌧️ Rain +5");
+ $("altBikeLbl").innerHTML=S.cfg.bike==="classic"?"Riding my e-bike today":"Riding my classic bike today (x1.5)";
+ const c=liveCtx(),t=[];if(riding&&type==="errand")t.push("<svg class=ico><use href=#i-cart></use></svg> Errand x2");if(c.night)t.push("<svg class=ico><use href=#i-moon></use></svg> Night +10");
+ if(c.temp!=null)t.push(c.temp<=32?`<svg class=ico><use href=#i-cold></use></svg> ${Math.round(c.temp)}°F +5`:c.temp>=95?`<svg class=ico><use href=#i-hot></use></svg> ${Math.round(c.temp)}°F +3`:`<svg class=ico><use href=#i-thermo></use></svg> ${Math.round(c.temp)}°F`);
+ if(c.snow)t.push("<svg class=ico><use href=#i-snow></use></svg> Snow +15");else if(c.rain)t.push("<svg class=ico><use href=#i-rain></use></svg> Rain +5");
  S.conds.filter(x=>!x.w&&act[x.n]).forEach(x=>t.push(esc(x.n.replace("?",""))+" +"+x.b));
- if(c.winter)t.push("⛄ Winter x1.5");if(c.classic)t.push("🚲 Classic bike x1.5");
+ if(c.winter)t.push("<svg class=ico><use href=#i-snow></use></svg> Winter x1.5");if(c.classic)t.push("<svg class=ico><use href=#i-bike></use></svg> Classic bike x1.5");
  $("conds").innerHTML=t.map(x=>`<span class="tag">${x}</span>`).join("");$("ppm").textContent=Math.round(rateFor(c));}
 function renderRewards(){const w=week(),nextMon=new Date(w.id);nextMon.setDate(nextMon.getDate()+7);const dl=Math.max(1,Math.ceil((nextMon-Date.now())/864e5));
  $("questReset").textContent=`New quests in ${dl} day${dl===1?"":"s"} (every Monday)`;
- $("quests").innerHTML=QUESTS.map(q=>{const v=Math.min(q.goal,qVal(q)),done=w.done.includes(q.id);return `<div class="quest${done?" done":""}"><div class="lvl"><span>${done?"✅":"⬜"} ${q.t}</span><span class="small">+${q.pts}</span></div><div class="bar"><div style="width:${v/q.goal*100}%"></div></div><div class="small">${q.key==="miles"?v.toFixed(1):v} of ${q.goal}</div></div>`}).join("");
- $("prizes").innerHTML=sortedPrizes().map(([n,d,i])=>{const c=cost(d);return `<li><div class="lvl"><span>${esc(n)} · ${usd(d)}</span><span class="small">${c} pts</span></div><div class="row"><div class="bar"><div style="width:${Math.min(100,S.bank/c*100)}%"></div></div><button class="mini${S.bank>=c?" go":""}" ${S.bank<c?"disabled":""} onclick="cash(${i})">Cash in</button></div></li>`}).join("")||'<div class="small" style="margin-top:8px">No prizes yet. Add some in Settings (the ⚙ gear button, top right).</div>';
+ $("quests").innerHTML=QUESTS.map(q=>{const v=Math.min(q.goal,qVal(q)),done=w.done.includes(q.id);return `<div class="quest${done?" done":""}"><div class="lvl"><span>${done?"<svg class=ico><use href=#i-boxcheck></use></svg>":"<svg class=ico><use href=#i-boxempty></use></svg>"} ${q.t}</span><span class="small">+${q.pts}</span></div><div class="bar"><div style="width:${v/q.goal*100}%"></div></div><div class="small">${q.key==="miles"?v.toFixed(1):v} of ${q.goal}</div></div>`}).join("");
+ $("prizes").innerHTML=sortedPrizes().map(([n,d,i])=>{const c=cost(d);return `<li><div class="lvl"><span>${esc(n)} · ${usd(d)}</span><span class="small">${c} pts</span></div><div class="row"><div class="bar"><div style="width:${Math.min(100,S.bank/c*100)}%"></div></div><button class="mini${S.bank>=c?" go":""}" ${S.bank<c?"disabled":""} onclick="cash(${i})">Cash in</button></div></li>`}).join("")||'<div class="small" style="margin-top:8px">No prizes yet. Add some in Settings (the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button, top right).</div>';
  $("badgeCount").textContent=`${S.badges.filter(n=>BADGES.some(b=>b[0]===n)).length} of ${BADGES.length} trophies earned`;
- $("badges").innerHTML=BADGES.map(([n,h,ic],i)=>{const got=S.badges.includes(n);return `<div class="trophy${got?"":" locked"}" onclick="trophyTap(${i})"><div class="ti">${ic}</div><div class="tn">${got?"":"🔒 "}${n}</div></div>`}).join("");}
-function trophyTap(i){const[n,h]=BADGES[i];sfx.click();toast(S.badges.includes(n)?`🏆 ${n}: ${h}. Earned!`:`🔒 ${n}: ${h}`);}
+ $("badges").innerHTML=BADGES.map(([n,h,ic],i)=>{const got=S.badges.includes(n);return `<div class="trophy${got?"":" locked"}" onclick="trophyTap(${i})"><div class="ti">${ic}</div><div class="tn">${got?"":"<svg class=ico><use href=#i-lock></use></svg> "}${n}</div></div>`}).join("");}
+function trophyTap(i){const[n,h]=BADGES[i];sfx.click();toast(S.badges.includes(n)?`<svg class=ico><use href=#i-trophy></use></svg> ${n}: ${h}. Earned!`:`<svg class=ico><use href=#i-lock></use></svg> ${n}: ${h}`);}
 function renderStats(){const g=S.carMiles*gasPerMile();
- $("stats").innerHTML=[["🚲 Lifetime miles (all rides)",S.miles.toFixed(1)],["🛒 Errand miles (car miles replaced)",S.carMiles.toFixed(1)],["🌲 Leisure miles",Math.max(0,S.miles-S.carMiles).toFixed(1)],["⛽ Approximate gas money saved",usd(g)],["🧾 Errand rides",S.errands],["🔥 Current streak",calcStreak()+" day(s)"],["🌟 Road trips finished (gold stars)",starCount()],["⭐ Lifetime points",S.total],["💰 Points in the bank",S.bank]].map(([a,b])=>`<div class="lvl" style="margin:9px 0"><span>${a}</span><b>${b}</b></div>`).join("");
- $("levels").innerHTML=LEVELS.map(([p,n],i)=>{const got=S.total>=p;return `<div class="lvl" style="margin:8px 0;${got?"":"opacity:.5"}"><span>${got?"⭐":"🔒"} ${i+1}. ${n}</span><span class="small">${p} pts</span></div>`}).join("");}
+ $("stats").innerHTML=[["<svg class=ico><use href=#i-bike></use></svg> Lifetime miles (all rides)",S.miles.toFixed(1)],["<svg class=ico><use href=#i-cart></use></svg> Errand miles (car miles replaced)",S.carMiles.toFixed(1)],["<svg class=ico><use href=#i-tree></use></svg> Leisure miles",Math.max(0,S.miles-S.carMiles).toFixed(1)],["<svg class=ico><use href=#i-fuel></use></svg> Approximate gas money saved",usd(g)],["<svg class=ico><use href=#i-gift></use></svg> Reward dollars earned (lifetime)",usd(S.total*ptVal())],["<svg class=ico><use href=#i-receipt></use></svg> Errand rides",S.errands],["<svg class=ico><use href=#i-flame></use></svg> Riding streak",calcStreak()+" day(s)"],["<svg class=ico><use href=#i-wave></use></svg> Check-in streak",checkStreak()+" day(s)"],["<svg class=ico><use href=#i-gstar></use></svg> Road trips finished (gold stars)",starCount()],["<svg class=ico><use href=#i-star></use></svg> Lifetime points",S.total],["<svg class=ico><use href=#i-coins></use></svg> Points in the bank",S.bank]].map(([a,b])=>`<div class="lvl" style="margin:9px 0"><span>${a}</span><b>${b}</b></div>`).join("");
+ $("levels").innerHTML=LEVELS.map(([p,n],i)=>{const got=S.total>=p;return `<div class="lvl" style="margin:8px 0;${got?"":"opacity:.5"}"><span>${got?"<svg class=ico><use href=#i-star></use></svg>":"<svg class=ico><use href=#i-lock></use></svg>"} ${i+1}. ${n}</span><span class="small">${p} pts</span></div>`}).join("");}
 function renderAll(){applyTheme();renderHeader();renderBank();renderRide();renderRewards();renderStats();renderTrail();}
 
-async function cash(i){const p=S.prizes[i];if(!p)return;const[n,d]=p,c=cost(d);if(S.bank>=c&&await ask(`Spend ${c} points on ${n}?`,"Cash in")){S.bank-=c;save();renderAll();sfx.coin();confetti();toast(`Enjoy your ${n}! 🎉`);}}
+async function cash(i){const p=S.prizes[i];if(!p)return;const[n,d]=p,c=cost(d);if(S.bank>=c&&await ask(`Spend ${c} points on ${n}?`,"Cash in")){S.bank-=c;save();renderAll();sfx.coin();confetti();toast(`Enjoy your ${esc(n)}! <svg class=ico><use href=#i-sparkle></use></svg>`);}}
 
 /* ===== SETTINGS ===== */
 function renderSettings(){$("cName").value=S.profile.name||"";bikeBtns();$("cMpg").value=S.cfg.mpg;$("cGas").value=S.cfg.gas;$("cBoost").value=S.cfg.boost;$("cAnn").value=String(S.cfg.announce);$("cVoice").value=S.cfg.voice?"1":"0";$("cSound").checked=!!S.cfg.sound;$("cLights").checked=!!S.cfg.lights;$("cMap").checked=!!S.cfg.map;$("cAnim").checked=!!S.cfg.anim;themePick();condEdit();editList();}
 function bikeBtns(){$("bE").className=S.cfg.bike==="ebike"?"on":"";$("bC").className=S.cfg.bike==="classic"?"on":"";}
 $("bE").onclick=()=>{sfx.click();S.cfg.bike="ebike";save();bikeBtns();renderRide();};
 $("bC").onclick=()=>{sfx.click();S.cfg.bike="classic";save();bikeBtns();renderRide();};
-function saveCfg(quiet){S.profile.name=$("cName").value.trim().slice(0,20);S.cfg.mpg=+$("cMpg").value||25;S.cfg.gas=+$("cGas").value||3.5;S.cfg.boost=+$("cBoost").value||1.5;S.cfg.announce=+$("cAnn").value;S.cfg.voice=$("cVoice").value==="1";S.cfg.sound=$("cSound").checked;S.cfg.lights=$("cLights").checked;S.cfg.map=$("cMap").checked;S.cfg.anim=$("cAnim").checked;save();renderAll();applyAnim();toast(quiet?"Saved ✓":"Settings saved ✓");}
+function saveCfg(quiet){S.profile.name=$("cName").value.trim().slice(0,20);S.cfg.mpg=+$("cMpg").value||25;S.cfg.gas=+$("cGas").value||3.5;S.cfg.boost=+$("cBoost").value||1;S.cfg.announce=+$("cAnn").value;S.cfg.voice=$("cVoice").value==="1";S.cfg.sound=$("cSound").checked;S.cfg.lights=$("cLights").checked;S.cfg.map=$("cMap").checked;S.cfg.anim=$("cAnim").checked;save();renderAll();applyAnim();toast(quiet?"Saved <svg class=ico><use href=#i-check></use></svg>":"Settings saved <svg class=ico><use href=#i-check></use></svg>");}
 ["cName","cMpg","cGas","cBoost","cAnn","cVoice","cSound","cLights","cMap","cAnim"].forEach(id=>$(id).addEventListener("change",()=>saveCfg(true)));
 $("closeSet").onclick=()=>{sfx.click();closePage();};
 function condEdit(){$("condEdit").innerHTML=S.conds.map((c,i)=>`<div class="lvl" style="margin:10px 0;align-items:center"><span>${esc(c.n)}<br><span class="small">+${condBonus(c)} pts/mile${c.w?" (auto-detected)":""}</span></span><span class="row" style="flex:0 0 auto;gap:4px"><button class="mini" ${i===0?"disabled":""} onclick="moveCond(${i},-1)" aria-label="Move up">▲</button><button class="mini" ${i===S.conds.length-1?"disabled":""} onclick="moveCond(${i},1)" aria-label="Move down">▼</button><button class="mini" onclick="delCond(${i})">Delete</button></span></div>`).join("")||'<div class="small" style="margin-top:8px">No bonus buttons. Add one below.</div>';}
 function moveCond(i,d){const j=i+d;if(j<0||j>=S.conds.length)return;[S.conds[i],S.conds[j]]=[S.conds[j],S.conds[i]];save();condEdit();renderRide();sfx.click();}
 async function delCond(i){if(await ask("Delete the "+S.conds[i].n+" button?","Delete")){delete act[S.conds[i].n];S.conds.splice(i,1);save();condEdit();renderRide();toast("Button deleted");}}
-$("addCond").onclick=()=>{let n=$("condName").value.trim(),b=Math.round(+$("condPts").value);if(n&&b>0){if(!n.endsWith("?"))n+="?";if(S.conds.some(c=>c.n===n)){toast("You already have that button");return;}S.conds.push({n,b});$("condName").value="";$("condPts").value="";save();condEdit();renderRide();toast("Button added ✓");}else toast("Type a name and bonus points");};
-$("resetConds").onclick=async()=>{if(await ask("Put the starting bonus buttons back in their original order? Buttons you added yourself stay, after them.","Reset")){const names=DEFAULT_CONDS.map(d=>d.n);S.conds=DEFAULT_CONDS.map(d=>Object.assign({},d)).concat(S.conds.filter(c=>!names.includes(c.n)&&!c.w));save();condEdit();renderRide();toast("Starting buttons restored ✓");}};
+$("addCond").onclick=()=>{let n=$("condName").value.trim(),b=Math.round(+$("condPts").value);if(n&&b>0){if(!n.endsWith("?"))n+="?";if(S.conds.some(c=>c.n===n)){toast("You already have that button");return;}S.conds.push({n,b});$("condName").value="";$("condPts").value="";save();condEdit();renderRide();toast("Button added <svg class=ico><use href=#i-check></use></svg>");}else toast("Type a name and bonus points");};
+$("resetConds").onclick=async()=>{if(await ask("Put the starting bonus buttons back in their original order? Buttons you added yourself stay, after them.","Reset")){const names=DEFAULT_CONDS.map(d=>d.n);S.conds=DEFAULT_CONDS.map(d=>Object.assign({},d)).concat(S.conds.filter(c=>!names.includes(c.n)&&!c.w));save();condEdit();renderRide();toast("Starting buttons restored <svg class=ico><use href=#i-check></use></svg>");}};
 function editList(){$("prizeEdit").innerHTML=sortedPrizes().map(([n,d,i])=>`<div class="lvl" style="margin:10px 0;align-items:center"><span>${esc(n)}</span><span class="row" style="flex:0 0 auto;gap:4px">$<input type="number" inputmode="decimal" value="${d}" style="width:78px" onchange="setPrice(${i},this.value)"><button class="mini" onclick="delPrize(${i})">Delete</button></span></div>`).join("");}
-function setPrice(i,v){if(!S.prizes[i])return;S.prizes[i][1]=+v>0?+v:S.prizes[i][1];save();editList();renderRewards();toast("Price updated ✓");}
+function setPrice(i,v){if(!S.prizes[i])return;S.prizes[i][1]=+v>0?+v:S.prizes[i][1];save();editList();renderRewards();toast("Price updated <svg class=ico><use href=#i-check></use></svg>");}
 async function delPrize(i){if(S.prizes[i]&&await ask("Delete "+S.prizes[i][0]+"?","Delete")){S.prizes.splice(i,1);save();editList();renderRewards();toast("Prize deleted");}}
-$("addPrize").onclick=()=>{const n=$("newName").value.trim(),d=+$("newUsd").value;if(n&&d>0){S.prizes.push([n,d]);$("newName").value="";$("newUsd").value="";save();editList();renderRewards();toast("Prize added ✓");}else toast("Type a prize name and a price");};
+$("addPrize").onclick=()=>{const n=$("newName").value.trim(),d=+$("newUsd").value;if(n&&d>0){S.prizes.push([n,d]);$("newName").value="";$("newUsd").value="";save();editList();renderRewards();toast("Prize added <svg class=ico><use href=#i-check></use></svg>");}else toast("Type a prize name and a price");};
 
 /* ===== BACKUP =====
    BACKUP HOOK: in a future native app, replace saveBackup() with a silent overwrite
    or Google Drive / iCloud sync, and set AUTO_BACKUP=true. */
 const AUTO_BACKUP=false,REMIND_EVERY=5;
 async function afterRide(){S.ridesSinceBackup=(S.ridesSinceBackup||0)+1;save();if(AUTO_BACKUP)saveBackup();else if(S.ridesSinceBackup>=REMIND_EVERY&&await ask(S.ridesSinceBackup+" rides since your last backup. Save a backup file now?","Save backup","Later"))saveBackup();}
-function saveBackup(){S.ridesSinceBackup=0;save();const b=new Blob([JSON.stringify(S,null,1)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="pedal-points-backup-"+new Date().toISOString().slice(0,10)+".json";a.click();toast("Backup saved ✓");}
+function saveBackup(){S.ridesSinceBackup=0;save();const b=new Blob([JSON.stringify(S,null,1)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="pedal-points-backup-"+new Date().toISOString().slice(0,10)+".json";a.click();toast("Backup saved <svg class=ico><use href=#i-check></use></svg>");}
 $("backup").onclick=saveBackup;
 $("restoreBtn").onclick=()=>$("restoreFile").click();
 $("restoreFile").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=async()=>{let d;try{d=JSON.parse(r.result);if(d.bank==null)throw 0;}catch(x){toast("That doesn't look like a Pedal Points backup file.");return;}if(await ask("Replace the points on this phone with this backup?","Replace")){localStorage.setItem("pur",JSON.stringify(d));location.reload();}};r.readAsText(f);};
@@ -597,23 +667,23 @@ $("tAgree").onchange=()=>{$("tGo").disabled=!$("tAgree").checked;};
 $("tGo").onclick=()=>{S.profile.agreed=TERMS_VERSION;save();$("terms").classList.remove("show");sfx.fanfare();if(termsThenTour)setTimeout(startTour,400);};
 $("helpTerms").innerHTML=termsHtml();
 const TOUR=[
-{tab:"ride",el:"startRow",t:"Every ride starts here. Tap Start Errand when the ride replaces a car trip, like the grocery store or post office. It earns double points. Tap Start Leisure for a fun ride. During a ride, a live map shows where you are."},
+{tab:"ride",el:"startRow",t:"Every ride starts here. Tap Start errand ride when the ride replaces a car trip, like the grocery store or post office. It earns double points. Tap Start leisure ride for a fun ride. During a ride, a live map shows where you are."},
 {tab:"ride",el:"condRow",t:"Bonus buttons. Cold, heat, rain and snow are picked up from the weather automatically. If rain was missed, tap Raining?. Tap Hauling? when you carry a heavy load, and Windy? when riding into the wind. Gold means on."},
 {tab:"ride",el:"altBikeRow",t:"Riding your other bike today? Tick this box before you start."},
-{tab:"ride",el:"levelCard",t:"Your level, points bank and riding streak. Every point you earn moves you toward the next level, and new levels unlock color themes."},
+{tab:"ride",el:"levelCard",t:"Your level, points bank and streak. Tap Daily check-in once a day for a ride tip. Any little i button explains more about that section."},
 {tab:"ride",el:"trailCard",t:"Your road trip. Every mile you ride moves your bike along the road toward the next stop. Finish the whole trip to earn a gold star, then start a new lap."},
 {tab:"rewards",el:"prizeCard",t:"The Rewards tab: spend points on prizes with Cash in. Please note: points are just a game. They aren't real money, cash or gift cards. Cashing in is your own permission to treat yourself. Weekly quests and your trophy case are here too."},
 {tab:"stats",el:"addRideBtn",t:"The Stats tab shows your miles and the approximate gas money you've saved. Forgot to track a ride? Add it here. It earns the same points."},
 {tab:"ride",el:"tabbar",top:true,t:"Switch between Ride, Rewards and Stats here, or swipe left and right."},
-{tab:"ride",el:"gearBtn",t:"The ⚙ gear button opens Settings: your name, bike, car, theme, prizes, bonus buttons, phone battery saver and backups. Your changes save automatically. When you're finished, tap Save settings / Done at the bottom to go back."},
-{tab:"ride",el:"helpBtn",t:"Stuck? Tap the ? button in the top left corner any time for step-by-step help, common questions and safety notes. Ride safe and have fun!"}];
+{tab:"ride",el:"gearBtn",t:"The <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button opens Settings: your name, bike, car, theme, prizes, bonus buttons, phone battery saver and backups. Your changes save automatically. When you're finished, tap Save settings / Done at the bottom to go back."},
+{tab:"ride",el:"helpBtn",t:"Stuck? Tap the <span class=kref>?</span> button in the top left corner any time for step-by-step help, common questions and safety notes. Ride safe and have fun!"}];
 let tourI=0,tourEl=null,tourWrap=null,tourPos=null;
 function startTour(){if(pageOpen)closePage();setTimeout(()=>{tourOn=true;tourI=0;$("tourDim").style.display="block";$("tourBox").style.display="block";tourShow();},300);}
 function tourClear(){if(tourEl){tourEl.classList.remove("spot");if(tourPos!==null)tourEl.style.position=tourPos;}if(tourWrap)tourWrap.classList.remove("spotwrap");tourEl=tourWrap=null;tourPos=null;}
 function tourShow(){tourClear();const s=TOUR[tourI];showTab(s.tab);const el=$(s.el);
  if(el){tourEl=el;if(getComputedStyle(el).position==="static"){tourPos=el.style.position;el.style.position="relative";}el.classList.add("spot");const w=el.closest(".card");if(w&&w!==el){tourWrap=w;w.classList.add("spotwrap");}if(getComputedStyle(el).position!=="fixed")el.scrollIntoView({block:"center",behavior:"smooth"});}
  const box=$("tourBox");if(s.top){box.style.top="16px";box.style.bottom="auto";}else{box.style.top="auto";box.style.bottom="16px";}
- $("tourStep").textContent=`Quick tour · ${tourI+1} of ${TOUR.length}`;$("tourText").textContent=s.t;$("tourNext").textContent=tourI===TOUR.length-1?"Got it, let's ride!":"Next";}
+ $("tourStep").textContent=`Quick tour · ${tourI+1} of ${TOUR.length}`;$("tourText").innerHTML=s.t;$("tourNext").textContent=tourI===TOUR.length-1?"Got it, let's ride!":"Next";}
 function tourEnd(){tourClear();tourOn=false;$("tourDim").style.display="none";$("tourBox").style.display="none";showTab("ride");}
 $("tourNext").onclick=()=>{sfx.click();if(++tourI>=TOUR.length)tourEnd();else tourShow();};
 $("tourSkip").onclick=()=>{sfx.click();tourEnd();};

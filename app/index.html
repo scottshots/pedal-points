@@ -119,8 +119,8 @@ body[data-theme=winter]{--rider:#1f3550;--hillB:#ffffff;--hillF:#d6e6f2;--bar:rg
 <g><use href="#bike"/><animateMotion dur="15s" begin="-5s" repeatCount="indefinite" rotate="auto"><mpath href="#trail"/></animateMotion></g>
 <g><use href="#bike"/><animateMotion dur="15s" begin="-10s" repeatCount="indefinite" rotate="auto"><mpath href="#trail"/></animateMotion></g>
 </svg>
-<h1>Pedal Points</h1>
-<div class="tagline">Pedal more. Drive less. Earn rewards.</div>
+<h1 data-t="pedal_points">Pedal Points</h1>
+<div data-t="pedal_more_drive_less_earn" class="tagline">Pedal more. Drive less. Earn rewards.</div>
 <div id="hello"></div>
 </header>
 
@@ -128,28 +128,28 @@ body[data-theme=winter]{--rider:#1f3550;--hillB:#ffffff;--hillF:#d6e6f2;--bar:rg
 <!-- ================= RIDE TAB ================= -->
 <section class="tab show" id="tab-ride">
 <div class="card" id="levelCard">
- <div class="lvl" style="align-items:flex-start"><span class="lvlname" id="lvlName"></span><span style="display:flex;align-items:center"><span class="small" id="lvlNext" style="text-align:right"></span><button class="ibtn" onclick="info('level')" aria-label="More info">i</button></span></div>
+ <div class="lvl" style="align-items:flex-start"><span class="lvlname" id="lvlName"></span><span style="display:flex;align-items:center"><span class="small" id="lvlNext" style="text-align:right"></span><button data-t="i" class="ibtn" onclick="info('level')" aria-label="More info">i</button></span></div>
  <div class="bar"><div id="lvlBar"></div></div>
- <div class="row" style="align-items:flex-end;margin-top:6px"><div><div class="small">Points bank</div><div class="bank" id="bank">0</div></div><div style="text-align:right"><div class="small" id="bankUsd"></div><div class="small" id="streakTxt"></div></div></div>
- <button class="checkin" id="dailyBtn" style="display:none"><svg class=ico><use href=#i-wave></use></svg> Daily check-in: tap for today's tip</button>
+ <div class="row" style="align-items:flex-end;margin-top:6px"><div><div data-t="points_bank" class="small">Points bank</div><div class="bank" id="bank">0</div></div><div style="text-align:right"><div class="small" id="bankUsd"></div><div class="small" id="streakTxt"></div></div></div>
+ <button data-t="daily_check_in_tap_for" class="checkin" id="dailyBtn" style="display:none"><svg class=ico><use href=#i-wave></use></svg> Daily check-in: tap for today's tip</button>
 </div>
 <div class="card" id="rideCard">
- <div class="ihead" style="margin-bottom:6px"><h2><svg class=ico><use href=#i-bike></use></svg> Ride</h2><button class="ibtn" onclick="info('ride')" aria-label="More info">i</button></div>
- <div class="row" id="startRow"><button class="big go pulse" id="sErrand"><span class="ic"><svg class=ico><use href=#i-cart></use></svg></span>Start errand ride</button><button class="big go pulse" id="sLeisure"><span class="ic"><svg class=ico><use href=#i-tree></use></svg></span>Start leisure ride</button></div>
- <div class="row" id="rideBtns" style="display:none"><button class="big" id="btnPause" style="background:#c98a12;border-color:#ffd54a"><svg class=ico><use href=#i-pause></use></svg> Pause</button><button class="big stop" id="btnEnd"><svg class=ico><use href=#i-flag></use></svg> End ride</button></div>
- <div class="small" id="pausedMsg" style="display:none;text-align:center;margin:4px 0 8px;color:var(--gold)">Paused. Your screen can turn off now, and walking around won't count. Tap Resume when you're back on the bike.</div>
+ <div class="ihead" style="margin-bottom:6px"><h2 data-t="ride"><svg class=ico><use href=#i-bike></use></svg> Ride</h2><button data-t="i_2" class="ibtn" onclick="info('ride')" aria-label="More info">i</button></div>
+ <div class="row" id="startRow"><button data-t="start_errand_ride" class="big go pulse" id="sErrand"><span class="ic"><svg class=ico><use href=#i-cart></use></svg></span>Start errand ride</button><button data-t="start_leisure_ride" class="big go pulse" id="sLeisure"><span class="ic"><svg class=ico><use href=#i-tree></use></svg></span>Start leisure ride</button></div>
+ <div class="row" id="rideBtns" style="display:none"><button class="big" id="btnPause" style="background:#c98a12;border-color:#ffd54a"><svg class=ico><use href=#i-pause></use></svg> Pause</button><button data-t="end_ride" class="big stop" id="btnEnd"><svg class=ico><use href=#i-flag></use></svg> End ride</button></div>
+ <div data-t="paused_your_screen_can_turn" class="small" id="pausedMsg" style="display:none;text-align:center;margin:4px 0 8px;color:var(--gold)">Paused. Your screen can turn off now, and walking around won't count. Tap Resume when you're back on the bike.</div>
  <div class="row cond" id="condRow"></div>
  <label id="altBikeRow"><span id="altBikeLbl"></span><input type="checkbox" id="altBike"></label>
  <div class="row live" id="liveRow" style="display:none">
-  <div><div class="stat" id="mi">0.00</div><div class="small">miles</div></div>
-  <div><div class="stat" id="pts">0</div><div class="small">ride pts</div></div>
-  <div><div class="stat" id="ppm">10</div><div class="small">pts/mile</div></div>
-  <div><div class="stat" id="clb">0</div><div class="small">ft climbed</div></div>
+  <div><div class="stat" id="mi">0.00</div><div data-t="miles" class="small">miles</div></div>
+  <div><div class="stat" id="pts">0</div><div data-t="ride_pts" class="small">ride pts</div></div>
+  <div><div class="stat" id="ppm">10</div><div data-t="pts_mile" class="small">pts/mile</div></div>
+  <div><div class="stat" id="clb">0</div><div data-t="ft_climbed" class="small">ft climbed</div></div>
  </div>
  <div id="conds"></div>
 </div>
-<div class="card" id="mapCard" style="display:none"><div class="ihead"><h2><svg class=ico><use href=#i-pin></use></svg> Where you are</h2><button class="ibtn" onclick="info('map')" aria-label="More info">i</button></div><div id="map"></div><div class="small" id="mapMsg" style="margin-top:6px"></div></div>
-<div class="card" id="trailCard"><div class="ihead"><h2><svg class=ico><use href=#i-road></use></svg> Your road trip</h2><button class="ibtn" onclick="info('trail')" aria-label="More info">i</button></div><div class="small" id="trailTxt"></div>
+<div class="card" id="mapCard" style="display:none"><div class="ihead"><h2 data-t="where_you_are"><svg class=ico><use href=#i-pin></use></svg> Where you are</h2><button data-t="i_3" class="ibtn" onclick="info('map')" aria-label="More info">i</button></div><div id="map"></div><div class="small" id="mapMsg" style="margin-top:6px"></div></div>
+<div class="card" id="trailCard"><div class="ihead"><h2 data-t="your_road_trip"><svg class=ico><use href=#i-road></use></svg> Your road trip</h2><button data-t="i_4" class="ibtn" onclick="info('trail')" aria-label="More info">i</button></div><div class="small" id="trailTxt"></div>
 <svg id="trailSvg" viewBox="0 0 340 236" width="100%" style="display:block;margin-top:6px">
 <path id="road" d="M20,212 C80,212 110,180 165,184 S285,210 312,170 S255,118 180,128 S35,130 48,86 S150,44 212,60 S300,64 322,24" fill="none" stroke="#14231c" stroke-width="18" stroke-linecap="round"/>
 <path d="M20,212 C80,212 110,180 165,184 S285,210 312,170 S255,118 180,128 S35,130 48,86 S150,44 212,60 S300,64 322,24" fill="none" stroke="#ffffff66" stroke-width="1.5" stroke-dasharray="6 6"/>
@@ -160,191 +160,470 @@ body[data-theme=winter]{--rider:#1f3550;--hillB:#ffffff;--hillF:#d6e6f2;--bar:rg
 
 <!-- ================= REWARDS TAB ================= -->
 <section class="tab" id="tab-rewards">
-<div class="card" style="text-align:center"><div class="small">Points bank</div><div class="bank" id="bank2">0</div><div class="small" id="bankUsd2"></div></div>
-<div class="card" id="questCard"><div class="ihead"><h2><svg class=ico><use href=#i-target></use></svg> Weekly quests</h2><button class="ibtn" onclick="info('quests')" aria-label="More info">i</button></div><div class="small" id="questReset"></div><div id="quests"></div></div>
-<div class="card" id="prizeCard"><div class="ihead"><h2><svg class=ico><use href=#i-gift></use></svg> Prize menu</h2><button class="ibtn" onclick="info('prizes')" aria-label="More info">i</button></div><ul id="prizes"></ul></div>
-<div class="card"><div class="ihead"><h2><svg class=ico><use href=#i-trophy></use></svg> Trophy case</h2><button class="ibtn" onclick="info('trophies')" aria-label="More info">i</button></div><div class="small" id="badgeCount"></div><div class="trophies" id="badges"></div></div>
-<div class="card" style="text-align:center"><div class="small" style="margin-bottom:6px">Enjoying Pedal Points? It's free, made by one local rider.</div><div style="font-weight:600;margin-bottom:6px"><svg class=ico><use href=#i-cup></use></svg> Buy the maker a coffee</div><div class="row"><a class="coffee" href="https://paypal.me/scottshotsphoto/3USD" target="_blank" rel="noopener"><button class="ghost" style="margin:0">$3</button></a><a class="coffee" href="https://paypal.me/scottshotsphoto/5USD" target="_blank" rel="noopener"><button class="ghost" style="margin:0">$5</button></a><a class="coffee" href="https://paypal.me/scottshotsphoto/10USD" target="_blank" rel="noopener"><button class="ghost" style="margin:0">$10</button></a></div><div class="small" style="margin-top:8px"><a href="https://paypal.me/scottshotsphoto" target="_blank" rel="noopener" style="color:var(--gold)">Choose another amount</a></div><div class="small" style="margin-top:6px">Optional, through PayPal. Tips don't earn points.</div></div>
+<div class="card" style="text-align:center"><div data-t="points_bank_2" class="small">Points bank</div><div class="bank" id="bank2">0</div><div class="small" id="bankUsd2"></div></div>
+<div class="card" id="questCard"><div class="ihead"><h2 data-t="weekly_quests"><svg class=ico><use href=#i-target></use></svg> Weekly quests</h2><button data-t="i_5" class="ibtn" onclick="info('quests')" aria-label="More info">i</button></div><div class="small" id="questReset"></div><div id="quests"></div></div>
+<div class="card" id="prizeCard"><div class="ihead"><h2 data-t="prize_menu"><svg class=ico><use href=#i-gift></use></svg> Prize menu</h2><button data-t="i_6" class="ibtn" onclick="info('prizes')" aria-label="More info">i</button></div><ul id="prizes"></ul></div>
+<div class="card"><div class="ihead"><h2 data-t="trophy_case"><svg class=ico><use href=#i-trophy></use></svg> Trophy case</h2><button data-t="i_7" class="ibtn" onclick="info('trophies')" aria-label="More info">i</button></div><div class="small" id="badgeCount"></div><div class="trophies" id="badges"></div></div>
+<div class="card" style="text-align:center"><div data-t="enjoying_pedal_points_it_s" class="small" style="margin-bottom:6px">Enjoying Pedal Points? It's free, made by one local rider.</div><div data-t="buy_the_maker_a_coffee" style="font-weight:600;margin-bottom:6px"><svg class=ico><use href=#i-cup></use></svg> Buy the maker a coffee</div><div class="row"><a class="coffee" href="https://paypal.me/scottshotsphoto/3USD" target="_blank" rel="noopener"><button data-t="3" class="ghost" style="margin:0">$3</button></a><a class="coffee" href="https://paypal.me/scottshotsphoto/5USD" target="_blank" rel="noopener"><button data-t="5" class="ghost" style="margin:0">$5</button></a><a class="coffee" href="https://paypal.me/scottshotsphoto/10USD" target="_blank" rel="noopener"><button data-t="10" class="ghost" style="margin:0">$10</button></a></div><div data-t="choose_another_amount" class="small" style="margin-top:8px"><a href="https://paypal.me/scottshotsphoto" target="_blank" rel="noopener" style="color:var(--gold)">Choose another amount</a></div><div data-t="optional_through_paypal_tips_don" class="small" style="margin-top:6px">Optional, through PayPal. Tips don't earn points.</div></div>
 </section>
 
 <!-- ================= STATS TAB ================= -->
 <section class="tab" id="tab-stats">
-<div style="margin:0 12px"><button class="ghost" id="addRideBtn"><svg class=ico><use href=#i-pencil></use></svg> Forgot to track a ride? Add it here</button></div>
-<div style="margin:0 12px"><button class="ghost" id="statsShare"><svg class=ico><use href=#i-share></use></svg> Share my totals</button></div>
-<div class="card" id="recentCard"><div class="ihead"><h2><svg class=ico><use href=#i-history></use></svg> Recent rides</h2><button class="ibtn" onclick="info('recent')" aria-label="More info">i</button></div><div id="recent"></div></div>
-<div class="card" id="statsCard"><div class="ihead"><h2><svg class=ico><use href=#i-chart></use></svg> Your stats</h2><button class="ibtn" onclick="info('stats')" aria-label="More info">i</button></div><div id="stats"></div></div>
-<div class="card"><div class="ihead"><h2><svg class=ico><use href=#i-mountain></use></svg> Levels</h2><button class="ibtn" onclick="info('level')" aria-label="More info">i</button></div><div id="levels"></div></div>
+<div style="margin:0 12px"><button data-t="forgot_to_track_a_ride" class="ghost" id="addRideBtn"><svg class=ico><use href=#i-pencil></use></svg> Forgot to track a ride? Add it here</button></div>
+<div style="margin:0 12px"><button data-t="share_my_totals" class="ghost" id="statsShare"><svg class=ico><use href=#i-share></use></svg> Share my totals</button></div>
+<div class="card" id="recentCard"><div class="ihead"><h2 data-t="recent_rides"><svg class=ico><use href=#i-history></use></svg> Recent rides</h2><button data-t="i_8" class="ibtn" onclick="info('recent')" aria-label="More info">i</button></div><div id="recent"></div></div>
+<div class="card" id="statsCard"><div class="ihead"><h2 data-t="your_stats"><svg class=ico><use href=#i-chart></use></svg> Your stats</h2><button data-t="i_9" class="ibtn" onclick="info('stats')" aria-label="More info">i</button></div><div id="stats"></div></div>
+<div class="card"><div class="ihead"><h2 data-t="levels"><svg class=ico><use href=#i-mountain></use></svg> Levels</h2><button data-t="i_10" class="ibtn" onclick="info('level')" aria-label="More info">i</button></div><div id="levels"></div></div>
 </section>
 
 <!-- ================= SETTINGS PAGE ================= -->
 <section class="page" id="page-settings">
-<div class="card" style="border-color:var(--gold)"><b><svg class=ico><use href=#i-save></use></svg> Your changes save automatically.</b> When you're finished, tap <b>Save settings / Done</b> at the bottom to go back.</div>
-<div class="card"><h2><svg class=ico><use href=#i-gear></use></svg> Settings</h2>
-<label>Your first name <input id="cName" maxlength="20" placeholder="Optional" style="width:160px"></label>
-<p style="margin:10px 0 4px">My main bike</p>
-<div class="row"><button id="bE"><svg class=ico><use href=#i-bolt></use></svg> E-bike</button><button id="bC"><svg class=ico><use href=#i-bike></use></svg> Classic bike</button></div>
-<label style="margin-top:12px">Classic bike bonus (x) <input id="cClassic" type="number" step="0.25" min="1" max="3" inputmode="decimal"></label>
-<div class="small">Classic bike miles earn <span class=cxv>1.5</span>x points. Set it from 1 (no bonus) to 3. You can switch bikes for a single ride on the Ride tab.</div>
-<label style="margin-top:14px">I ride with front and rear lights after dark (turns on the night bonus) <input type="checkbox" id="cLights"></label>
+<div data-t="your_changes_save_automatically_when" class="card" style="border-color:var(--gold)"><b><svg class=ico><use href=#i-save></use></svg> Your changes save automatically.</b> When you're finished, tap <b>Save settings / Done</b> at the bottom to go back.</div>
+<div class="card"><h2 data-t="settings"><svg class=ico><use href=#i-gear></use></svg> Settings</h2>
+<label><span data-t="your_first_name">Your first name</span> <input data-tp="ph_optional" id="cName" maxlength="20" placeholder="Optional" style="width:160px"></label>
+<p data-t="my_main_bike" style="margin:10px 0 4px">My main bike</p>
+<div class="row"><button data-t="e_bike" id="bE"><svg class=ico><use href=#i-bolt></use></svg> E-bike</button><button data-t="classic_bike" id="bC"><svg class=ico><use href=#i-bike></use></svg> Classic bike</button></div>
+<label style="margin-top:12px"><span data-t="classic_bike_bonus_x">Classic bike bonus (x)</span> <input id="cClassic" type="number" step="0.25" min="1" max="3" inputmode="decimal"></label>
+<div data-t="classic_bike_miles_earn_1" class="small">Classic bike miles earn <span class=cxv>1.5</span>x points. Set it from 1 (no bonus) to 3. You can switch bikes for a single ride on the Ride tab.</div>
+<label style="margin-top:14px"><span data-t="i_ride_with_front_and">I ride with front and rear lights after dark (turns on the night bonus)</span> <input type="checkbox" id="cLights"></label>
 </div>
-<div class="card"><h2><svg class=ico><use href=#i-palette></use></svg> Theme</h2><div class="small">Unlock new looks as you level up.</div><div class="themes" id="themePick" style="margin-top:8px"></div></div>
-<div class="card"><h2><svg class=ico><use href=#i-fuel></use></svg> Your car</h2><div class="small">Used to estimate the gas money you save on errand rides.</div>
-<label>Car miles per gallon <input id="cMpg" type="number" step="0.1" inputmode="decimal"></label>
-<label>Gas price per gallon ($) <input id="cGas" type="number" step="0.01" inputmode="decimal"></label>
-<label>Reward boost (1 = real gas savings) <input id="cBoost" type="number" step="0.5" min="0.5" inputmode="decimal"></label>
-<div class="small">At 1, a plain errand mile earns exactly the gas money it saved. The gas math doesn't count wear and tear on your car, oil changes, your time or your mental health, so you can raise it to whatever feels fair: 2 doubles it, 3 triples it. Tap <span class=kref>?</span> at the top left for the full explanation.</div></div>
-<div class="card"><h2><svg class=ico><use href=#i-sound></use></svg> Sounds and announcements</h2>
-<label>Mile announcements <select id="cAnn"><option value="1">Every mile</option><option value="5">Every 5 miles</option><option value="10">Every 10 miles</option><option value="20">Every 20 miles</option><option value="0">Off</option></select></label>
-<label>Announce with <select id="cVoice"><option value="1">Voice + buzz</option><option value="0">Buzz only</option></select></label>
-<label>Game sound effects <input type="checkbox" id="cSound"></label>
+<div class="card"><h2 data-t="theme"><svg class=ico><use href=#i-palette></use></svg> Theme</h2><div data-t="unlock_new_looks_as_you" class="small">Unlock new looks as you level up.</div><div class="themes" id="themePick" style="margin-top:8px"></div></div>
+<div class="card"><h2 data-t="units"><svg class=ico><use href=#i-cloudsun></use></svg> Units</h2>
+<label><span data-t="distance">Distance</span> <select id="cDist"><option data-t="miles_2" value="mi">Miles</option><option data-t="kilometers" value="km">Kilometers</option></select></label>
+<label><span data-t="fuel_economy">Fuel economy</span> <select id="cFuel"><option data-t="mpg_us" value="mpg">mpg (US)</option><option data-t="mpg_uk" value="mpguk">mpg (UK)</option><option data-t="l_100_km" value="l100">L/100 km</option><option data-t="km_l" value="kml">km/L</option></select></label>
+<label><span data-t="temperature">Temperature</span> <select id="cTemp"><option data-t="f" value="F">°F</option><option data-t="c" value="C">°C</option></select></label>
+<label><span data-t="currency">Currency</span> <select id="cCur"><option data-t="x" value="$">$</option><option value="€">€</option><option value="£">£</option><option value="¥">¥</option><option value="₹">₹</option><option data-t="r" value="R$">R$</option><option data-t="chf" value="CHF ">CHF</option><option data-t="kr" value="kr ">kr</option><option data-t="z" value="zł ">zł</option><option data-t="r_2" value="R">R</option></select></label>
+<div data-t="changing_fuel_economy_converts_your" class="small">Changing fuel economy converts your car's numbers for you. Points stay fair: a kilometer earns about 0.62 of a mile's points.</div></div>
+<div class="card"><h2 data-t="your_car"><svg class=ico><use href=#i-fuel></use></svg> Your car</h2><div data-t="used_to_estimate_the_gas" class="small">Used to estimate the gas money you save on errand rides.</div>
+<label><span data-t="car_miles_per_gallon">Car miles per gallon</span> <input id="cMpg" type="number" step="0.1" inputmode="decimal"></label>
+<label><span data-t="gas_price_per_gallon">Gas price per gallon ($)</span> <input id="cGas" type="number" step="0.01" inputmode="decimal"></label>
+<label><span data-t="reward_boost_1_real_gas">Reward boost (1 = real gas savings)</span> <input id="cBoost" type="number" step="0.5" min="0.5" inputmode="decimal"></label>
+<div data-t="at_1_a_plain_errand" class="small">At 1, a plain errand mile earns exactly the gas money it saved. The gas math doesn't count wear and tear on your car, oil changes, your time or your mental health, so you can raise it to whatever feels fair: 2 doubles it, 3 triples it. Tap <span class=kref>?</span> at the top left for the full explanation.</div></div>
+<div class="card"><h2 data-t="sounds_and_announcements"><svg class=ico><use href=#i-sound></use></svg> Sounds and announcements</h2>
+<label><span data-t="mile_announcements">Mile announcements</span> <select id="cAnn"><option data-t="every_mile" value="1">Every mile</option><option data-t="every_5_miles" value="5">Every 5 miles</option><option data-t="every_10_miles" value="10">Every 10 miles</option><option data-t="every_20_miles" value="20">Every 20 miles</option><option data-t="off" value="0">Off</option></select></label>
+<label><span data-t="announce_with">Announce with</span> <select id="cVoice"><option data-t="voice_buzz" value="1">Voice + buzz</option><option data-t="buzz_only" value="0">Buzz only</option></select></label>
+<label><span data-t="game_sound_effects">Game sound effects</span> <input type="checkbox" id="cSound"></label>
 </div>
-<div class="card"><h2><svg class=ico><use href=#i-battery></use></svg> Phone battery saver</h2><div class="small">GPS and keeping the screen on use the most phone battery, and the app needs both during a ride. These extras use a little more, so turn them off to stretch your phone battery on long rides.</div>
-<label>Live map during rides <input type="checkbox" id="cMap"></label>
-<label>Moving pictures (bikes, flame, glowing buttons) <input type="checkbox" id="cAnim"></label>
-<div class="small">The moving pictures pause by themselves during a ride.</div></div>
-<div class="card"><h2><svg class=ico><use href=#i-plus></use></svg> Bonus buttons</h2><div class="small">These appear on the Ride tab. Use ▲ ▼ to change the order. Raining? fixes the automatic weather if it's wrong.</div><div id="condEdit"></div>
-<input id="condName" maxlength="28" placeholder="New button name, up to 28 letters (e.g. Windy)" style="margin-top:8px">
-<div class="row" style="margin-top:8px"><input id="condPts" type="number" inputmode="numeric" placeholder="Bonus points per mile"><button id="addCond" class="mini">Add button</button></div>
-<button class="ghost" id="resetConds" style="margin-top:10px">Reset to the starting buttons</button></div>
-<div class="card"><h2><svg class=ico><use href=#i-gift></use></svg> Edit prizes</h2><div class="small">Change a price, delete a prize, or add your own. The app works out the points.</div><div id="prizeEdit"></div>
-<input id="newName" maxlength="30" placeholder="New prize name" style="margin-top:8px">
-<div class="row" style="margin-top:8px"><input id="newUsd" type="number" inputmode="decimal" placeholder="Price in $"><button id="addPrize" class="mini">Add prize</button></div></div>
-<div class="card"><h2><svg class=ico><use href=#i-save></use></svg> Backup</h2><div class="small">Save a backup file to keep your points safe or move them to a new phone. Backups go to your <b>Downloads</b> folder, named pedal-points-backup plus the date.</div><button id="backup">Save backup file</button><button id="restoreBtn">Restore from file</button><input id="restoreFile" type="file" style="display:none"></div>
-<div class="card"><button id="tourAgain2" class="ghost">Show me the tour again</button><button id="closeSet" class="big go">Save settings / Done</button></div>
+<div class="card"><h2 data-t="phone_battery_saver"><svg class=ico><use href=#i-battery></use></svg> Phone battery saver</h2><div data-t="gps_and_keeping_the_screen" class="small">GPS and keeping the screen on use the most phone battery, and the app needs both during a ride. These extras use a little more, so turn them off to stretch your phone battery on long rides.</div>
+<label><span data-t="live_map_during_rides">Live map during rides</span> <input type="checkbox" id="cMap"></label>
+<label><span data-t="moving_pictures_bikes_flame_glowing">Moving pictures (bikes, flame, glowing buttons)</span> <input type="checkbox" id="cAnim"></label>
+<div data-t="the_moving_pictures_pause_by" class="small">The moving pictures pause by themselves during a ride.</div></div>
+<div class="card"><h2 data-t="bonus_buttons"><svg class=ico><use href=#i-plus></use></svg> Bonus buttons</h2><div data-t="these_appear_on_the_ride" class="small">These appear on the Ride tab. Use ▲ ▼ to change the order. Raining? fixes the automatic weather if it's wrong.</div><div id="condEdit"></div>
+<input data-tp="ph_new_button_name_up_to" id="condName" maxlength="28" placeholder="New button name, up to 28 letters (e.g. Windy)" style="margin-top:8px">
+<div class="row" style="margin-top:8px"><input data-tp="ph_bonus_points_per_mile" id="condPts" type="number" inputmode="numeric" placeholder="Bonus points per mile"><button data-t="add_button" id="addCond" class="mini">Add button</button></div>
+<button data-t="reset_to_the_starting_buttons" class="ghost" id="resetConds" style="margin-top:10px">Reset to the starting buttons</button></div>
+<div class="card"><h2 data-t="edit_prizes"><svg class=ico><use href=#i-gift></use></svg> Edit prizes</h2><div data-t="change_a_price_delete_a" class="small">Change a price, delete a prize, or add your own. The app works out the points.</div><div id="prizeEdit"></div>
+<input data-tp="ph_new_prize_name" id="newName" maxlength="30" placeholder="New prize name" style="margin-top:8px">
+<div class="row" style="margin-top:8px"><input data-tp="ph_price_in" id="newUsd" type="number" inputmode="decimal" placeholder="Price in $"><button data-t="add_prize" id="addPrize" class="mini">Add prize</button></div></div>
+<div class="card"><h2 data-t="backup"><svg class=ico><use href=#i-save></use></svg> Backup</h2><div data-t="save_a_backup_file_to" class="small">Save a backup file to keep your points safe or move them to a new phone. Backups go to your <b>Downloads</b> folder, named pedal-points-backup plus the date.</div><button data-t="save_backup_file" id="backup">Save backup file</button><button data-t="restore_from_file" id="restoreBtn">Restore from file</button><input id="restoreFile" type="file" style="display:none"></div>
+<div class="card"><button data-t="show_me_the_tour_again" id="tourAgain2" class="ghost">Show me the tour again</button><button data-t="save_settings_done" id="closeSet" class="big go">Save settings / Done</button></div>
 </section>
 
 <!-- ================= ADD A RIDE PAGE ================= -->
 <section class="page" id="page-add">
-<div class="card"><h2><svg class=ico><use href=#i-pencil></use></svg> Add a ride</h2><p class="small">For rides you forgot to track. It earns the same points as a tracked ride.</p>
-<label>Miles ridden <input id="mMiles" type="number" step="0.1" min="0" inputmode="decimal" placeholder="e.g. 4.5"></label>
-<label>When <select id="mWhen"><option value="0">Today</option><option value="1">Yesterday</option></select></label>
-<p style="margin:10px 0 4px">What kind of ride?</p>
-<div class="row"><button id="mErr"><svg class=ico><use href=#i-cart></use></svg> Errand</button><button id="mLei"><svg class=ico><use href=#i-tree></use></svg> Leisure</button></div>
-<p style="margin:12px 0 4px">Tick anything that applied:</p>
+<div class="card"><h2 data-t="add_a_ride"><svg class=ico><use href=#i-pencil></use></svg> Add a ride</h2><p data-t="for_rides_you_forgot_to" class="small">For rides you forgot to track. It earns the same points as a tracked ride.</p>
+<label><span data-t="miles_ridden">Miles ridden</span> <input data-tp="ph_e_g_4_5" id="mMiles" type="number" step="0.1" min="0" inputmode="decimal" placeholder="e.g. 4.5"></label>
+<label><span data-t="when">When</span> <select id="mWhen"><option data-t="today" value="0">Today</option><option data-t="yesterday" value="1">Yesterday</option></select></label>
+<p data-t="what_kind_of_ride" style="margin:10px 0 4px">What kind of ride?</p>
+<div class="row"><button data-t="errand" id="mErr"><svg class=ico><use href=#i-cart></use></svg> Errand</button><button data-t="leisure" id="mLei"><svg class=ico><use href=#i-tree></use></svg> Leisure</button></div>
+<p data-t="tick_anything_that_applied" style="margin:12px 0 4px">Tick anything that applied:</p>
 <label class="check"><input type="checkbox" id="mClassic"> Rode a classic bike (x<span class=cxv>1.5</span>)</label>
-<label class="check"><input type="checkbox" id="mNight"> Rode after dark with front and rear lights</label>
-<label class="check"><input type="checkbox" id="mCold"> Freezing, 32°F or colder</label>
+<label class="check"><input type="checkbox" id="mNight"> <span data-t="rode_after_dark_with_front">Rode after dark with front and rear lights</span></label>
+<label class="check"><input type="checkbox" id="mCold"> <span data-t="freezing_32_f_or_colder">Freezing, 32°F or colder</span></label>
 <div id="mConds"></div>
-<label>Feet climbed (optional) <input id="mClimb" type="number" inputmode="numeric" placeholder="0"></label>
-<button class="big go" id="mSave">Add this ride</button><button class="ghost" id="mCancel">Cancel</button></div>
+<label><span data-t="feet_climbed_optional">Feet climbed (optional)</span> <input data-tp="ph_0" id="mClimb" type="number" inputmode="numeric" placeholder="0"></label>
+<button data-t="add_this_ride" class="big go" id="mSave">Add this ride</button><button data-t="cancel" class="ghost" id="mCancel">Cancel</button></div>
 </section>
 
 <!-- ================= HELP PAGE ================= -->
 <section class="page" id="page-help">
-<div class="card"><h2><svg class=ico><use href=#i-help></use></svg> How to use Pedal Points</h2>
-<p><b>The short version:</b> tap Start errand ride or Start leisure ride when you ride, keep the app open, tap End ride when you're done, and spend your points on rewards.</p>
-<button class="go" id="tourAgain">Show me the tour again</button></div>
+<div class="card"><h2 data-t="how_to_use_pedal_points"><svg class=ico><use href=#i-help></use></svg> How to use Pedal Points</h2>
+<p data-t="the_short_version_tap_start"><b>The short version:</b> tap Start errand ride or Start leisure ride when you ride, keep the app open, tap End ride when you're done, and spend your points on rewards.</p>
+<button data-t="show_me_the_tour_again_2" class="go" id="tourAgain">Show me the tour again</button></div>
 
-<div class="card"><h2><svg class=ico><use href=#i-bike></use></svg> Ride tab, step by step</h2>
-<p><b>1. Before your first ride:</b> tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button at the top right. Enter your name, pick your main bike, and enter your car's miles per gallon and your local gas price. Tap Save settings / Done at the bottom.</p>
-<p><b>2. Start a ride:</b> tap Start errand ride if this ride replaces a car trip, like going to the store or the post office. Errand miles earn double points. Tap Start leisure ride for a fun ride.</p>
-<p><b>3. Allow location:</b> the first time, your phone asks to share your location. Tap Allow. The app needs it to count your miles.</p>
-<p><b>4. While you ride:</b> keep the app open on your screen. A handlebar phone mount works best, and never handle your phone while moving. If you switch to another app or the screen turns off, miles may stop counting. A live map shows where you are and the route you've ridden.</p>
-<p><b>Need to stop?</b> Tap <b>Pause</b> when you stop somewhere, like the post office. GPS stops and your phone screen can turn off, so walking around doesn't count. Tap <b>Resume</b> when you're back on the bike. If your phone closes the app while you're paused or riding, your ride is saved and waiting when you open it again.</p>
-<p><b>5. Bonus buttons:</b> cold, heat, rain and snow are worked out automatically from the weather. If it's raining and the app missed it, tap Raining?. Tap Hauling? if you're carrying a heavy load, and Windy? when you're riding into the wind. A gold button means it's on. The night bonus only counts if you've said in Settings that you ride with front and rear lights.</p>
-<p><b>6. Riding your other bike?</b> Tick the box under the bonus buttons before you start. Classic bike miles earn <span class=cxv>1.5</span>x. You can change that bonus in Settings.</p>
-<p><b>7. End the ride:</b> tap End ride. You'll see your points, bonuses, any trophies and quests you finished, and the approximate gas money you saved.</p>
-<p><b>Share a ride:</b> after a ride, tap <b>Share this ride</b> to make a picture card for Instagram, Facebook, X, texts and more.</p><ul><li><b>Add a photo:</b> tap Add a photo to put a selfie or ride picture on the card, then choose <b>Photo on top</b> or <b>Full background</b>. The photo isn't saved, and its hidden location data is removed.</li><li><b>Route shape:</b> left off unless you tick the box. It's only offered right after a ride, never for older rides.</li><li><b>Caption:</b> the app copies a caption for you. If an app leaves it out, paste it into your post, or tap Copy caption.</li><li><b>Older rides:</b> your last five rides are on the Stats tab under Recent rides, each with its own Share button. You can share your all-time totals there too.</li></ul>
-<p><b>8. Your road trip:</b> at the bottom of the Ride tab, every mile you ride moves your bike along the road toward the next stop. Finish the 1,000-mile trip to earn a gold star <svg class=ico><use href=#i-gstar></use></svg> next to your name, and the road starts fresh for another lap.</p>
-<p><b>9. Daily check-in:</b> tap "Daily check-in" once a day for a ride tip or fun fact and to build a check-in streak. It doesn't add points. Points only come from riding.</p>
-<p><b>Want more detail?</b> Tap any little <b>i</b> button next to a heading.</p></div>
+<div class="card"><h2 data-t="ride_tab_step_by_step"><svg class=ico><use href=#i-bike></use></svg> Ride tab, step by step</h2>
+<p data-t="1_before_your_first_ride"><b>1. Before your first ride:</b> tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button at the top right. Enter your name, pick your main bike, and enter your car's miles per gallon and your local gas price. Tap Save settings / Done at the bottom.</p>
+<p data-t="2_start_a_ride_tap"><b>2. Start a ride:</b> tap Start errand ride if this ride replaces a car trip, like going to the store or the post office. Errand miles earn double points. Tap Start leisure ride for a fun ride.</p>
+<p data-t="3_allow_location_the_first"><b>3. Allow location:</b> the first time, your phone asks to share your location. Tap Allow. The app needs it to count your miles.</p>
+<p data-t="4_while_you_ride_keep"><b>4. While you ride:</b> keep the app open on your screen. A handlebar phone mount works best, and never handle your phone while moving. If you switch to another app or the screen turns off, miles may stop counting. A live map shows where you are and the route you've ridden.</p>
+<p data-t="need_to_stop_tap_pause"><b>Need to stop?</b> Tap <b>Pause</b> when you stop somewhere, like the post office. GPS stops and your phone screen can turn off, so walking around doesn't count. Tap <b>Resume</b> when you're back on the bike. If your phone closes the app while you're paused or riding, your ride is saved and waiting when you open it again.</p>
+<p data-t="5_bonus_buttons_cold_heat"><b>5. Bonus buttons:</b> cold, heat, rain and snow are worked out automatically from the weather. If it's raining and the app missed it, tap Raining?. Tap Hauling? if you're carrying a heavy load, and Windy? when you're riding into the wind. A gold button means it's on. The night bonus only counts if you've said in Settings that you ride with front and rear lights.</p>
+<p data-t="6_riding_your_other_bike"><b>6. Riding your other bike?</b> Tick the box under the bonus buttons before you start. Classic bike miles earn <span class=cxv>1.5</span>x. You can change that bonus in Settings.</p>
+<p data-t="7_end_the_ride_tap"><b>7. End the ride:</b> tap End ride. You'll see your points, bonuses, any trophies and quests you finished, and the approximate gas money you saved.</p>
+<p data-t="share_a_ride_after_a"><b>Share a ride:</b> after a ride, tap <b>Share this ride</b> to make a picture card for Instagram, Facebook, X, texts and more.</p><ul><li data-t="add_a_photo_tap_add"><b>Add a photo:</b> tap Add a photo to put a selfie or ride picture on the card, then choose <b>Photo on top</b> or <b>Full background</b>. The photo isn't saved, and its hidden location data is removed.</li><li data-t="route_shape_left_off_unless"><b>Route shape:</b> left off unless you tick the box. It's only offered right after a ride, never for older rides.</li><li data-t="caption_the_app_copies_a"><b>Caption:</b> the app copies a caption for you. If an app leaves it out, paste it into your post, or tap Copy caption.</li><li data-t="older_rides_your_last_five"><b>Older rides:</b> your last five rides are on the Stats tab under Recent rides, each with its own Share button. You can share your all-time totals there too.</li></ul>
+<p data-t="8_your_road_trip_at"><b>8. Your road trip:</b> at the bottom of the Ride tab, every mile you ride moves your bike along the road toward the next stop. Finish the 1,000-mile trip to earn a gold star <svg class=ico><use href=#i-gstar></use></svg> next to your name, and the road starts fresh for another lap.</p>
+<p data-t="9_daily_check_in_tap"><b>9. Daily check-in:</b> tap "Daily check-in" once a day for a ride tip or fun fact and to build a check-in streak. It doesn't add points. Points only come from riding.</p>
+<p data-t="want_more_detail_tap_any"><b>Want more detail?</b> Tap any little <b>i</b> button next to a heading.</p></div>
 
-<div class="card"><h2><svg class=ico><use href=#i-trophy></use></svg> Rewards tab</h2>
-<p><b>Points bank:</b> every point you earn goes here.</p>
-<p><b>Weekly quests:</b> four small goals that reset every Monday. Finish one for bonus points.</p>
-<p><b>Prize menu:</b> the gold bar shows how close you are. When you have enough points, tap Cash in, and the points come out of your bank.</p>
-<p><b>Trophy case:</b> locked trophies are grey. Tap one to see how to earn it.</p>
-<p><b><svg class=ico><use href=#i-cup></use></svg> Buy the maker a coffee:</b> Pedal Points is free. If you enjoy it, the $3, $5 and $10 buttons at the bottom of the Rewards tab let you send an optional tip through PayPal, or you can choose another amount. Tips don't earn points.</p>
-<p class="small" style="border-left:3px solid var(--gold);padding-left:8px"><b>Please note:</b> Pedal Points does not pay out real money or gift cards. Points and reward dollars are just a game. Cashing in is your own permission to treat yourself, paid for with the money you're saving on gas by riding instead of driving.</p></div>
+<div class="card"><h2 data-t="rewards_tab"><svg class=ico><use href=#i-trophy></use></svg> Rewards tab</h2>
+<p data-t="points_bank_every_point_you"><b>Points bank:</b> every point you earn goes here.</p>
+<p data-t="weekly_quests_four_small_goals"><b>Weekly quests:</b> four small goals that reset every Monday. Finish one for bonus points.</p>
+<p data-t="prize_menu_the_gold_bar"><b>Prize menu:</b> the gold bar shows how close you are. When you have enough points, tap Cash in, and the points come out of your bank.</p>
+<p data-t="trophy_case_locked_trophies_are"><b>Trophy case:</b> locked trophies are grey. Tap one to see how to earn it.</p>
+<p data-t="buy_the_maker_a_coffee_2"><b><svg class=ico><use href=#i-cup></use></svg> Buy the maker a coffee:</b> Pedal Points is free. If you enjoy it, the $3, $5 and $10 buttons at the bottom of the Rewards tab let you send an optional tip through PayPal, or you can choose another amount. Tips don't earn points.</p>
+<p data-t="please_note_pedal_points_does" class="small" style="border-left:3px solid var(--gold);padding-left:8px"><b>Please note:</b> Pedal Points does not pay out real money or gift cards. Points and reward dollars are just a game. Cashing in is your own permission to treat yourself, paid for with the money you're saving on gas by riding instead of driving.</p></div>
 
-<div class="card"><h2><svg class=ico><use href=#i-fuel></use></svg> How points and gas savings work</h2><p><b>Gas saved per mile</b> = your gas price ÷ your car's miles per gallon. For example, $3.50 a gallon ÷ 25 mpg = about 14¢ for every mile you ride instead of drive.</p><p><b>Reward dollars per errand mile</b> = gas saved × your <b>reward boost</b>. At a boost of 1, a plain errand mile earns exactly the gas money it really saved. At 2, it earns twice that, and so on.</p><p><b>Example:</b> at 14¢ a mile, a $6 coffee takes about 43 plain errand miles at a boost of 1, about 21 at 2, and about 14 at 3. If gas is pricier or your car uses more fuel, rewards come faster.</p><p><b>Why raise the boost?</b> The gas math only counts fuel. It leaves out the other things you gain by riding instead of driving: less wear and tear on your car, fewer oil changes and repairs, the value of your time, and a lift for your physical and mental health. That's why you can raise the boost to whatever feels fair to you.</p><p><b>Why reward dollars can be higher than gas saved:</b> bonuses for weather, climbing, hauling and riding a classic bike are extra credit for effort. Leisure rides earn points too, even though they don't replace a car trip. Quests and streaks add a little more.</p><p><b>Your real number</b> is "Approximate gas money saved" on the Stats tab. It only counts errand miles and isn't changed by the boost or bonuses.</p><p class="small">The app uses miles, gallons and dollars. If you use other units, convert your car's mileage and fuel price before entering them.</p></div>
+<div class="card"><h2 data-t="how_points_and_gas_savings"><svg class=ico><use href=#i-fuel></use></svg> How points and gas savings work</h2><p data-t="gas_saved_per_mile_your"><b>Gas saved per {{u}}</b> = your fuel price ÷ your car's fuel economy. For example (in US units), $3.50 a gallon ÷ 25 mpg = about 14¢ for every mile you ride instead of drive.</p><p data-t="reward_dollars_per_errand_mile"><b>Reward value per errand mile</b> = gas saved × your <b>reward boost</b>. At a boost of 1, a plain errand mile earns exactly the gas money it really saved. At 2, it earns twice that, and so on.</p><p data-t="example_at_14_a_mile"><b>Example:</b> at 14¢ a mile, a $6 coffee takes about 43 plain errand miles at a boost of 1, about 21 at 2, and about 14 at 3. If gas is pricier or your car uses more fuel, rewards come faster.</p><p data-t="why_raise_the_boost_the"><b>Why raise the boost?</b> The gas math only counts fuel. It leaves out the other things you gain by riding instead of driving: less wear and tear on your car, fewer oil changes and repairs, the value of your time, and a lift for your physical and mental health. That's why you can raise the boost to whatever feels fair to you.</p><p data-t="why_reward_dollars_can_be"><b>Why reward dollars can be higher than gas saved:</b> bonuses for weather, climbing, hauling and riding a classic bike are extra credit for effort. Leisure rides earn points too, even though they don't replace a car trip. Quests and streaks add a little more.</p><p data-t="your_real_number_is_approximate"><b>Your real number</b> is "Approximate gas money saved" on the Stats tab. It only counts errand miles and isn't changed by the boost or bonuses.</p><p data-t="the_app_uses_miles_gallons" class="small">The app uses miles, gallons and dollars. If you use other units, convert your car's mileage and fuel price before entering them.</p></div>
 
-<div class="card"><h2><svg class=ico><use href=#i-chart></use></svg> Stats tab and levels</h2>
-<p>Stats shows your total number of rides, your total, errand and leisure miles, the approximate gas money you've saved, your streak and your points.</p>
-<p><b>Forgot to track a ride?</b> Tap the button at the top of the Stats tab, type the miles, and tick what applied. It earns the same points.</p>
-<p>Every point you ever earn counts toward your level, from Kickstand Rookie through Pedal Legend and beyond, up to Pedal Points Immortal. Spending points never lowers your level. New levels unlock new color themes.</p></div>
+<div class="card"><h2 data-t="stats_tab_and_levels"><svg class=ico><use href=#i-chart></use></svg> Stats tab and levels</h2>
+<p data-t="stats_shows_your_total_number">Stats shows your total number of rides, your total, errand and leisure miles, the approximate gas money you've saved, your streak and your points.</p>
+<p data-t="forgot_to_track_a_ride_2"><b>Forgot to track a ride?</b> Tap the button at the top of the Stats tab, type the miles, and tick what applied. It earns the same points.</p>
+<p data-t="every_point_you_ever_earn">Every point you ever earn counts toward your level, from Kickstand Rookie through Pedal Legend and beyond, up to Pedal Points Immortal. Spending points never lowers your level. New levels unlock new color themes.</p></div>
 
-<div class="card"><h2><svg class=ico><use href=#i-gear></use></svg> Settings</h2>
-<p>Tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button at the top right to change your name, main bike, lights, theme, car mileage, gas price and reward boost, mile announcements and sounds, phone battery saver options, bonus buttons and prizes, and to save backups.</p>
-<p><b>Saving:</b> your changes save automatically as you make them. When you're finished, tap <b>Save settings / Done</b> at the bottom to go back.</p></div>
+<div class="card"><h2 data-t="settings_2"><svg class=ico><use href=#i-gear></use></svg> Settings</h2>
+<p data-t="tap_the_gear_button_at">Tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button at the top right to change your name, main bike, lights, theme, car mileage, gas price and reward boost, mile announcements and sounds, phone battery saver options, bonus buttons and prizes, and to save backups.</p>
+<p data-t="saving_your_changes_save_automatically"><b>Saving:</b> your changes save automatically as you make them. When you're finished, tap <b>Save settings / Done</b> at the bottom to go back.</p></div>
 
-<div class="card"><h2><svg class=ico><use href=#i-doc></use></svg> Please read</h2><ul class="terms" id="helpTerms"></ul></div>
+<div class="card"><h2 data-t="please_read"><svg class=ico><use href=#i-doc></use></svg> Please read</h2><ul class="terms" id="helpTerms"></ul></div>
 
-<div class="card"><h2><svg class=ico><use href=#i-chat></use></svg> Common questions</h2><div class="small">Tap a question to see the answer.</div>
-<details><summary>Why didn't my miles count?</summary><p>Make sure you tapped Allow for location, kept the app open with the screen on, and had a clear view of the sky. Very short rides, under about a tenth of a mile, don't count. If a ride didn't record, add it with "Forgot to track a ride?"</p></details>
-<details><summary>It says there's a location problem.</summary><p>Open Chrome, tap the three dots, then Settings, Site settings, Location, and make sure this site is allowed. Also check that location is turned on in your phone's settings.</p></details>
-<details><summary>How much are points worth?</summary><p>A plain errand mile (20 points) is worth the gas money that mile saved, times your reward boost. At a boost of 1, rewards match your real gas savings. See "How points and gas savings work" on this page.</p></details>
-<details><summary>How are points worked out?</summary><p>Each mile earns 10 points, and errand miles count double. Bonuses are added per mile: freezing +5, heat +3, snow +15, rain +5, night +10 (only with lights turned on in Settings), plus any bonus buttons you turn on. From December through March everything earns 1.5x, and classic bike miles earn <span class=cxv>1.5</span>x too (adjustable in Settings). You also get +5 points for every 100 feet you climb, plus a streak bonus on the first ride of each day in a row.</p></details>
-<details><summary>What's the difference between Errand and Leisure?</summary><p>Errand rides replace a trip you'd otherwise drive, so they save gas and earn double points. Leisure rides are for fun, like a ride around the lake.</p></details>
-<details><summary>What's a classic bike?</summary><p>A regular bike with no motor. Set your main bike in Settings, and switch for a single ride on the Ride tab.</p></details>
-<details><summary>How do I add, change or delete a prize?</summary><p>Tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button (top right) and scroll to Edit prizes. Change a price in its box, tap Delete to remove a prize, or type a name and price at the bottom and tap Add prize. Prizes sort themselves from cheapest to most expensive.</p></details>
-<details><summary>How do I add or reorder bonus buttons?</summary><p>Tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button (top right) and scroll to Bonus buttons. Use ▲ and ▼ to change the order, Delete to remove one, or type a name and bonus points at the bottom and tap Add button. If you delete one by mistake, tap "Reset to the starting buttons."</p></details>
-<details><summary>My settings didn't save.</summary><p>Settings save automatically as you change them. If something looks wrong, tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button (top right), set it again, and tap Save settings / Done to go back. If it still won't stick, Chrome may be set to clear site data. Check Chrome's settings.</p></details>
-<details><summary>How do I save phone battery?</summary><p>GPS and keeping the screen on use the most phone battery, and both are needed to count miles. To stretch your phone battery, tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button (top right) and under Phone battery saver turn off the live map and moving pictures. Turning your screen brightness down helps a lot too.</p></details>
-<details><summary>The map is blank or won't load.</summary><p>The map needs a data connection and your location. Your miles still count without it. You can turn the map off in Settings (the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button, top right) under Phone battery saver.</p></details>
-<details><summary>How do I stop the mile announcements?</summary><p>Tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button (top right), then under Sounds and announcements choose every mile, every 5, 10 or 20 miles, or Off. You can also choose a buzz only, with no voice.</p></details>
-<details><summary>How do levels and quests work?</summary><p>Levels go up with every point you earn and never go down. Weekly quests reset every Monday, and each one you finish adds bonus points to your bank.</p></details>
-<details><summary>I stopped at a store. How do I keep my ride going?</summary><p>Tap Pause. The app stops tracking and your screen can turn off, so walking around the store doesn't count. When you're back on the bike, open the app and tap Resume.</p></details>
-<details><summary>What if my phone closes the app during a ride?</summary><p>The app saves your ride's miles and points every so often, and whenever you pause. When you open it again, the ride is waiting, paused. Tap Resume to keep going or End ride to finish. Your route isn't saved.</p></details>
-<details><summary>How do I share an older ride?</summary><p>Open the Stats tab. Under Recent rides, tap Share next to any of your last five rides.</p></details>
-<details><summary>Can I add a selfie to my share card?</summary><p>Yes. In the Share window, tap Add a photo and pick one from your gallery, or take a new one. Then choose Photo on top or Full background. The photo is only used for that card and isn't saved by the app.</p></details>
-<details><summary>Sharing to X (or another app) didn't include my caption.</summary><p>Some apps drop the text when a picture comes with it. The app copies the caption for you when you tap Share, so just paste it into your post. You can also tap Copy caption in the Share window.</p></details>
-<details><summary>How do I move to a new phone?</summary><p>Tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button (top right), then Save backup file. Send that file to your new phone, by email for example. On the new phone, open the app, tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button (top right), then Restore from file. In the file picker, open the <b>Downloads</b> folder (tap the menu or "Recent" if you don't see it) and choose the file that starts with <b>pedal-points-backup</b>. The app reminds you to back up every 5 rides.</p></details>
-<details><summary>Will an app update erase my points?</summary><p>No. Your points, prizes and settings stay on your phone when the app updates. Clearing Chrome's site data would erase them, so keep a backup.</p><p><b>Moving to a Google Play or App Store version?</b> If Pedal Points comes out in an app store, that will be a separate app, and your points won't move over by themselves. Save a backup file here first (<span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button, then Save backup file), then use Restore from file in the new app.</p></details>
-<details><summary>Is my location shared or tracked?</summary><p>There are no accounts and no tracking. Your rides, routes and points stay on your phone. When you start a ride, the app sends your approximate location to a free weather service (Open-Meteo) for the temperature and weather, and the live map loads map pictures of your area from OpenStreetMap. Nothing else leaves your phone.</p></details>
+<div class="card"><h2 data-t="common_questions"><svg class=ico><use href=#i-chat></use></svg> Common questions</h2><div data-t="tap_a_question_to_see" class="small">Tap a question to see the answer.</div>
+<details><summary data-t="why_didn_t_my_miles">Why didn't my miles count?</summary><p data-t="make_sure_you_tapped_allow">Make sure you tapped Allow for location, kept the app open with the screen on, and had a clear view of the sky. Very short rides, under about a tenth of a mile, don't count. If a ride didn't record, add it with "Forgot to track a ride?"</p></details>
+<details><summary data-t="it_says_there_s_a">It says there's a location problem.</summary><p data-t="open_chrome_tap_the_three">Open Chrome, tap the three dots, then Settings, Site settings, Location, and make sure this site is allowed. Also check that location is turned on in your phone's settings.</p></details>
+<details><summary data-t="how_much_are_points_worth">How much are points worth?</summary><p data-t="a_plain_errand_mile_20">A plain errand mile (20 points) is worth the gas money that mile saved, times your reward boost. At a boost of 1, rewards match your real gas savings. See "How points and gas savings work" on this page.</p></details>
+<details><summary data-t="how_are_points_worked_out">How are points worked out?</summary><p data-t="each_mile_earns_10_points">Each mile earns 10 points, and errand miles count double. Bonuses are added per mile: freezing +5, heat +3, snow +15, rain +5, night +10 (only with lights turned on in Settings), plus any bonus buttons you turn on. From December through March everything earns 1.5x, and classic bike miles earn <span class=cxv>1.5</span>x too (adjustable in Settings). You also get +5 points for every 100 feet you climb, plus a streak bonus on the first ride of each day in a row.</p></details>
+<details><summary data-t="what_s_the_difference_between">What's the difference between Errand and Leisure?</summary><p data-t="errand_rides_replace_a_trip">Errand rides replace a trip you'd otherwise drive, so they save gas and earn double points. Leisure rides are for fun, like a ride around the lake.</p></details>
+<details><summary data-t="what_s_a_classic_bike">What's a classic bike?</summary><p data-t="a_regular_bike_with_no">A regular bike with no motor. Set your main bike in Settings, and switch for a single ride on the Ride tab.</p></details>
+<details><summary data-t="how_do_i_add_change">How do I add, change or delete a prize?</summary><p data-t="tap_the_gear_button_top">Tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button (top right) and scroll to Edit prizes. Change a price in its box, tap Delete to remove a prize, or type a name and price at the bottom and tap Add prize. Prizes sort themselves from cheapest to most expensive.</p></details>
+<details><summary data-t="how_do_i_add_or">How do I add or reorder bonus buttons?</summary><p data-t="tap_the_gear_button_top_2">Tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button (top right) and scroll to Bonus buttons. Use ▲ and ▼ to change the order, Delete to remove one, or type a name and bonus points at the bottom and tap Add button. If you delete one by mistake, tap "Reset to the starting buttons."</p></details>
+<details><summary data-t="my_settings_didn_t_save">My settings didn't save.</summary><p data-t="settings_save_automatically_as_you">Settings save automatically as you change them. If something looks wrong, tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button (top right), set it again, and tap Save settings / Done to go back. If it still won't stick, Chrome may be set to clear site data. Check Chrome's settings.</p></details>
+<details><summary data-t="how_do_i_save_phone">How do I save phone battery?</summary><p data-t="gps_and_keeping_the_screen_2">GPS and keeping the screen on use the most phone battery, and both are needed to count miles. To stretch your phone battery, tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button (top right) and under Phone battery saver turn off the live map and moving pictures. Turning your screen brightness down helps a lot too.</p></details>
+<details><summary data-t="the_map_is_blank_or">The map is blank or won't load.</summary><p data-t="the_map_needs_a_data">The map needs a data connection and your location. Your miles still count without it. You can turn the map off in Settings (the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button, top right) under Phone battery saver.</p></details>
+<details><summary data-t="how_do_i_stop_the">How do I stop the mile announcements?</summary><p data-t="tap_the_gear_button_top_3">Tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button (top right), then under Sounds and announcements choose every mile, every 5, 10 or 20 miles, or Off. You can also choose a buzz only, with no voice.</p></details>
+<details><summary data-t="how_do_levels_and_quests">How do levels and quests work?</summary><p data-t="levels_go_up_with_every">Levels go up with every point you earn and never go down. Weekly quests reset every Monday, and each one you finish adds bonus points to your bank.</p></details>
+<details><summary data-t="i_stopped_at_a_store">I stopped at a store. How do I keep my ride going?</summary><p data-t="tap_pause_the_app_stops">Tap Pause. The app stops tracking and your screen can turn off, so walking around the store doesn't count. When you're back on the bike, open the app and tap Resume.</p></details>
+<details><summary data-t="what_if_my_phone_closes">What if my phone closes the app during a ride?</summary><p data-t="the_app_saves_your_ride">The app saves your ride's miles and points every so often, and whenever you pause. When you open it again, the ride is waiting, paused. Tap Resume to keep going or End ride to finish. Your route isn't saved.</p></details>
+<details><summary data-t="how_do_i_share_an">How do I share an older ride?</summary><p data-t="open_the_stats_tab_under">Open the Stats tab. Under Recent rides, tap Share next to any of your last five rides.</p></details>
+<details><summary data-t="can_i_add_a_selfie">Can I add a selfie to my share card?</summary><p data-t="yes_in_the_share_window">Yes. In the Share window, tap Add a photo and pick one from your gallery, or take a new one. Then choose Photo on top or Full background. The photo is only used for that card and isn't saved by the app.</p></details>
+<details><summary data-t="sharing_to_x_or_another">Sharing to X (or another app) didn't include my caption.</summary><p data-t="some_apps_drop_the_text">Some apps drop the text when a picture comes with it. The app copies the caption for you when you tap Share, so just paste it into your post. You can also tap Copy caption in the Share window.</p></details>
+<details><summary data-t="how_do_i_move_to">How do I move to a new phone?</summary><p data-t="tap_the_gear_button_top_4">Tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button (top right), then Save backup file. Send that file to your new phone, by email for example. On the new phone, open the app, tap the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button (top right), then Restore from file. In the file picker, open the <b>Downloads</b> folder (tap the menu or "Recent" if you don't see it) and choose the file that starts with <b>pedal-points-backup</b>. The app reminds you to back up every 5 rides.</p></details>
+<details><summary data-t="will_an_app_update_erase">Will an app update erase my points?</summary><p data-t="no_your_points_prizes_and">No. Your points, prizes and settings stay on your phone when the app updates. Clearing Chrome's site data would erase them, so keep a backup.</p><p data-t="moving_to_a_google_play"><b>Moving to a Google Play or App Store version?</b> If Pedal Points comes out in an app store, that will be a separate app, and your points won't move over by themselves. Save a backup file here first (<span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button, then Save backup file), then use Restore from file in the new app.</p></details>
+<details><summary data-t="is_my_location_shared_or">Is my location shared or tracked?</summary><p data-t="there_are_no_accounts_and">There are no accounts and no tracking. Your rides, routes and points stay on your phone. When you start a ride, the app sends your approximate location to a free weather service (Open-Meteo) for the temperature and weather, and the live map loads map pictures of your area from OpenStreetMap. Nothing else leaves your phone.</p></details>
 </div>
-<div class="card"><h2><svg class=ico><use href=#i-doc></use></svg> About</h2><p><a href="../privacy.html" style="color:var(--gold)">Privacy policy and terms of use</a></p><p><a href="../" style="color:var(--gold)">Pedal Points website</a></p></div>
-<div class="card"><button class="big go" id="closeHelp">Back to the app</button></div>
+<div class="card"><h2 data-t="about"><svg class=ico><use href=#i-doc></use></svg> About</h2><p data-t="privacy_policy_and_terms_of"><a href="../privacy.html" style="color:var(--gold)">Privacy policy and terms of use</a></p><p data-t="pedal_points_website"><a href="../" style="color:var(--gold)">Pedal Points website</a></p></div>
+<div class="card"><button data-t="back_to_the_app" class="big go" id="closeHelp">Back to the app</button></div>
 </section>
 </main>
 
-<nav id="tabbar"><button data-tab="ride" class="active"><svg class=ico><use href=#i-bike></use></svg><span>Ride</span></button><button data-tab="rewards"><svg class=ico><use href=#i-trophy></use></svg><span>Rewards</span></button><button data-tab="stats"><svg class=ico><use href=#i-chart></use></svg><span>Stats</span></button></nav>
+<nav id="tabbar"><button data-t="ride_2" data-tab="ride" class="active"><svg class=ico><use href=#i-bike></use></svg><span>Ride</span></button><button data-t="rewards" data-tab="rewards"><svg class=ico><use href=#i-trophy></use></svg><span>Rewards</span></button><button data-t="stats" data-tab="stats"><svg class=ico><use href=#i-chart></use></svg><span>Stats</span></button></nav>
 
 <div class="overlay" id="welcome"><div class="pop">
-<h2>Welcome to Pedal Points! <svg class=ico><use href=#i-bike></use></svg></h2>
-<p>Ride your bike instead of driving, earn points, level up, and spend your points on rewards.</p>
-<p style="text-align:left;margin:12px 0 4px">What's your first name? <span class="small">(optional, stays on this phone)</span></p>
-<input id="wName" maxlength="20" placeholder="First name or nickname">
-<p style="text-align:left;margin:14px 0 4px">What kind of bike do you ride most?</p>
-<div class="row"><button id="wE"><svg class=ico><use href=#i-bolt></use></svg> E-bike</button><button id="wC"><svg class=ico><use href=#i-bike></use></svg> Classic bike</button></div>
-<p style="text-align:left;margin:14px 0 4px">Your car, so the app can estimate the gas you save: <span class="small">(you can change these later)</span></p>
-<div class="row"><div><div class="small" style="text-align:left">Miles per gallon</div><input id="wMpg" type="number" inputmode="decimal" placeholder="e.g. 25"></div><div><div class="small" style="text-align:left">Gas $ per gallon</div><input id="wGas" type="number" inputmode="decimal" placeholder="e.g. 3.50"></div></div>
-<button class="big go" id="wGo" style="margin-top:14px">Let's ride!</button>
+<h2 data-t="welcome_to_pedal_points">Welcome to Pedal Points! <svg class=ico><use href=#i-bike></use></svg></h2>
+<p data-t="ride_your_bike_instead_of">Ride your bike instead of driving, earn points, level up, and spend your points on rewards.</p>
+<p data-t="what_s_your_first_name" style="text-align:left;margin:12px 0 4px">What's your first name? <span class="small">(optional, stays on this phone)</span></p>
+<input data-tp="ph_first_name_or_nickname" id="wName" maxlength="20" placeholder="First name or nickname">
+<p data-t="what_kind_of_bike_do" style="text-align:left;margin:14px 0 4px">What kind of bike do you ride most?</p>
+<div class="row"><button data-t="e_bike_2" id="wE"><svg class=ico><use href=#i-bolt></use></svg> E-bike</button><button data-t="classic_bike_2" id="wC"><svg class=ico><use href=#i-bike></use></svg> Classic bike</button></div>
+<p data-t="your_car_so_the_app" style="text-align:left;margin:14px 0 4px">Your car, so the app can estimate the gas you save: <span class="small">(you can change these later)</span></p>
+<div class="row"><div><div data-t="miles_per_gallon" class="small" style="text-align:left">Miles per gallon</div><input id="wMpg" type="number" inputmode="decimal" placeholder="e.g. 25"></div><div><div data-t="gas_per_gallon" class="small" style="text-align:left">Gas $ per gallon</div><input id="wGas" type="number" inputmode="decimal" placeholder="e.g. 3.50"></div></div>
+<label style="margin-top:12px"><span data-t="units_2">Units</span><select id="wUnits" style="width:auto"><option data-t="miles_mpg_f" value="us">Miles · mpg · °F</option><option data-t="kilometers_l_100_km_c" value="metric">Kilometers · L/100 km · °C</option><option data-t="miles_mpg_uk_c" value="uk">Miles · mpg (UK) · °C</option></select></label>
+<button data-t="let_s_ride" class="big go" id="wGo" style="margin-top:14px">Let's ride!</button>
 </div></div>
 
 <div class="overlay" id="terms"><div class="pop" style="text-align:left">
-<h2 style="text-align:center"><svg class=ico><use href=#i-doc></use></svg> Please read before you ride</h2>
+<h2 data-t="please_read_before_you_ride" style="text-align:center"><svg class=ico><use href=#i-doc></use></svg> Please read before you ride</h2>
 <ul class="terms" id="termsList"></ul>
-<label class="check" style="font-weight:600"><input type="checkbox" id="tAgree"> I've read this and I understand</label>
-<button class="big go" id="tGo" disabled>Continue</button>
+<label class="check" style="font-weight:600"><input type="checkbox" id="tAgree"> <span data-t="i_ve_read_this_and">I've read this and I understand</span></label>
+<button data-t="continue" class="big go" id="tGo" disabled>Continue</button>
 </div></div>
 
-<div class="overlay" id="infoBox" style="z-index:2550"><div class="pop" style="text-align:left"><h2 id="infoTitle" style="text-align:center"></h2><div id="infoBody"></div><button class="big go" id="infoOk">Got it</button></div></div>
+<div class="overlay" id="infoBox" style="z-index:2550"><div class="pop" style="text-align:left"><h2 id="infoTitle" style="text-align:center"></h2><div id="infoBody"></div><button data-t="got_it" class="big go" id="infoOk">Got it</button></div></div>
 
-<div class="overlay" id="checkBox"><div class="pop"><h2><svg class=ico><use href=#i-wave></use></svg> Checked in!</h2><div id="checkStreak" style="font-size:1.15em;font-weight:600"></div><div class="tipbox"><div class="small" id="tipKind"></div><div id="tipText" style="margin-top:4px"></div></div><div class="small">Check-ins don't add points. Points come from riding.</div><button class="big go" id="checkOk" style="margin-top:12px">See you tomorrow!</button></div></div>
+<div class="overlay" id="checkBox"><div class="pop"><h2 data-t="checked_in"><svg class=ico><use href=#i-wave></use></svg> Checked in!</h2><div id="checkStreak" style="font-size:1.15em;font-weight:600"></div><div class="tipbox"><div class="small" id="tipKind"></div><div id="tipText" style="margin-top:4px"></div></div><div data-t="check_ins_don_t_add" class="small">Check-ins don't add points. Points come from riding.</div><button data-t="see_you_tomorrow" class="big go" id="checkOk" style="margin-top:12px">See you tomorrow!</button></div></div>
 
-<div class="overlay" id="shareBox" style="z-index:2580"><div class="pop"><h2><svg class=ico><use href=#i-share></use></svg> Share</h2>
+<div class="overlay" id="shareBox" style="z-index:2580"><div class="pop"><h2 data-t="share"><svg class=ico><use href=#i-share></use></svg> Share</h2>
 <img id="shareImg" alt="Your Pedal Points share card" style="width:100%;max-height:42vh;object-fit:contain;border-radius:12px;background:#0003">
-<div class="row" style="margin-top:8px"><button class="ghost" id="photoBtn" style="margin:0"><svg class=ico><use href=#i-camera></use></svg> Add a photo</button><button class="ghost" id="photoRemove" style="margin:0;display:none">Remove photo</button></div>
-<div class="row" id="layoutRow" style="display:none;margin-top:8px"><button id="layTop" style="margin:0">Photo on top</button><button id="layBg" style="margin:0">Full background</button></div>
+<div class="row" style="margin-top:8px"><button class="ghost" id="photoBtn" style="margin:0"><svg class=ico><use href=#i-camera></use></svg> Add a photo</button><button data-t="remove_photo" class="ghost" id="photoRemove" style="margin:0;display:none">Remove photo</button></div>
+<div class="row" id="layoutRow" style="display:none;margin-top:8px"><button data-t="photo_on_top" id="layTop" style="margin:0">Photo on top</button><button data-t="full_background" id="layBg" style="margin:0">Full background</button></div>
 <input type="file" id="photoFile" accept="image/*" style="display:none">
-<label class="check" id="shareRouteRow" style="font-size:.95em;text-align:left"><input type="checkbox" id="shareRoute"> Include my route shape (off for privacy)</label>
-<div class="small" style="margin:6px 0">Your phone's share menu opens, so you can pick Instagram, Facebook, X, Messages and more. Nothing is posted unless you choose to. If an app leaves out the caption, tap Copy caption and paste it in.</div>
-<button class="big go" id="shareGo"><svg class=ico><use href=#i-share></use></svg> Share</button>
-<div class="row"><button class="ghost" id="shareCopy"><svg class=ico><use href=#i-copy></use></svg> Copy caption</button><button class="ghost" id="shareSave">Save picture</button></div><button class="ghost" id="shareClose">Close</button></div></div>
+<label class="check" id="shareRouteRow" style="font-size:.95em;text-align:left"><input type="checkbox" id="shareRoute"> <span data-t="include_my_route_shape_off">Include my route shape (off for privacy)</span></label>
+<div data-t="your_phone_s_share_menu" class="small" style="margin:6px 0">Your phone's share menu opens, so you can pick Instagram, Facebook, X, Messages and more. Nothing is posted unless you choose to. If an app leaves out the caption, tap Copy caption and paste it in.</div>
+<button data-t="share_2" class="big go" id="shareGo"><svg class=ico><use href=#i-share></use></svg> Share</button>
+<div class="row"><button data-t="copy_caption" class="ghost" id="shareCopy"><svg class=ico><use href=#i-copy></use></svg> Copy caption</button><button data-t="save_picture" class="ghost" id="shareSave">Save picture</button></div><button data-t="close" class="ghost" id="shareClose">Close</button></div></div>
 
 <div class="overlay" id="askBox" style="z-index:2600"><div class="pop"><p id="askMsg" style="font-size:1.1em;margin:4px 0 14px"></p><div class="row"><button class="ghost" id="askNo">Cancel</button><button class="go" id="askYes">Yes</button></div></div></div>
 
-<div class="overlay" id="summary"><div class="pop"><h2 id="sumTitle">Ride complete!</h2><div class="bank" id="sumPts">0</div><div class="small">points earned</div><div id="sumLines" style="text-align:left;margin:12px 0"></div><button class="ghost" id="sumShare"><svg class=ico><use href=#i-share></use></svg> Share this ride</button><button class="big go" id="sumOk">Awesome!</button></div></div>
+<div class="overlay" id="summary"><div class="pop"><h2 id="sumTitle">Ride complete!</h2><div class="bank" id="sumPts">0</div><div data-t="points_earned" class="small">points earned</div><div id="sumLines" style="text-align:left;margin:12px 0"></div><button data-t="share_this_ride" class="ghost" id="sumShare"><svg class=ico><use href=#i-share></use></svg> Share this ride</button><button data-t="awesome" class="big go" id="sumOk">Awesome!</button></div></div>
 
 <div id="tourDim"></div>
-<div id="tourBox"><div class="small" id="tourStep"></div><p id="tourText" style="margin:6px 0 10px;font-size:1.05em"></p><div class="row"><button id="tourSkip" class="ghost">Skip tour</button><button id="tourNext" class="go">Next</button></div></div>
+<div id="tourBox"><div class="small" id="tourStep"></div><p id="tourText" style="margin:6px 0 10px;font-size:1.05em"></p><div class="row"><button data-t="skip_tour" id="tourSkip" class="ghost">Skip tour</button><button id="tourNext" class="go">Next</button></div></div>
 
 <canvas id="confetti"></canvas>
 <div class="toast" id="toast"></div>
 
 <script>
 const $=id=>document.getElementById(id);
+/* ===== TEXT TABLE =====
+   All on-screen text lives in STR, by language. STR.en.ui holds the page text (keyed by data-t / data-tp),
+   and the lists below (levels, badges, quests, tips, terms, info, tour...) are added to STR.en as they're defined.
+   To add a language later: copy STR.en to STR.es (for example), translate the values, and set LANG.
+   {{...}} placeholders are filled in with the rider's units by fmt(). */
+const STR={en:{ui:{
+"pedal_points": "Pedal Points",
+"pedal_more_drive_less_earn": "Pedal more. Drive less. Earn rewards.",
+"i": "i",
+"points_bank": "Points bank",
+"daily_check_in_tap_for": "<svg class=\"ico\"><use href=\"#i-wave\"></use></svg> Daily check-in: tap for today's tip",
+"ride": "<svg class=\"ico\"><use href=\"#i-bike\"></use></svg> Ride",
+"i_2": "i",
+"start_errand_ride": "<span class=\"ic\"><svg class=\"ico\"><use href=\"#i-cart\"></use></svg></span>Start errand ride",
+"start_leisure_ride": "<span class=\"ic\"><svg class=\"ico\"><use href=\"#i-tree\"></use></svg></span>Start leisure ride",
+"end_ride": "<svg class=\"ico\"><use href=\"#i-flag\"></use></svg> End ride",
+"paused_your_screen_can_turn": "Paused. Your screen can turn off now, and walking around won't count. Tap Resume when you're back on the bike.",
+"miles": "{{U}}",
+"ride_pts": "ride pts",
+"pts_mile": "pts/{{u}}",
+"ft_climbed": "{{hu}} climbed",
+"where_you_are": "<svg class=\"ico\"><use href=\"#i-pin\"></use></svg> Where you are",
+"i_3": "i",
+"your_road_trip": "<svg class=\"ico\"><use href=\"#i-road\"></use></svg> Your road trip",
+"i_4": "i",
+"points_bank_2": "Points bank",
+"weekly_quests": "<svg class=\"ico\"><use href=\"#i-target\"></use></svg> Weekly quests",
+"i_5": "i",
+"prize_menu": "<svg class=\"ico\"><use href=\"#i-gift\"></use></svg> Prize menu",
+"i_6": "i",
+"trophy_case": "<svg class=\"ico\"><use href=\"#i-trophy\"></use></svg> Trophy case",
+"i_7": "i",
+"enjoying_pedal_points_it_s": "Enjoying Pedal Points? It's free, made by one local rider.",
+"buy_the_maker_a_coffee": "<svg class=\"ico\"><use href=\"#i-cup\"></use></svg> Buy the maker a coffee",
+"3": "$3",
+"5": "$5",
+"10": "$10",
+"choose_another_amount": "<a href=\"https://paypal.me/scottshotsphoto\" rel=\"noopener\" style=\"color:var(--gold)\" target=\"_blank\">Choose another amount</a>",
+"optional_through_paypal_tips_don": "Optional, through PayPal. Tips don't earn points.",
+"forgot_to_track_a_ride": "<svg class=\"ico\"><use href=\"#i-pencil\"></use></svg> Forgot to track a ride? Add it here",
+"share_my_totals": "<svg class=\"ico\"><use href=\"#i-share\"></use></svg> Share my totals",
+"recent_rides": "<svg class=\"ico\"><use href=\"#i-history\"></use></svg> Recent rides",
+"i_8": "i",
+"your_stats": "<svg class=\"ico\"><use href=\"#i-chart\"></use></svg> Your stats",
+"i_9": "i",
+"levels": "<svg class=\"ico\"><use href=\"#i-mountain\"></use></svg> Levels",
+"i_10": "i",
+"your_changes_save_automatically_when": "<b><svg class=\"ico\"><use href=\"#i-save\"></use></svg> Your changes save automatically.</b> When you're finished, tap <b>Save settings / Done</b> at the bottom to go back.",
+"settings": "<svg class=\"ico\"><use href=\"#i-gear\"></use></svg> Settings",
+"your_first_name": "Your first name",
+"my_main_bike": "My main bike",
+"e_bike": "<svg class=\"ico\"><use href=\"#i-bolt\"></use></svg> E-bike",
+"classic_bike": "<svg class=\"ico\"><use href=\"#i-bike\"></use></svg> Classic bike",
+"classic_bike_bonus_x": "Classic bike bonus (x)",
+"classic_bike_miles_earn_1": "Classic bike {{U}} earn <span class=\"cxv\">1.5</span>x points. Set it from 1 (no bonus) to 3. You can switch bikes for a single ride on the Ride tab.",
+"i_ride_with_front_and": "I ride with front and rear lights after dark (turns on the night bonus)",
+"theme": "<svg class=\"ico\"><use href=\"#i-palette\"></use></svg> Theme",
+"unlock_new_looks_as_you": "Unlock new looks as you level up.",
+"units": "<svg class=\"ico\"><use href=\"#i-cloudsun\"></use></svg> Units",
+"distance": "Distance",
+"miles_2": "Miles",
+"kilometers": "Kilometers",
+"fuel_economy": "Fuel economy",
+"mpg_us": "mpg (US)",
+"mpg_uk": "mpg (UK)",
+"l_100_km": "L/100 km",
+"km_l": "km/L",
+"temperature": "Temperature",
+"f": "°F",
+"c": "°C",
+"currency": "Currency",
+"x": "$",
+"r": "R$",
+"chf": "CHF",
+"kr": "kr",
+"z": "zł",
+"r_2": "R",
+"changing_fuel_economy_converts_your": "Changing fuel economy converts your car's numbers for you. Points stay fair: a kilometer earns about 0.62 of a mile's points.",
+"your_car": "<svg class=\"ico\"><use href=\"#i-fuel\"></use></svg> Your car",
+"used_to_estimate_the_gas": "Used to estimate the gas money you save on errand rides.",
+"car_miles_per_gallon": "Car fuel economy ({{feu}})",
+"gas_price_per_gallon": "Fuel price per {{vol}} ({{c}})",
+"reward_boost_1_real_gas": "Reward boost (1 = real gas savings)",
+"at_1_a_plain_errand": "At 1, a plain errand {{u}} earns exactly the gas money it saved. The gas math doesn't count wear and tear on your car, oil changes, your time or your mental health, so you can raise it to whatever feels fair: 2 doubles it, 3 triples it. Tap <span class=\"kref\">?</span> at the top left for the full explanation.",
+"sounds_and_announcements": "<svg class=\"ico\"><use href=\"#i-sound\"></use></svg> Sounds and announcements",
+"mile_announcements": "Distance announcements",
+"every_mile": "Every {{u}}",
+"every_5_miles": "Every 5 {{U}}",
+"every_10_miles": "Every 10 {{U}}",
+"every_20_miles": "Every 20 {{U}}",
+"off": "Off",
+"announce_with": "Announce with",
+"voice_buzz": "Voice + buzz",
+"buzz_only": "Buzz only",
+"game_sound_effects": "Game sound effects",
+"phone_battery_saver": "<svg class=\"ico\"><use href=\"#i-battery\"></use></svg> Phone battery saver",
+"gps_and_keeping_the_screen": "GPS and keeping the screen on use the most phone battery, and the app needs both during a ride. These extras use a little more, so turn them off to stretch your phone battery on long rides.",
+"live_map_during_rides": "Live map during rides",
+"moving_pictures_bikes_flame_glowing": "Moving pictures (bikes, flame, glowing buttons)",
+"the_moving_pictures_pause_by": "The moving pictures pause by themselves during a ride.",
+"bonus_buttons": "<svg class=\"ico\"><use href=\"#i-plus\"></use></svg> Bonus buttons",
+"these_appear_on_the_ride": "These appear on the Ride tab. Use ▲ ▼ to change the order. Raining? fixes the automatic weather if it's wrong.",
+"add_button": "Add button",
+"reset_to_the_starting_buttons": "Reset to the starting buttons",
+"edit_prizes": "<svg class=\"ico\"><use href=\"#i-gift\"></use></svg> Edit prizes",
+"change_a_price_delete_a": "Change a price, delete a prize, or add your own. The app works out the points.",
+"add_prize": "Add prize",
+"backup": "<svg class=\"ico\"><use href=\"#i-save\"></use></svg> Backup",
+"save_a_backup_file_to": "Save a backup file to keep your points safe or move them to a new phone. Backups go to your <b>Downloads</b> folder, named pedal-points-backup plus the date.",
+"save_backup_file": "Save backup file",
+"restore_from_file": "Restore from file",
+"show_me_the_tour_again": "Show me the tour again",
+"save_settings_done": "Save settings / Done",
+"add_a_ride": "<svg class=\"ico\"><use href=\"#i-pencil\"></use></svg> Add a ride",
+"for_rides_you_forgot_to": "For rides you forgot to track. It earns the same points as a tracked ride.",
+"miles_ridden": "Distance ({{U}})",
+"when": "When",
+"today": "Today",
+"yesterday": "Yesterday",
+"what_kind_of_ride": "What kind of ride?",
+"errand": "<svg class=\"ico\"><use href=\"#i-cart\"></use></svg> Errand",
+"leisure": "<svg class=\"ico\"><use href=\"#i-tree\"></use></svg> Leisure",
+"tick_anything_that_applied": "Tick anything that applied:",
+"rode_after_dark_with_front": "Rode after dark with front and rear lights",
+"freezing_32_f_or_colder": "Freezing, {{t:32}} or colder",
+"feet_climbed_optional": "Climbing in {{H}} (optional)",
+"add_this_ride": "Add this ride",
+"cancel": "Cancel",
+"how_to_use_pedal_points": "<svg class=\"ico\"><use href=\"#i-help\"></use></svg> How to use Pedal Points",
+"the_short_version_tap_start": "<b>The short version:</b> tap Start errand ride or Start leisure ride when you ride, keep the app open, tap End ride when you're done, and spend your points on rewards.",
+"show_me_the_tour_again_2": "Show me the tour again",
+"ride_tab_step_by_step": "<svg class=\"ico\"><use href=\"#i-bike\"></use></svg> Ride tab, step by step",
+"1_before_your_first_ride": "<b>1. Before your first ride:</b> tap the <span class=\"kref\"><svg class=\"ico\"><use href=\"#i-gear\"></use></svg></span> gear button at the top right. Enter your name, pick your main bike, and enter your car's fuel economy and your local gas price. Tap Save settings / Done at the bottom.",
+"2_start_a_ride_tap": "<b>2. Start a ride:</b> tap Start errand ride if this ride replaces a car trip, like going to the store or the post office. Errand {{U}} earn double points. Tap Start leisure ride for a fun ride.",
+"3_allow_location_the_first": "<b>3. Allow location:</b> the first time, your phone asks to share your location. Tap Allow. The app needs it to count your {{U}}.",
+"4_while_you_ride_keep": "<b>4. While you ride:</b> keep the app open on your screen. A handlebar phone mount works best, and never handle your phone while moving. If you switch to another app or the screen turns off, {{U}} may stop counting. A live map shows where you are and the route you've ridden.",
+"need_to_stop_tap_pause": "<b>Need to stop?</b> Tap <b>Pause</b> when you stop somewhere, like the post office. GPS stops and your phone screen can turn off, so walking around doesn't count. Tap <b>Resume</b> when you're back on the bike. If your phone closes the app while you're paused or riding, your ride is saved and waiting when you open it again.",
+"5_bonus_buttons_cold_heat": "<b>5. Bonus buttons:</b> cold, heat, rain and snow are worked out automatically from the weather. If it's raining and the app missed it, tap Raining?. Tap Hauling? if you're carrying a heavy load, and Windy? when you're riding into the wind. A gold button means it's on. The night bonus only counts if you've said in Settings that you ride with front and rear lights.",
+"6_riding_your_other_bike": "<b>6. Riding your other bike?</b> Tick the box under the bonus buttons before you start. Classic bike {{U}} earn <span class=\"cxv\">1.5</span>x. You can change that bonus in Settings.",
+"7_end_the_ride_tap": "<b>7. End the ride:</b> tap End ride. You'll see your points, bonuses, any trophies and quests you finished, and the approximate gas money you saved.",
+"share_a_ride_after_a": "<b>Share a ride:</b> after a ride, tap <b>Share this ride</b> to make a picture card for Instagram, Facebook, X, texts and more.",
+"add_a_photo_tap_add": "<b>Add a photo:</b> tap Add a photo to put a selfie or ride picture on the card, then choose <b>Photo on top</b> or <b>Full background</b>. The photo isn't saved, and its hidden location data is removed.",
+"route_shape_left_off_unless": "<b>Route shape:</b> left off unless you tick the box. It's only offered right after a ride, never for older rides.",
+"caption_the_app_copies_a": "<b>Caption:</b> the app copies a caption for you. If an app leaves it out, paste it into your post, or tap Copy caption.",
+"older_rides_your_last_five": "<b>Older rides:</b> your last five rides are on the Stats tab under Recent rides, each with its own Share button. You can share your all-time totals there too.",
+"8_your_road_trip_at": "<b>8. Your road trip:</b> at the bottom of the Ride tab, every {{u}} you ride moves your bike along the road toward the next stop. Finish the {{d:1000}} trip to earn a gold star <svg class=\"ico\"><use href=\"#i-gstar\"></use></svg> next to your name, and the road starts fresh for another lap.",
+"9_daily_check_in_tap": "<b>9. Daily check-in:</b> tap \"Daily check-in\" once a day for a ride tip or fun fact and to build a check-in streak. It doesn't add points. Points only come from riding.",
+"want_more_detail_tap_any": "<b>Want more detail?</b> Tap any little <b>i</b> button next to a heading.",
+"rewards_tab": "<svg class=\"ico\"><use href=\"#i-trophy\"></use></svg> Rewards tab",
+"points_bank_every_point_you": "<b>Points bank:</b> every point you earn goes here.",
+"weekly_quests_four_small_goals": "<b>Weekly quests:</b> four small goals that reset every Monday. Finish one for bonus points.",
+"prize_menu_the_gold_bar": "<b>Prize menu:</b> the gold bar shows how close you are. When you have enough points, tap Cash in, and the points come out of your bank.",
+"trophy_case_locked_trophies_are": "<b>Trophy case:</b> locked trophies are grey. Tap one to see how to earn it.",
+"buy_the_maker_a_coffee_2": "<b><svg class=\"ico\"><use href=\"#i-cup\"></use></svg> Buy the maker a coffee:</b> Pedal Points is free. If you enjoy it, the $3, $5 and $10 buttons at the bottom of the Rewards tab let you send an optional tip through PayPal, or you can choose another amount. Tips don't earn points.",
+"please_note_pedal_points_does": "<b>Please note:</b> Pedal Points does not pay out real money or gift cards. Points and reward dollars are just a game. Cashing in is your own permission to treat yourself, paid for with the money you're saving on gas by riding instead of driving.",
+"how_points_and_gas_savings": "<svg class=\"ico\"><use href=\"#i-fuel\"></use></svg> How points and gas savings work",
+"gas_saved_per_mile_your": "<b>Gas saved per {{u}}</b> = your fuel price ÷ your car's fuel economy. For example (in US units), $3.50 a gallon ÷ 25 mpg = about 14¢ for every mile you ride instead of drive.",
+"reward_dollars_per_errand_mile": "<b>Reward value per errand {{u}}</b> = gas saved × your <b>reward boost</b>. At a boost of 1, a plain errand {{u}} earns exactly the gas money it really saved. At 2, it earns twice that, and so on.",
+"example_at_14_a_mile": "<b>Example (US units):</b> at 14¢ a mile, a $6 coffee takes about 43 plain errand miles at a boost of 1, about 21 at 2, and about 14 at 3. If gas is pricier or your car uses more fuel, rewards come faster.",
+"why_raise_the_boost_the": "<b>Why raise the boost?</b> The gas math only counts fuel. It leaves out the other things you gain by riding instead of driving: less wear and tear on your car, fewer oil changes and repairs, the value of your time, and a lift for your physical and mental health. That's why you can raise the boost to whatever feels fair to you.",
+"why_reward_dollars_can_be": "<b>Why reward dollars can be higher than gas saved:</b> bonuses for weather, climbing, hauling and riding a classic bike are extra credit for effort. Leisure rides earn points too, even though they don't replace a car trip. Quests and streaks add a little more.",
+"your_real_number_is_approximate": "<b>Your real number</b> is \"Approximate gas money saved\" on the Stats tab. It only counts errand {{U}} and isn't changed by the boost or bonuses.",
+"the_app_uses_miles_gallons": "You can switch to kilometers, liters, °C and your own currency under Units in Settings.",
+"stats_tab_and_levels": "<svg class=\"ico\"><use href=\"#i-chart\"></use></svg> Stats tab and levels",
+"stats_shows_your_total_number": "Stats shows your total number of rides, your total, errand and leisure {{U}}, the approximate gas money you've saved, your streak and your points.",
+"forgot_to_track_a_ride_2": "<b>Forgot to track a ride?</b> Tap the button at the top of the Stats tab, type the {{U}}, and tick what applied. It earns the same points.",
+"every_point_you_ever_earn": "Every point you ever earn counts toward your level, from Kickstand Rookie through Pedal Legend and beyond, up to Pedal Points Immortal. Spending points never lowers your level. New levels unlock new color themes.",
+"settings_2": "<svg class=\"ico\"><use href=\"#i-gear\"></use></svg> Settings",
+"tap_the_gear_button_at": "Tap the <span class=\"kref\"><svg class=\"ico\"><use href=\"#i-gear\"></use></svg></span> gear button at the top right to change your name, main bike, lights, theme, car mileage, gas price and reward boost, {{u}} announcements and sounds, phone battery saver options, bonus buttons and prizes, and to save backups.",
+"saving_your_changes_save_automatically": "<b>Saving:</b> your changes save automatically as you make them. When you're finished, tap <b>Save settings / Done</b> at the bottom to go back.",
+"please_read": "<svg class=\"ico\"><use href=\"#i-doc\"></use></svg> Please read",
+"common_questions": "<svg class=\"ico\"><use href=\"#i-chat\"></use></svg> Common questions",
+"tap_a_question_to_see": "Tap a question to see the answer.",
+"why_didn_t_my_miles": "Why didn't my {{U}} count?",
+"make_sure_you_tapped_allow": "Make sure you tapped Allow for location, kept the app open with the screen on, and had a clear view of the sky. Very short rides, under about {{d:0.1}}, don't count. If a ride didn't record, add it with \"Forgot to track a ride?\"",
+"it_says_there_s_a": "It says there's a location problem.",
+"open_chrome_tap_the_three": "Open Chrome, tap the three dots, then Settings, Site settings, Location, and make sure this site is allowed. Also check that location is turned on in your phone's settings.",
+"how_much_are_points_worth": "How much are points worth?",
+"a_plain_errand_mile_20": "A plain errand {{u}} ({{pp:20}} points) is worth the gas money that {{u}} saved, times your reward boost. At a boost of 1, rewards match your real gas savings. See \"How points and gas savings work\" on this page.",
+"how_are_points_worked_out": "How are points worked out?",
+"each_mile_earns_10_points": "Each {{u}} earns {{pp:10}} points, and errand {{U}} count double. Bonuses are added per {{u}}: freezing +{{pp:5}}, heat +{{pp:3}}, snow +{{pp:15}}, rain +{{pp:5}}, night +{{pp:10}} (only with lights turned on in Settings), plus any bonus buttons you turn on. From December through March everything earns 1.5x, and classic bike {{U}} earn <span class=\"cxv\">1.5</span>x too (adjustable in Settings). You also get +5 points for every {{h:100}} you climb, plus a streak bonus on the first ride of each day in a row.",
+"what_s_the_difference_between": "What's the difference between Errand and Leisure?",
+"errand_rides_replace_a_trip": "Errand rides replace a trip you'd otherwise drive, so they save gas and earn double points. Leisure rides are for fun, like a ride around the lake.",
+"what_s_a_classic_bike": "What's a classic bike?",
+"a_regular_bike_with_no": "A regular bike with no motor. Set your main bike in Settings, and switch for a single ride on the Ride tab.",
+"how_do_i_add_change": "How do I add, change or delete a prize?",
+"tap_the_gear_button_top": "Tap the <span class=\"kref\"><svg class=\"ico\"><use href=\"#i-gear\"></use></svg></span> gear button (top right) and scroll to Edit prizes. Change a price in its box, tap Delete to remove a prize, or type a name and price at the bottom and tap Add prize. Prizes sort themselves from cheapest to most expensive.",
+"how_do_i_add_or": "How do I add or reorder bonus buttons?",
+"tap_the_gear_button_top_2": "Tap the <span class=\"kref\"><svg class=\"ico\"><use href=\"#i-gear\"></use></svg></span> gear button (top right) and scroll to Bonus buttons. Use ▲ and ▼ to change the order, Delete to remove one, or type a name and bonus points at the bottom and tap Add button. If you delete one by mistake, tap \"Reset to the starting buttons.\"",
+"my_settings_didn_t_save": "My settings didn't save.",
+"settings_save_automatically_as_you": "Settings save automatically as you change them. If something looks wrong, tap the <span class=\"kref\"><svg class=\"ico\"><use href=\"#i-gear\"></use></svg></span> gear button (top right), set it again, and tap Save settings / Done to go back. If it still won't stick, Chrome may be set to clear site data. Check Chrome's settings.",
+"how_do_i_save_phone": "How do I save phone battery?",
+"gps_and_keeping_the_screen_2": "GPS and keeping the screen on use the most phone battery, and both are needed to count {{U}}. To stretch your phone battery, tap the <span class=\"kref\"><svg class=\"ico\"><use href=\"#i-gear\"></use></svg></span> gear button (top right) and under Phone battery saver turn off the live map and moving pictures. Turning your screen brightness down helps a lot too.",
+"the_map_is_blank_or": "The map is blank or won't load.",
+"the_map_needs_a_data": "The map needs a data connection and your location. Your {{U}} still count without it. You can turn the map off in Settings (the <span class=\"kref\"><svg class=\"ico\"><use href=\"#i-gear\"></use></svg></span> gear button, top right) under Phone battery saver.",
+"how_do_i_stop_the": "How do I stop the {{u}} announcements?",
+"tap_the_gear_button_top_3": "Tap the <span class=\"kref\"><svg class=\"ico\"><use href=\"#i-gear\"></use></svg></span> gear button (top right), then under Sounds and announcements choose every {{u}}, every 5, 10 or 20 {{U}}, or Off. You can also choose a buzz only, with no voice.",
+"how_do_levels_and_quests": "How do levels and quests work?",
+"levels_go_up_with_every": "Levels go up with every point you earn and never go down. Weekly quests reset every Monday, and each one you finish adds bonus points to your bank.",
+"i_stopped_at_a_store": "I stopped at a store. How do I keep my ride going?",
+"tap_pause_the_app_stops": "Tap Pause. The app stops tracking and your screen can turn off, so walking around the store doesn't count. When you're back on the bike, open the app and tap Resume.",
+"what_if_my_phone_closes": "What if my phone closes the app during a ride?",
+"the_app_saves_your_ride": "The app saves your ride's {{U}} and points every so often, and whenever you pause. When you open it again, the ride is waiting, paused. Tap Resume to keep going or End ride to finish. Your route isn't saved.",
+"how_do_i_share_an": "How do I share an older ride?",
+"open_the_stats_tab_under": "Open the Stats tab. Under Recent rides, tap Share next to any of your last five rides.",
+"can_i_add_a_selfie": "Can I add a selfie to my share card?",
+"yes_in_the_share_window": "Yes. In the Share window, tap Add a photo and pick one from your gallery, or take a new one. Then choose Photo on top or Full background. The photo is only used for that card and isn't saved by the app.",
+"sharing_to_x_or_another": "Sharing to X (or another app) didn't include my caption.",
+"some_apps_drop_the_text": "Some apps drop the text when a picture comes with it. The app copies the caption for you when you tap Share, so just paste it into your post. You can also tap Copy caption in the Share window.",
+"how_do_i_move_to": "How do I move to a new phone?",
+"tap_the_gear_button_top_4": "Tap the <span class=\"kref\"><svg class=\"ico\"><use href=\"#i-gear\"></use></svg></span> gear button (top right), then Save backup file. Send that file to your new phone, by email for example. On the new phone, open the app, tap the <span class=\"kref\"><svg class=\"ico\"><use href=\"#i-gear\"></use></svg></span> gear button (top right), then Restore from file. In the file picker, open the <b>Downloads</b> folder (tap the menu or \"Recent\" if you don't see it) and choose the file that starts with <b>pedal-points-backup</b>. The app reminds you to back up every 5 rides.",
+"will_an_app_update_erase": "Will an app update erase my points?",
+"no_your_points_prizes_and": "No. Your points, prizes and settings stay on your phone when the app updates. Clearing Chrome's site data would erase them, so keep a backup.",
+"moving_to_a_google_play": "<b>Moving to a Google Play or App Store version?</b> If Pedal Points comes out in an app store, that will be a separate app, and your points won't move over by themselves. Save a backup file here first (<span class=\"kref\"><svg class=\"ico\"><use href=\"#i-gear\"></use></svg></span> gear button, then Save backup file), then use Restore from file in the new app.",
+"is_my_location_shared_or": "Is my location shared or tracked?",
+"there_are_no_accounts_and": "There are no accounts and no tracking. Your rides, routes and points stay on your phone. When you start a ride, the app sends your approximate location to a free weather service (Open-Meteo) for the temperature and weather, and the live map loads map pictures of your area from OpenStreetMap. Nothing else leaves your phone.",
+"about": "<svg class=\"ico\"><use href=\"#i-doc\"></use></svg> About",
+"privacy_policy_and_terms_of": "<a href=\"../privacy.html\" style=\"color:var(--gold)\">Privacy policy and terms of use</a>",
+"pedal_points_website": "<a href=\"../\" style=\"color:var(--gold)\">Pedal Points website</a>",
+"back_to_the_app": "Back to the app",
+"ride_2": "<svg class=\"ico\"><use href=\"#i-bike\"></use></svg><span>Ride</span>",
+"rewards": "<svg class=\"ico\"><use href=\"#i-trophy\"></use></svg><span>Rewards</span>",
+"stats": "<svg class=\"ico\"><use href=\"#i-chart\"></use></svg><span>Stats</span>",
+"welcome_to_pedal_points": "Welcome to Pedal Points! <svg class=\"ico\"><use href=\"#i-bike\"></use></svg>",
+"ride_your_bike_instead_of": "Ride your bike instead of driving, earn points, level up, and spend your points on rewards.",
+"what_s_your_first_name": "What's your first name? <span class=\"small\">(optional, stays on this phone)</span>",
+"what_kind_of_bike_do": "What kind of bike do you ride most?",
+"e_bike_2": "<svg class=\"ico\"><use href=\"#i-bolt\"></use></svg> E-bike",
+"classic_bike_2": "<svg class=\"ico\"><use href=\"#i-bike\"></use></svg> Classic bike",
+"your_car_so_the_app": "Your car, so the app can estimate the gas you save: <span class=\"small\">(you can change these later)</span>",
+"miles_per_gallon": "Fuel economy ({{feu}})",
+"gas_per_gallon": "Fuel {{c}} per {{vol}}",
+"units_2": "Units",
+"miles_mpg_f": "Miles · mpg · °F",
+"kilometers_l_100_km_c": "Kilometers · L/100 km · °C",
+"miles_mpg_uk_c": "Miles · mpg (UK) · °C",
+"let_s_ride": "Let's ride!",
+"please_read_before_you_ride": "<svg class=\"ico\"><use href=\"#i-doc\"></use></svg> Please read before you ride",
+"i_ve_read_this_and": "I've read this and I understand",
+"continue": "Continue",
+"got_it": "Got it",
+"checked_in": "<svg class=\"ico\"><use href=\"#i-wave\"></use></svg> Checked in!",
+"check_ins_don_t_add": "Check-ins don't add points. Points come from riding.",
+"see_you_tomorrow": "See you tomorrow!",
+"share": "<svg class=\"ico\"><use href=\"#i-share\"></use></svg> Share",
+"remove_photo": "Remove photo",
+"photo_on_top": "Photo on top",
+"full_background": "Full background",
+"include_my_route_shape_off": "Include my route shape (off for privacy)",
+"your_phone_s_share_menu": "Your phone's share menu opens, so you can pick Instagram, Facebook, X, Messages and more. Nothing is posted unless you choose to. If an app leaves out the caption, tap Copy caption and paste it in.",
+"share_2": "<svg class=\"ico\"><use href=\"#i-share\"></use></svg> Share",
+"copy_caption": "<svg class=\"ico\"><use href=\"#i-copy\"></use></svg> Copy caption",
+"save_picture": "Save picture",
+"close": "Close",
+"points_earned": "points earned",
+"share_this_ride": "<svg class=\"ico\"><use href=\"#i-share\"></use></svg> Share this ride",
+"awesome": "Awesome!",
+"skip_tour": "Skip tour",
+"ph_optional": "Optional",
+"ph_new_button_name_up_to": "New button name, up to 28 letters (e.g. Windy)",
+"ph_bonus_points_per_mile": "Bonus points per {{u}}",
+"ph_new_prize_name": "New prize name",
+"ph_price_in": "Price in {{c}}",
+"ph_e_g_4_5": "e.g. 4.5",
+"ph_0": "0",
+"ph_first_name_or_nickname": "First name or nickname",
+"ph_e_g_25": "e.g. 25",
+"ph_e_g_3_50": "e.g. 3.50"
+}}};
+let LANG="en";
+const T=k=>((STR[LANG]&&STR[LANG].ui)||{})[k]??STR.en.ui[k];
+function applyI18n(){document.querySelectorAll("[data-t]").forEach(e=>{const v=T(e.dataset.t);if(v!=null)e.innerHTML=fmt(v);});document.querySelectorAll("[data-tp]").forEach(e=>{const v=T(e.dataset.tp);if(v!=null)e.placeholder=fmt(v);});if(typeof setCxText==="function")setCxText();}
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
 /* ===== DATA =====
@@ -353,7 +632,7 @@ const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"
    (S.profile holds the name now; email/account id can be added later). */
 const DEFAULT_PRIZES=[["Coffee",6],["Ice cream",9],["Nice dinner out",30],["Bike gear treat",40],["Photo gear fund",65]];
 const DEFAULT_CONDS=[{n:"Hauling?",b:10},{n:"Raining?",w:"rain"},{n:"Windy?",b:5}];
-const TERMS=[
+const TERMS=STR.en.terms=[
 ["<svg class=ico><use href=#i-smile></use></svg>","<b>For fun only.</b> Miles, points and gas savings are estimates and may not be accurate. Don't use them for taxes, business mileage, expense claims or anything official."],
 ["<svg class=ico><use href=#i-coins></use></svg>","<b>No real money.</b> Points and reward dollars aren't cash, gift cards or prizes. Cashing in is just your own permission to treat yourself."],
 ["<svg class=ico><use href=#i-signal></use></svg>","<b>Ride safely.</b> Keep your eyes on the road and don't handle your phone while riding. Follow traffic laws and wear a helmet."],
@@ -366,6 +645,15 @@ const TERMS=[
 ["<svg class=ico><use href=#i-lock></use></svg>","<b>Privacy.</b> No accounts and no tracking. Your rides stay on your phone. Only your approximate location goes to the weather and map services."],
 ["<svg class=ico><use href=#i-bike></use></svg>","<b>No brand ties.</b> Pedal Points isn't connected to or endorsed by any bike company."]];
 const TERMS_VERSION=1;
+const REGION=(()=>{try{return new Intl.Locale(navigator.language).maximize().region||"US"}catch(e){return "US"}})();
+const EURO="AT BE CY DE EE ES FI FR GR HR IE IT LT LU LV MT NL PT SI SK".split(" ");
+function regionUnits(r){if(r==="US")return{dist:"mi",fuel:"mpg",temp:"F",cur:"$"};if(r==="GB")return{dist:"mi",fuel:"mpguk",temp:"C",cur:"£"};
+ const cur=EURO.includes(r)?"€":({CH:"CHF ",SE:"kr ",NO:"kr ",DK:"kr ",IN:"₹",JP:"¥",BR:"R$",ZA:"R",PL:"zł ",MX:"$",CA:"$",AU:"$",NZ:"$"})[r]||"$";
+ return{dist:"km",fuel:(r==="IN"||r==="JP")?"kml":"l100",temp:"C",cur};}
+const FUEL={mpg:{lbl:"miles per gallon",sh:"mpg",def:25,price:3.5,toUS:v=>v,fromUS:v=>v,vol:"gallon"},
+ mpguk:{lbl:"miles per gallon (UK)",sh:"mpg (UK)",def:30,price:1.5,toUS:v=>v*0.832674,fromUS:v=>v/0.832674,vol:"liter"},
+ l100:{lbl:"liters per 100 km",sh:"L/100 km",def:9.4,price:1.7,toUS:v=>235.214583/v,fromUS:v=>235.214583/v,vol:"liter"},
+ kml:{lbl:"km per liter",sh:"km/L",def:10.6,price:1.7,toUS:v=>v*2.352146,fromUS:v=>v/2.352146,vol:"liter"}};
 let S;try{S=JSON.parse(localStorage.getItem("pur")||"{}")||{}}catch(e){S={}}
 const DEF={bank:0,total:0,miles:0,carMiles:0,days:[],badges:[],streak:0,errands:0};
 /* rideCount started in version 14: older data is seeded from ride days, errand rides and recent rides */
@@ -375,6 +663,7 @@ if(S.analog)S.cfg.bike="classic";delete S.analog;
 S.prizes=S.prizes||DEFAULT_PRIZES.map(p=>p.slice());
 S.conds=S.conds||DEFAULT_CONDS.map(c=>Object.assign({},c));
 S.profile=S.profile||{name:""};
+if(S.cfg.dist==null){const ru=S.profile.setup?{dist:"mi",fuel:"mpg",temp:"F",cur:"$"}:regionUnits(REGION);Object.assign(S.cfg,ru);if(!S.profile.setup){S.cfg.mpg=(FUEL[ru.fuel]||FUEL.mpg).def;S.cfg.gas=(FUEL[ru.fuel]||FUEL.mpg).price;}}
 if(S.rideCount==null)S.rideCount=Math.max(S.errands||0,(S.days||[]).length,(S.rides||[]).length);
 S.week=S.week||{};
 const classicX=()=>{const v=+S.cfg.classicX;return v>=1&&v<=3?v:1.5;};
@@ -383,9 +672,27 @@ function setCxText(){document.querySelectorAll(".cxv").forEach(e=>e.textContent=
 function save(){try{localStorage.setItem("pur",JSON.stringify(S))}catch(e){}}
 
 function toast(t){const e=$("toast");e.innerHTML=t;e.style.display="block";clearTimeout(e._t);e._t=setTimeout(()=>e.style.display="none",2400);}
-const gasPerMile=()=>S.cfg.gas/S.cfg.mpg;
+/* ===== UNITS =====
+   Everything is stored in miles, feet, °F and the user's own fuel units, so points
+   stay fair and saved data never changes. Only the display is converted. */
+const fu=()=>FUEL[S.cfg.fuel]||FUEL.mpg;
+const KM=()=>S.cfg.dist==="km",dk=()=>KM()?1.609344:1,hm=()=>KM()?0.3048:1;
+const cur=()=>S.cfg.cur||"$";
+const perUSGal=()=>fu().vol==="gallon"?S.cfg.gas:S.cfg.gas*3.785411784;
+const gasPerMile=()=>perUSGal()/Math.max(0.1,fu().toUS(+S.cfg.mpg||fu().def));
+const trim1=v=>(Math.round(v*10)/10).toString();
+const dnum=(mi,dec=1)=>(mi*dk()).toFixed(dec);
+const fmtD=(mi,dec=1)=>{const v=mi*dk();return (v>=100?Math.round(v).toLocaleString():(+v.toFixed(dec)).toString())+" "+(KM()?"km":(Math.abs(v-1)<0.05?"mile":"miles"));};
+const fmtH=ft=>Math.round(ft*hm()).toLocaleString()+(KM()?" m":" ft");
+const tC=f=>S.cfg.temp==="C"?(f-32)*5/9:f,fmtT=f=>Math.round(tC(f))+"°"+(S.cfg.temp==="C"?"C":"F");
+const ppU=n=>KM()?trim1(n/1.609344):String(n);
+const uWord=()=>KM()?"km":"mile",uWords=()=>KM()?"km":"miles",uShort=()=>KM()?"km":"mi";
+/* Unit placeholders used in the text table: {{U}} {{u}} {{ua}} {{d:N}} {{h:N}} {{hu}} {{H}} {{t:N}} {{c}} {{pp:N}} {{fe}} {{feu}} {{vol}} */
+function fmt(str){return String(str).replace(/\{\{(\w+)(?::([\d.,]+))?\}\}/g,(m,k,a)=>{const n=a?parseFloat(a.replace(/,/g,"")):0;
+ switch(k){case"U":return uWords();case"u":return uWord();case"ua":return uShort();case"d":return fmtD(n,KM()&&n*1.609344>=10?0:1);case"h":return fmtH(n);case"hu":return KM()?"m":"ft";case"H":return KM()?"meters":"feet";
+ case"t":return fmtT(n);case"c":return cur().trim();case"pp":return ppU(n);case"fe":return fu().lbl;case"feu":return fu().sh;case"vol":return fu().vol;}return m;});}
 const ptVal=()=>gasPerMile()/20*S.cfg.boost;
-const usd=x=>"$"+x.toFixed(2);
+const usd=x=>cur()+x.toFixed(2);
 const cost=d=>Math.max(1,Math.ceil(d/ptVal()));
 const sortedPrizes=()=>S.prizes.map((p,i)=>[p[0],p[1],i]).sort((a,b)=>a[1]-b[1]);
 const condBonus=c=>c.w==="snow"?15:c.w==="rain"?5:c.b;
@@ -401,35 +708,35 @@ function confetti(){const c=$("confetti"),x=c.getContext("2d");c.width=innerWidt
 function countUp(el,to){const t0=performance.now(),dur=1300;let lastTick=0;function f(now){const k=Math.min(1,(now-t0)/dur);el.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1&&now-lastTick>90){tone(1100+500*k,.03,0,"square",.03);lastTick=now;}if(k<1)requestAnimationFrame(f);}requestAnimationFrame(f);}
 
 /* ===== LEVELS, BADGES, QUESTS ===== */
-const LEVELS=[[0,"Kickstand Rookie"],[250,"Bike Lane Beginner"],[750,"Neighborhood Cruiser"],[1500,"Main Street Regular"],[3000,"Crosstown Commuter"],[5000,"Gas Pump Dodger"],[8000,"Car-Free Captain"],[12000,"Pedal Legend"],[18000,"Bike Lane Hall of Famer"],[26000,"Car-Free Icon"],[36000,"Pedal Points Immortal"]];
-const THEMES=[["pine","<svg class=ico><use href=#i-tree></use></svg> Pine",0],["sunset","<svg class=ico><use href=#i-sunrise></use></svg> Sunset",2],["night","<svg class=ico><use href=#i-moon></use></svg> Night Sky",4],["winter","<svg class=ico><use href=#i-snow></use></svg> Winter",6]];
+const LEVELS=STR.en.levels=[[0,"Kickstand Rookie"],[250,"Bike Lane Beginner"],[750,"Neighborhood Cruiser"],[1500,"Main Street Regular"],[3000,"Crosstown Commuter"],[5000,"Gas Pump Dodger"],[8000,"Car-Free Captain"],[12000,"Pedal Legend"],[18000,"Bike Lane Hall of Famer"],[26000,"Car-Free Icon"],[36000,"Pedal Points Immortal"]];
+const THEMES=STR.en.themes=[["pine","<svg class=ico><use href=#i-tree></use></svg> Pine",0],["sunset","<svg class=ico><use href=#i-sunrise></use></svg> Sunset",2],["night","<svg class=ico><use href=#i-moon></use></svg> Night Sky",4],["winter","<svg class=ico><use href=#i-snow></use></svg> Winter",6]];
 const starCount=()=>Math.floor(S.miles/STOPS[STOPS.length-1][0]);
 const starText=()=>{const n=starCount();return n<=0?"":n<=5?"<svg class=ico><use href=#i-gstar></use></svg>".repeat(n):`<svg class=ico><use href=#i-gstar></use></svg>×${n}`;};
-const STOPS=[[0,"Home"],[5,"Corner store"],[15,"Post office"],[30,"Downtown"],[60,"Across town"],[100,"Next town"],[200,"County line"],[350,"Over the pass"],[500,"State line"],[1000,"Legend"]];
+const STOPS=STR.en.stops=[[0,"Home"],[5,"Corner store"],[15,"Post office"],[30,"Downtown"],[60,"Across town"],[100,"Next town"],[200,"County line"],[350,"Over the pass"],[500,"State line"],[1000,"Legend"]];
 function levelOf(p){let i=0;while(i<LEVELS.length-1&&p>=LEVELS[i+1][0])i++;return i;}
-const BADGES=[
+const BADGES=STR.en.badges=[
 ["First ride","Finish your first ride","<svg class=ico><use href=#i-bike></use></svg>"],
 ["Early bird","Finish a tracked ride between sunrise and 9 a.m.","<svg class=ico><use href=#i-sunrise></use></svg>"],
 ["Weekend rider","Ride on a Saturday and the Sunday after it","<svg class=ico><use href=#i-checkin></use></svg>"],
-["Long haul","Do one ride of 10 miles or more","<svg class=ico><use href=#i-road></use></svg>"],
+["Long haul","Do one ride of {{d:10}} or more","<svg class=ico><use href=#i-road></use></svg>"],
 ["Hauler","Do a ride carrying a heavy load","<svg class=ico><use href=#i-box></use></svg>"],
-["Hill climber","Climb 1,000 ft in one ride","<svg class=ico><use href=#i-mountain></use></svg>"],
+["Hill climber","Climb {{h:1000}} in one ride","<svg class=ico><use href=#i-mountain></use></svg>"],
 ["Errand runner","Do 10 errand rides","<svg class=ico><use href=#i-cart></use></svg>"],
 ["Week streak","Ride 7 days in a row","<svg class=ico><use href=#i-flame></use></svg>"],
 ["Rain or shine","Ride at least once a week, 4 weeks in a row","<svg class=ico><use href=#i-umbrella></use></svg>"],
-["Gas saver","Save $50 in gas","<svg class=ico><use href=#i-fuel></use></svg>"],
-["Century","Reach 100 lifetime miles","<svg class=ico><use href=#i-hundred></use></svg>"],
+["Gas saver","Save {{c}}50 in gas","<svg class=ico><use href=#i-fuel></use></svg>"],
+["Century","Ride {{d:100}} in total","<svg class=ico><use href=#i-hundred></use></svg>"],
 ["Daily regular","Check in 7 days in a row","<svg class=ico><use href=#i-checkin></use></svg>"],
 ["Habit formed","Check in 30 days in a row","<svg class=ico><use href=#i-calendar></use></svg>"],
 ["Check-in legend","Check in 100 days in a row","<svg class=ico><use href=#i-medal></use></svg>"],
-["Gold star","Finish the 1,000-mile road trip","<svg class=ico><use href=#i-gstar></use></svg>"],
-["Road warrior","Reach 2,500 lifetime miles","<svg class=ico><use href=#i-medal></use></svg>"],
-["Five grand","Reach 5,000 lifetime miles","<svg class=ico><use href=#i-trophy></use></svg>"],
+["Gold star","Finish the {{d:1000}} road trip","<svg class=ico><use href=#i-gstar></use></svg>"],
+["Road warrior","Ride {{d:2500}} in total","<svg class=ico><use href=#i-medal></use></svg>"],
+["Five grand","Ride {{d:5000}} in total","<svg class=ico><use href=#i-trophy></use></svg>"],
 ["Quest crusher","Finish all 4 weekly quests in one week","<svg class=ico><use href=#i-target></use></svg>"]];
-const QUESTS=[
+const QUESTS=STR.en.quests=[
 {id:"err3",t:"Do 3 errand rides",goal:3,key:"errands",pts:100},
-{id:"long1",t:"Do one ride of 3 miles or more",goal:1,key:"long",pts:75},
-{id:"mi15",t:"Ride 15 miles",goal:15,key:"miles",pts:150},
+{id:"long1",t:"Do one ride of {{d:3}} or more",goal:1,key:"long",pts:75},
+{id:"mi15",t:"Ride {{d:15}}",goal:15,key:"miles",pts:150},
 {id:"days3",t:"Ride on 3 different days",goal:3,key:"days",pts:100}];
 function weekId(){const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-(d.getDay()+6)%7);return d.toDateString();}
 function week(){if(S.week.id!==weekId())S.week={id:weekId(),errands:0,long:0,miles:0,days:[],done:[]};return S.week;}
@@ -460,9 +767,9 @@ if(!last){last=c;rideTrack.push([c.latitude,c.longitude]);getWx(c.latitude,c.lon
 const d=hav(last,c);if(d<0.005)return;
 if(c.altitude!=null){if(lastAlt!=null&&c.altitude>lastAlt)climb+=(c.altitude-lastAlt)*3.281;lastAlt=c.altitude;}
 dist+=d;pts+=d*rateFor(liveCtx());last=c;rideTrack.push([c.latitude,c.longitude]);mapUpdate(c);if(Date.now()-lastActiveSave>20000)saveActive();
-const iv=+S.cfg.announce;if(iv>0&&dist>=nextAnn){const tot=Math.round(pts+climbPts(climb));say(`${Math.floor(dist)} miles. ${tot} points, worth ${usd(tot*ptVal())} in rewards.`);while(nextAnn<=dist)nextAnn+=iv;}
+const iv=+S.cfg.announce;if(iv>0&&dist*dk()>=nextAnn){const tot=Math.round(pts+climbPts(climb));say(`${Math.floor(dist*dk())} ${KM()?"kilometers":"miles"}. ${tot} points, worth ${usd(tot*ptVal())} in rewards.`);while(nextAnn<=dist*dk())nextAnn+=iv;}
 liveNums();}
-function liveNums(){$("mi").textContent=dist.toFixed(2);$("pts").textContent=Math.round(pts+climbPts(climb));$("clb").textContent=Math.round(climb);}
+function liveNums(){$("mi").textContent=dnum(dist,2);$("pts").textContent=Math.round(pts+climbPts(climb));$("clb").textContent=Math.round(climb*hm()).toLocaleString();}
 /* ===== LIVE MAP (loads only when a ride starts and the map is on) =====
    Uses Leaflet + OpenStreetMap tiles. For a big Play Store launch, switch to a map tile
    provider's free tier, since OpenStreetMap's own tiles are meant for light use. */
@@ -503,7 +810,7 @@ async function resumeRide(){if(!riding||!paused)return;sfx.click();paused=false;
 $("btnPause").onclick=()=>paused?resumeRide():pauseRide();
 function recoverRide(){const a=S.activeRide;if(!a)return;type=a.type||"leisure";dist=a.dist||0;pts=a.pts||0;climb=a.climb||0;nextAnn=a.nextAnn||0;act=a.act||{};M=a.M||{};
  $("altBike").checked=!!a.alt;riding=true;paused=true;rideTrack=[];last=null;lastAlt=null;rideUI();liveNums();renderRide();
- setTimeout(()=>toast(`Your ${type} ride is paused at ${dist.toFixed(2)} miles. Tap Resume to keep going, or End ride to finish.`),600);}
+ setTimeout(()=>toast(`Your ${type} ride is paused at ${fmtD(dist,2)}. Tap Resume to keep going, or End ride to finish.`),600);}
 function end(){sfx.click();riding=false;paused=false;delete S.activeRide;save();if(watch!=null)navigator.geolocation.clearWatch(watch);watch=null;try{wake&&wake.release()}catch(e){}wake=null;
 rideUI();applyAnim();
 if(dist<0.05){toast("That ride was too short to count. Check that location is allowed.");}
@@ -513,13 +820,13 @@ act={};M={};$("altBike").checked=false;dist=0;pts=0;climb=0;liveNums();renderRid
 
 function awardRide(r){
  const ev=[],lines=[],lvBefore=levelOf(S.total),miles=r.miles,day=r.when.toDateString();let bonus=0;
- const cp=climbPts(r.climb||0);if(cp){bonus+=cp;lines.push(`<svg class=ico><use href=#i-mountain></use></svg> Climbing bonus: +${cp} (${Math.round(r.climb)} ft)`);}
+ const cp=climbPts(r.climb||0);if(cp){bonus+=cp;lines.push(`<svg class=ico><use href=#i-mountain></use></svg> Climbing bonus: +${cp} (${fmtH(r.climb)})`);}
  if(miles>=0.05){
   if(!S.days.includes(day)){S.days.push(day);if(S.days.length>500)S.days=S.days.slice(-500);S.streak=calcStreak();
    if(S.streak>1){const sb=Math.min(S.streak,7)*10;bonus+=sb;lines.push(`<svg class=ico><use href=#i-flame></use></svg> ${S.streak}-day streak bonus: +${sb}`);}}
   const w=week();
   if(r.when.getTime()>=new Date(w.id).getTime()){w.miles+=miles;if(r.type==="errand")w.errands++;if(miles>=3)w.long=(w.long||0)+1;if(!w.days.includes(day))w.days.push(day);}
-  QUESTS.forEach(q=>{if(!w.done.includes(q.id)&&qVal(q)>=q.goal){w.done.push(q.id);bonus+=q.pts;ev.push(`<svg class=ico><use href=#i-target></use></svg> Quest complete: ${q.t} (+${q.pts})`);}});
+  QUESTS.forEach(q=>{if(!w.done.includes(q.id)&&qVal(q)>=q.goal){w.done.push(q.id);bonus+=q.pts;ev.push(`<svg class=ico><use href=#i-target></use></svg> Quest complete: ${fmt(q.t)} (+${q.pts})`);}});
  }
  const ridePts=Math.round(r.points),total=ridePts+bonus;
  S.bank+=total;S.total+=total;S.miles+=miles;if(miles>=0.05)S.rideCount=(S.rideCount||0)+1;
@@ -542,13 +849,13 @@ function awardRide(r){
 function showSummary(o){
  shareData={kind:"ride",miles:o.miles,saved:o.saved,pts:o.total,type:o.type,t:Date.now(),li:levelOf(S.total)};
  $("sumTitle").innerHTML=o.manual?"Ride added! <svg class=ico><use href=#i-pencil></use></svg>":"Ride complete! <svg class=ico><use href=#i-flag></use></svg>";
- const L=[`<svg class=ico><use href=#i-bike></use></svg> ${o.miles.toFixed(1)} miles: ${o.ridePts} points`,...o.lines];
+ const L=[`<svg class=ico><use href=#i-bike></use></svg> ${fmtD(o.miles)}: ${o.ridePts} points`,...o.lines];
  if(o.saved)L.push(`<svg class=ico><use href=#i-fuel></use></svg> Approximate gas money saved: ${usd(o.saved)}`);
  L.push(`<svg class=ico><use href=#i-coins></use></svg> Worth ${usd(o.total*ptVal())} in rewards. Bank: ${S.bank} points`);
  $("sumLines").innerHTML=L.map(x=>`<div style="margin:5px 0">${x}</div>`).join("")+(o.ev.length?`<div style="margin-top:12px;font-weight:700;color:var(--gold)">${o.ev.map(x=>`<div style="margin:5px 0">${x}</div>`).join("")}</div>`:"");
  $("sumPts").textContent="0";$("summary").classList.add("show");countUp($("sumPts"),o.total);
  if(o.ev.length){setTimeout(()=>{sfx.fanfare();confetti();},1300);}else setTimeout(sfx.coin,1300);
- if(!o.manual)say(`Ride done. ${o.miles.toFixed(1)} miles, ${o.total} points.`+(o.saved?` You saved about ${usd(o.saved)} in gas.`:"")+(o.ev.length?" "+o.ev.map(x=>x.replace(/<[^>]*>/g,"").trim()).join(". "):""));
+ if(!o.manual)say(`Ride done. ${fmtD(o.miles).replace(" km"," kilometers")}, ${o.total} points.`+(o.saved?` You saved about ${usd(o.saved)} in gas.`:"")+(o.ev.length?" "+o.ev.map(x=>x.replace(/<[^>]*>/g,"").trim()).join(". "):""));
 }
 $("sumOk").onclick=()=>{sfx.click();$("summary").classList.remove("show");if(pendingBackup){pendingBackup=false;setTimeout(afterRide,400);}};
 
@@ -556,13 +863,13 @@ $("sumOk").onclick=()=>{sfx.click();$("summary").classList.remove("show");if(pen
 let mType="errand";
 function setMType(t){mType=t;$("mErr").className=t==="errand"?"on":"";$("mLei").className=t==="leisure"?"on":"";}
 function openAdd(){sfx.click();$("mMiles").value="";$("mClimb").value="";$("mWhen").value="0";$("mClassic").checked=S.cfg.bike==="classic";$("mNight").checked=false;$("mCold").checked=false;
- $("mConds").innerHTML=S.conds.map((c,i)=>`<label class="check"><input type="checkbox" data-i="${i}"> ${esc(c.n.replace("?",""))} (+${condBonus(c)} per mile)</label>`).join("");
+ $("mConds").innerHTML=S.conds.map((c,i)=>`<label class="check"><input type="checkbox" data-i="${i}"> <span>${esc(c.n.replace("?",""))} (+${ppU(condBonus(c))} per ${uWord()})</span></label>`).join("");
  setMType("errand");openPage("add");}
-$("mSave").onclick=()=>{const mi=parseFloat($("mMiles").value);if(!(mi>0)){toast("Type how many miles you rode");return;}if(mi>200){toast("That's a lot of miles! Please check the number.");return;}
+$("mSave").onclick=()=>{const mi=parseFloat($("mMiles").value)/dk();if(!(mi>0)){toast(`Type how many ${KM()?"kilometers":"miles"} you rode`);return;}if(mi>200){toast("That's a long way! Please check the number.");return;}
  const when=new Date(Date.now()-(+$("mWhen").value)*864e5);let snow=false,rain=false,extra=0,haul=false;
  document.querySelectorAll("#mConds input").forEach(x=>{if(!x.checked)return;const c=S.conds[+x.dataset.i];if(!c)return;if(c.w==="snow")snow=true;else if(c.w==="rain")rain=true;else{extra+=c.b;if(c.n==="Hauling?")haul=true;}});
  const ctx={type:mType,night:$("mNight").checked,temp:$("mCold").checked?30:null,snow,rain,extra,winter:winterNow(when),classic:$("mClassic").checked};
- const cl=+$("mClimb").value||0;closePage();
+ const cl=(+$("mClimb").value||0)/hm();closePage();
  setTimeout(()=>awardRide({miles:mi,points:mi*rateFor(ctx),climb:cl,type:mType,night:ctx.night,snow,temp:ctx.temp,haul,when,manual:true}),250);};
 $("mCancel").onclick=()=>{sfx.click();closePage();};
 $("mErr").onclick=()=>{sfx.click();setMType("errand")};$("mLei").onclick=()=>{sfx.click();setMType("leisure")};
@@ -587,7 +894,7 @@ function renderBank(){const li=levelOf(S.total),cur=LEVELS[li][0],nx=LEVELS[li+1
  const u=`Worth ${usd(S.bank*ptVal())} in rewards`;$("bank").textContent=S.bank;$("bank2").textContent=S.bank;$("bankUsd").textContent=u;$("bankUsd2").textContent=u;
  const st=calcStreak();$("streakTxt").innerHTML=st>0?`<span class="flame" style="font-size:${(1.1+Math.min(st,14)*0.12).toFixed(2)}em"><svg class=ico><use href=#i-flame></use></svg></span> ${st}-day streak`:"";
  $("dailyBtn").style.display=(S.checkins||[]).includes(new Date().toDateString())?"none":"flex";}
-const TIPS=[
+const TIPS=STR.en.tips=[
 ["Ride tip","Do a quick ABC check before you ride: Air in the tires, Brakes working, Chain clean and oiled."],
 ["Ride tip","Check your tire pressure about once a week. The right pressure is printed on the side of the tire."],
 ["Ride tip","Use a white front light and a red rear light whenever light is low, even in the daytime."],
@@ -624,17 +931,17 @@ function claimDaily(){const today=new Date().toDateString();S.checkins=S.checkin
  $("tipKind").innerHTML=(t[0]==="Fun fact"?"<svg class=ico><use href=#i-book></use></svg> ":"<svg class=ico><use href=#i-bulb></use></svg> ")+t[0];$("tipText").textContent=t[1];$("checkBox").classList.add("show");
  if(newT.length){sfx.fanfare();confetti();}else sfx.coin();}
 $("checkOk").onclick=()=>{sfx.click();$("checkBox").classList.remove("show");};
-const INFO={
-recent:["<svg class=ico><use href=#i-history></use></svg> Recent rides",`<p>Your last five rides, newest first. Tap <b>Share</b> on any of them to make a picture card, with an optional photo.</p><p>Only the miles, points and gas saved are kept. Routes are never saved, so older rides can't show a route shape.</p>`],
-ride:["<svg class=ico><use href=#i-bike></use></svg> How rides work",`<p><b>Pause</b> when you stop somewhere, like the post office. Your screen can turn off and walking around won't count. Tap <b>Resume</b> to keep riding.</p><p><b>Start errand ride</b> when the ride replaces a car trip, like the store or post office. Errand miles earn double points and count toward your gas savings.</p><p><b>Start leisure ride</b> for a fun ride.</p><p><b>Keep the app open on your screen</b> while you ride. If you switch apps or the screen turns off, miles may stop counting. Never handle your phone while moving.</p><p><b>Bonus buttons</b> add points per mile when they're gold. Cold, heat, rain and snow are picked up from the weather automatically. Tap Raining? if rain was missed.</p><p><b>Classic bike</b> miles earn <span class=cxv>1.5</span>x (adjustable in Settings). Tick the box if you're riding your other bike today.</p><p>While you ride you'll see your miles, points, points per mile and feet climbed.</p>`],
-level:["<svg class=ico><use href=#i-star></use></svg> Levels and points",`<p><b>Points bank:</b> every point you earn goes here, and you spend it on prizes.</p><p><b>Worth in rewards</b> is the bank's value in reward dollars. It's a game value, not real money. At a reward boost of 1, a plain errand mile earns exactly the gas money it saved. Bonuses add extra credit on top.</p><p><b>Levels</b> go up with every point you ever earn and never go down, even when you cash in. New levels unlock color themes.</p><p><b><svg class=ico><use href=#i-flame></use></svg> Riding streak:</b> ride on days in a row for a small bonus.</p><p><b><svg class=ico><use href=#i-wave></use></svg> Daily check-in:</b> tap once a day for a ride tip or fun fact and to build a check-in streak. It doesn't add points.</p>`],
-map:["<svg class=ico><use href=#i-pin></use></svg> Live map",`<p>During a ride, the blue dot is you and the gold line is your route this ride. Your route stays on your phone.</p><p>The map needs a data connection. Your miles still count without it.</p><p>To save phone battery, turn the map off in Settings (the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button, top right) under Phone battery saver.</p>`],
-trail:["<svg class=ico><use href=#i-road></use></svg> Your road trip",`<p>Every mile you ride moves your bike along the road, from Home toward Legend at 1,000 miles.</p><p>Finish the trip to earn a <b>gold star <svg class=ico><use href=#i-gstar></use></svg></b> next to your name, and the road starts fresh for another lap. After five stars, it shows as a number, like <svg class=ico><use href=#i-gstar></use></svg>×7.</p>`],
+const INFO=STR.en.info={
+recent:["<svg class=ico><use href=#i-history></use></svg> Recent rides",`<p>Your last five rides, newest first. Tap <b>Share</b> on any of them to make a picture card, with an optional photo.</p><p>Only the {{U}}, points and gas saved are kept. Routes are never saved, so older rides can't show a route shape.</p>`],
+ride:["<svg class=ico><use href=#i-bike></use></svg> How rides work",`<p><b>Pause</b> when you stop somewhere, like the post office. Your screen can turn off and walking around won't count. Tap <b>Resume</b> to keep riding.</p><p><b>Start errand ride</b> when the ride replaces a car trip, like the store or post office. Errand {{U}} earn double points and count toward your gas savings.</p><p><b>Start leisure ride</b> for a fun ride.</p><p><b>Keep the app open on your screen</b> while you ride. If you switch apps or the screen turns off, {{U}} may stop counting. Never handle your phone while moving.</p><p><b>Bonus buttons</b> add points per {{u}} when they're gold. Cold, heat, rain and snow are picked up from the weather automatically. Tap Raining? if rain was missed.</p><p><b>Classic bike</b> {{U}} earn <span class=cxv>1.5</span>x (adjustable in Settings). Tick the box if you're riding your other bike today.</p><p>While you ride you'll see your {{U}}, points, points per {{u}} and climbing.</p>`],
+level:["<svg class=ico><use href=#i-star></use></svg> Levels and points",`<p><b>Points bank:</b> every point you earn goes here, and you spend it on prizes.</p><p><b>Worth in rewards</b> is the bank's value in reward dollars. It's a game value, not real money. At a reward boost of 1, a plain errand {{u}} earns exactly the gas money it saved. Bonuses add extra credit on top.</p><p><b>Levels</b> go up with every point you ever earn and never go down, even when you cash in. New levels unlock color themes.</p><p><b><svg class=ico><use href=#i-flame></use></svg> Riding streak:</b> ride on days in a row for a small bonus.</p><p><b><svg class=ico><use href=#i-wave></use></svg> Daily check-in:</b> tap once a day for a ride tip or fun fact and to build a check-in streak. It doesn't add points.</p>`],
+map:["<svg class=ico><use href=#i-pin></use></svg> Live map",`<p>During a ride, the blue dot is you and the gold line is your route this ride. Your route stays on your phone.</p><p>The map needs a data connection. Your {{U}} still count without it.</p><p>To save phone battery, turn the map off in Settings (the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button, top right) under Phone battery saver.</p>`],
+trail:["<svg class=ico><use href=#i-road></use></svg> Your road trip",`<p>Every {{u}} you ride moves your bike along the road, from Home toward Legend at {{d:1000}}.</p><p>Finish the trip to earn a <b>gold star <svg class=ico><use href=#i-gstar></use></svg></b> next to your name, and the road starts fresh for another lap. After five stars, it shows as a number, like <svg class=ico><use href=#i-gstar></use></svg>×7.</p>`],
 quests:["<svg class=ico><use href=#i-target></use></svg> Weekly quests",`<p>Four small goals that reset every Monday. Finish one and its bonus points go straight into your bank.</p>`],
-prizes:["<svg class=ico><use href=#i-gift></use></svg> Prize menu",`<p>The gold bar shows how close you are. When you have enough points, tap <b>Cash in</b>, and the points come out of your bank.</p><p>Prices are in real dollars. The app turns them into points based on your gas savings and reward boost. At a boost of 1, the points for a $6 coffee equal $6 of gas saved by plain errand riding.</p><p>To change, add or delete prizes, open Settings (the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button, top right).</p><p style="border-left:3px solid var(--gold);padding-left:8px"><b>Please note:</b> points are just a game. They aren't real money, cash or gift cards. Cashing in is your own permission to treat yourself, paid for with the money you save on gas.</p>`],
+prizes:["<svg class=ico><use href=#i-gift></use></svg> Prize menu",`<p>The gold bar shows how close you are. When you have enough points, tap <b>Cash in</b>, and the points come out of your bank.</p><p>Prices are in real dollars. The app turns them into points based on your gas savings and reward boost. At a boost of 1, the points for a {{c}}6 coffee equal {{c}}6 of gas saved by plain errand riding.</p><p>To change, add or delete prizes, open Settings (the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button, top right).</p><p style="border-left:3px solid var(--gold);padding-left:8px"><b>Please note:</b> points are just a game. They aren't real money, cash or gift cards. Cashing in is your own permission to treat yourself, paid for with the money you save on gas.</p>`],
 trophies:["<svg class=ico><use href=#i-trophy></use></svg> Trophy case",`<p>Locked trophies are grey. Tap any trophy to see how to earn it.</p>`],
-stats:["<svg class=ico><use href=#i-chart></use></svg> Your stats",`<p>Your riding totals and the <b>approximate</b> money you've saved on gas.</p><p><b>Gas saved per mile</b> = your gas price ÷ your car's miles per gallon. For example, $3.50 a gallon ÷ 25 mpg = about 14¢ for every mile you ride instead of drive.</p><p><b>Reward dollars per errand mile</b> = gas saved × your <b>reward boost</b>. At a boost of 1, a plain errand mile earns exactly the gas money it really saved. At 2, it earns twice that, and so on.</p><p><b>Example:</b> at 14¢ a mile, a $6 coffee takes about 43 plain errand miles at a boost of 1, about 21 at 2, and about 14 at 3. If gas is pricier or your car uses more fuel, rewards come faster.</p><p><b>Why raise the boost?</b> The gas math only counts fuel. It leaves out the other things you gain by riding instead of driving: less wear and tear on your car, fewer oil changes and repairs, the value of your time, and a lift for your physical and mental health. That's why you can raise the boost to whatever feels fair to you.</p><p><b>Why reward dollars can be higher than gas saved:</b> bonuses for weather, climbing, hauling and riding a classic bike are extra credit for effort. Leisure rides earn points too, even though they don't replace a car trip. Quests and streaks add a little more.</p><p><b>Your real number</b> is "Approximate gas money saved" on the Stats tab. It only counts errand miles and isn't changed by the boost or bonuses.</p><p class="small">The app uses miles, gallons and dollars. If you use other units, convert your car's mileage and fuel price before entering them.</p><p>These are estimates for fun, not for taxes, business mileage or anything official.</p><p>Forgot to track a ride? Use the button at the top of this tab. It earns the same points.</p>`]};
-function info(k){const x=INFO[k];if(!x)return;sfx.click();$("infoTitle").innerHTML=x[0];$("infoBody").innerHTML=x[1];setCxText();$("infoBox").classList.add("show");}
+stats:["<svg class=ico><use href=#i-chart></use></svg> Your stats",`<p>Your riding totals and the <b>approximate</b> money you've saved on gas.</p><p><b>Gas saved per {{u}}</b> = your fuel price ÷ your car's fuel economy. For example (in US units), $3.50 a gallon ÷ 25 mpg = about 14¢ for every mile you ride instead of drive.</p><p><b>Reward value per errand {{u}}</b> = gas saved × your <b>reward boost</b>. At a boost of 1, a plain errand {{u}} earns exactly the gas money it really saved. At 2, it earns twice that, and so on.</p><p><b>Example (US units):</b> at 14¢ a mile, a $6 coffee takes about 43 plain errand miles at a boost of 1, about 21 at 2, and about 14 at 3. If gas is pricier or your car uses more fuel, rewards come faster.</p><p><b>Why raise the boost?</b> The gas math only counts fuel. It leaves out the other things you gain by riding instead of driving: less wear and tear on your car, fewer oil changes and repairs, the value of your time, and a lift for your physical and mental health. That's why you can raise the boost to whatever feels fair to you.</p><p><b>Why reward dollars can be higher than gas saved:</b> bonuses for weather, climbing, hauling and riding a classic bike are extra credit for effort. Leisure rides earn points too, even though they don't replace a car trip. Quests and streaks add a little more.</p><p><b>Your real number</b> is "Approximate gas money saved" on the Stats tab. It only counts errand {{U}} and isn't changed by the boost or bonuses.</p><p class="small">You can switch to kilometers, liters, °C and your own currency under Units in Settings.</p><p>These are estimates for fun, not for taxes, business mileage or anything official.</p><p>Forgot to track a ride? Use the button at the top of this tab. It earns the same points.</p>`]};
+function info(k){const x=INFO[k];if(!x)return;sfx.click();$("infoTitle").innerHTML=fmt(x[0]);$("infoBody").innerHTML=fmt(x[1]);setCxText();$("infoBox").classList.add("show");}
 $("infoOk").onclick=()=>{sfx.click();$("infoBox").classList.remove("show");};
 function renderTrail(){const road=$("road");let L;try{L=road.getTotalLength();}catch(e){return;}if(!L)return;
  const n=STOPS.length,last=STOPS[n-1][0],laps=starCount(),m=S.miles-laps*last;let pos;
@@ -643,7 +950,7 @@ function renderTrail(){const road=$("road");let L;try{L=road.getTotalLength();}c
  $("stops").innerHTML=STOPS.map(([mi,name],i)=>{const p=road.getPointAtLength(L*i/(n-1)),got=m>=mi,up=i%2===0;return `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="5" fill="${got?"#ffd54a":"#14231c"}" stroke="${got?"#fff":"#6fcf8f"}" stroke-width="1.5"/><text x="${p.x.toFixed(1)}" y="${(p.y+(up?-11:18)).toFixed(1)}" text-anchor="${p.x>295?"end":p.x<45?"start":"middle"}" font-size="10" font-weight="600" font-family="Fredoka,system-ui" fill="${got?"#ffd54a":"#f3f6f1"}" opacity="${got?1:.75}">${name}</text>`}).join("");
  const a=road.getPointAtLength(Math.max(0,pos-1)),b=road.getPointAtLength(Math.min(L,pos+1)),p=road.getPointAtLength(pos);let ang=Math.atan2(b.y-a.y,b.x-a.x)*180/Math.PI;const flip=Math.abs(ang)>90;if(flip)ang+=180;
  $("trailRider").setAttribute("transform",`translate(${p.x.toFixed(1)},${(p.y-2).toFixed(1)}) rotate(${ang.toFixed(1)}) scale(${flip?-1.4:1.4},1.4)`);
- const next=STOPS.find(s=>s[0]>m),lapTxt=laps?`Lap ${laps+1} · `:"";$("trailTxt").textContent=`${lapTxt}Next stop: ${next[1]}, ${(next[0]-m).toFixed(1)} miles away`;}
+ const next=STOPS.find(s=>s[0]>m),lapTxt=laps?`Lap ${laps+1} · `:"";$("trailTxt").textContent=`${lapTxt}Next stop: ${next[1]}, ${fmtD(next[0]-m)} away`;}
 function applyTheme(){const lv=levelOf(S.total),t=THEMES.find(x=>x[0]===S.cfg.theme);if(!t||t[2]>lv)S.cfg.theme="pine";document.body.dataset.theme=S.cfg.theme;}
 function themePick(){const lv=levelOf(S.total);$("themePick").innerHTML=THEMES.map(([id,name,need])=>need>lv?`<button disabled><svg class=ico><use href=#i-lock></use></svg> ${name.replace(/^<svg.*?<\/svg>\s*/,"")}<br><span class="small">Level ${need+1}</span></button>`:`<button class="${S.cfg.theme===id?"on":""}" onclick="setTheme('${id}')">${name}</button>`).join("");}
 function setTheme(id){sfx.click();S.cfg.theme=id;save();applyTheme();themePick();toast("Theme saved <svg class=ico><use href=#i-check></use></svg>");}
@@ -651,42 +958,44 @@ function condBtns(){$("condRow").innerHTML=S.conds.map((c,i)=>{const on=c.w?wx[c
 function tapCond(i){sfx.click();const c=S.conds[i];if(!c)return;if(c.w==="snow"){M={on:true,snow:!wx.snow,rain:false};wx.snow=M.snow;wx.rain=false;}else if(c.w==="rain"){M={on:true,rain:!wx.rain,snow:false};wx.rain=M.rain;wx.snow=false;}else act[c.n]=!act[c.n];renderRide();}
 function renderRide(){condBtns();
  $("altBikeLbl").innerHTML=S.cfg.bike==="classic"?"Riding my e-bike today":`Riding my classic bike today (x${cxs()})`;
- const c=liveCtx(),t=[];if(riding&&type==="errand")t.push("<svg class=ico><use href=#i-cart></use></svg> Errand x2");if(c.night)t.push("<svg class=ico><use href=#i-moon></use></svg> Night +10");
- if(c.temp!=null)t.push(c.temp<=32?`<svg class=ico><use href=#i-cold></use></svg> ${Math.round(c.temp)}°F +5`:c.temp>=95?`<svg class=ico><use href=#i-hot></use></svg> ${Math.round(c.temp)}°F +3`:`<svg class=ico><use href=#i-thermo></use></svg> ${Math.round(c.temp)}°F`);
- if(c.snow)t.push("<svg class=ico><use href=#i-snow></use></svg> Snow +15");else if(c.rain)t.push("<svg class=ico><use href=#i-rain></use></svg> Rain +5");
- S.conds.filter(x=>!x.w&&act[x.n]).forEach(x=>t.push(esc(x.n.replace("?",""))+" +"+x.b));
+ const c=liveCtx(),t=[];if(riding&&type==="errand")t.push("<svg class=ico><use href=#i-cart></use></svg> Errand x2");if(c.night)t.push("<svg class=ico><use href=#i-moon></use></svg> Night +"+ppU(10));
+ if(c.temp!=null)t.push(c.temp<=32?`<svg class=ico><use href=#i-cold></use></svg> ${fmtT(c.temp)} +${ppU(5)}`:c.temp>=95?`<svg class=ico><use href=#i-hot></use></svg> ${fmtT(c.temp)} +${ppU(3)}`:`<svg class=ico><use href=#i-thermo></use></svg> ${fmtT(c.temp)}`);
+ if(c.snow)t.push("<svg class=ico><use href=#i-snow></use></svg> Snow +"+ppU(15));else if(c.rain)t.push("<svg class=ico><use href=#i-rain></use></svg> Rain +"+ppU(5));
+ S.conds.filter(x=>!x.w&&act[x.n]).forEach(x=>t.push(esc(x.n.replace("?",""))+" +"+ppU(x.b)));
  if(c.winter)t.push("<svg class=ico><use href=#i-snow></use></svg> Winter x1.5");if(c.classic)t.push("<svg class=ico><use href=#i-bike></use></svg> Classic bike x"+cxs());
- $("conds").innerHTML=t.map(x=>`<span class="tag">${x}</span>`).join("");$("ppm").textContent=Math.round(rateFor(c));}
+ $("conds").innerHTML=t.map(x=>`<span class="tag">${x}</span>`).join("");$("ppm").textContent=KM()?trim1(rateFor(c)/dk()):Math.round(rateFor(c));}
 function renderRewards(){const w=week(),nextMon=new Date(w.id);nextMon.setDate(nextMon.getDate()+7);const dl=Math.max(1,Math.ceil((nextMon-Date.now())/864e5));
  $("questReset").textContent=`New quests in ${dl} day${dl===1?"":"s"} (every Monday)`;
- $("quests").innerHTML=QUESTS.map(q=>{const v=Math.min(q.goal,qVal(q)),done=w.done.includes(q.id);return `<div class="quest${done?" done":""}"><div class="lvl"><span>${done?"<svg class=ico><use href=#i-boxcheck></use></svg>":"<svg class=ico><use href=#i-boxempty></use></svg>"} ${q.t}</span><span class="small">+${q.pts}</span></div><div class="bar"><div style="width:${v/q.goal*100}%"></div></div><div class="small">${q.key==="miles"?v.toFixed(1):v} of ${q.goal}</div></div>`}).join("");
+ $("quests").innerHTML=QUESTS.map(q=>{const v=Math.min(q.goal,qVal(q)),done=w.done.includes(q.id);return `<div class="quest${done?" done":""}"><div class="lvl"><span>${done?"<svg class=ico><use href=#i-boxcheck></use></svg>":"<svg class=ico><use href=#i-boxempty></use></svg>"} ${fmt(q.t)}</span><span class="small">+${q.pts}</span></div><div class="bar"><div style="width:${v/q.goal*100}%"></div></div><div class="small">${q.key==="miles"?dnum(v):v} of ${q.key==="miles"?(+dnum(q.goal,1)).toString():q.goal}</div></div>`}).join("");
  $("prizes").innerHTML=sortedPrizes().map(([n,d,i])=>{const c=cost(d);return `<li><div class="lvl"><span>${esc(n)} · ${usd(d)}</span><span class="small">${c} pts</span></div><div class="row"><div class="bar"><div style="width:${Math.min(100,S.bank/c*100)}%"></div></div><button class="mini${S.bank>=c?" go":""}" ${S.bank<c?"disabled":""} onclick="cash(${i})">Cash in</button></div></li>`}).join("")||'<div class="small" style="margin-top:8px">No prizes yet. Add some in Settings (the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button, top right).</div>';
  $("badgeCount").textContent=`${S.badges.filter(n=>BADGES.some(b=>b[0]===n)).length} of ${BADGES.length} trophies earned`;
  $("badges").innerHTML=BADGES.map(([n,h,ic],i)=>{const got=S.badges.includes(n);return `<div class="trophy${got?"":" locked"}" onclick="trophyTap(${i})"><div class="ti">${ic}</div><div class="tn">${got?"":"<svg class=ico><use href=#i-lock></use></svg> "}${n}</div></div>`}).join("");}
-function trophyTap(i){const[n,h]=BADGES[i];sfx.click();toast(S.badges.includes(n)?`<svg class=ico><use href=#i-trophy></use></svg> ${n}: ${h}. Earned!`:`<svg class=ico><use href=#i-lock></use></svg> ${n}: ${h}`);}
+function trophyTap(i){const[n,h]=BADGES[i];sfx.click();toast(S.badges.includes(n)?`<svg class=ico><use href=#i-trophy></use></svg> ${n}: ${fmt(h)}. Earned!`:`<svg class=ico><use href=#i-lock></use></svg> ${n}: ${fmt(h)}`);}
 const dayLabel=t=>{const d=new Date(t),n=new Date(),y=new Date();y.setDate(y.getDate()-1);return d.toDateString()===n.toDateString()?"Today":d.toDateString()===y.toDateString()?"Yesterday":d.toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"});};
-function renderRecent(){const L=S.rides||[];$("recent").innerHTML=L.length?L.map((r,i)=>`<div class="lvl" style="margin:10px 0;align-items:center"><span><b>${dayLabel(r.t)}</b> <span class="small">${new Date(r.t).toLocaleTimeString(undefined,{hour:"numeric",minute:"2-digit"})}</span><br><span class="small"><svg class=ico><use href=#i-${r.type==="errand"?"cart":"tree"}></use></svg> ${r.mi.toFixed(1)} mi · ${r.pts} pts${r.sv?` · ${usd(r.sv)} gas`:""}</span></span><button class="mini" onclick="openShare('recent',${i})"><svg class=ico><use href=#i-share></use></svg> Share</button></div>`).join(""):'<div class="small">Your last five rides will show here, ready to share.</div>';}
+function renderRecent(){const L=S.rides||[];$("recent").innerHTML=L.length?L.map((r,i)=>`<div class="lvl" style="margin:10px 0;align-items:center"><span><b>${dayLabel(r.t)}</b> <span class="small">${new Date(r.t).toLocaleTimeString(undefined,{hour:"numeric",minute:"2-digit"})}</span><br><span class="small"><svg class=ico><use href=#i-${r.type==="errand"?"cart":"tree"}></use></svg> ${dnum(r.mi)} ${uShort()} · ${r.pts} pts${r.sv?` · ${usd(r.sv)} gas`:""}</span></span><button class="mini" onclick="openShare('recent',${i})"><svg class=ico><use href=#i-share></use></svg> Share</button></div>`).join(""):'<div class="small">Your last five rides will show here, ready to share.</div>';}
 function renderStats(){renderRecent();const g=S.carMiles*gasPerMile();
- $("stats").innerHTML=[["<svg class=ico><use href=#i-bike></use></svg> Lifetime miles (all rides)",S.miles.toFixed(1)],["<svg class=ico><use href=#i-cart></use></svg> Errand miles (car miles replaced)",S.carMiles.toFixed(1)],["<svg class=ico><use href=#i-tree></use></svg> Leisure miles",Math.max(0,S.miles-S.carMiles).toFixed(1)],["<svg class=ico><use href=#i-fuel></use></svg> Approximate gas money saved",usd(g)],["<svg class=ico><use href=#i-gift></use></svg> Reward dollars earned (lifetime)",usd(S.total*ptVal())],["<svg class=ico><use href=#i-flag></use></svg> Total rides",S.rideCount||0],["<svg class=ico><use href=#i-receipt></use></svg> Errand rides",S.errands],["<svg class=ico><use href=#i-flame></use></svg> Riding streak",calcStreak()+" day(s)"],["<svg class=ico><use href=#i-wave></use></svg> Check-in streak",checkStreak()+" day(s)"],["<svg class=ico><use href=#i-gstar></use></svg> Road trips finished (gold stars)",starCount()],["<svg class=ico><use href=#i-star></use></svg> Lifetime points",S.total],["<svg class=ico><use href=#i-coins></use></svg> Points in the bank",S.bank]].map(([a,b])=>`<div class="lvl" style="margin:9px 0"><span>${a}</span><b>${b}</b></div>`).join("");
+ $("stats").innerHTML=[["<svg class=ico><use href=#i-bike></use></svg> Lifetime "+uWords()+" (all rides)",dnum(S.miles)],["<svg class=ico><use href=#i-cart></use></svg> Errand "+uWords()+" (car "+uWords()+" replaced)",dnum(S.carMiles)],["<svg class=ico><use href=#i-tree></use></svg> Leisure "+uWords(),dnum(Math.max(0,S.miles-S.carMiles))],["<svg class=ico><use href=#i-fuel></use></svg> Approximate gas money saved",usd(g)],["<svg class=ico><use href=#i-gift></use></svg> Reward value earned (lifetime)",usd(S.total*ptVal())],["<svg class=ico><use href=#i-flag></use></svg> Total rides",S.rideCount||0],["<svg class=ico><use href=#i-receipt></use></svg> Errand rides",S.errands],["<svg class=ico><use href=#i-flame></use></svg> Riding streak",calcStreak()+" day(s)"],["<svg class=ico><use href=#i-wave></use></svg> Check-in streak",checkStreak()+" day(s)"],["<svg class=ico><use href=#i-gstar></use></svg> Road trips finished (gold stars)",starCount()],["<svg class=ico><use href=#i-star></use></svg> Lifetime points",S.total],["<svg class=ico><use href=#i-coins></use></svg> Points in the bank",S.bank]].map(([a,b])=>`<div class="lvl" style="margin:9px 0"><span>${a}</span><b>${b}</b></div>`).join("");
  $("levels").innerHTML=LEVELS.map(([p,n],i)=>{const got=S.total>=p;return `<div class="lvl" style="margin:8px 0;${got?"":"opacity:.5"}"><span>${got?"<svg class=ico><use href=#i-star></use></svg>":"<svg class=ico><use href=#i-lock></use></svg>"} ${i+1}. ${n}</span><span class="small">${p} pts</span></div>`}).join("");}
 function renderAll(){setCxText();applyTheme();renderHeader();renderBank();renderRide();renderRewards();renderStats();renderTrail();}
 
 async function cash(i){const p=S.prizes[i];if(!p)return;const[n,d]=p,c=cost(d);if(S.bank>=c&&await ask(`Spend ${c} points on ${n}?`,"Cash in")){S.bank-=c;save();renderAll();sfx.coin();confetti();toast(`Enjoy your ${esc(n)}! <svg class=ico><use href=#i-sparkle></use></svg>`);}}
 
 /* ===== SETTINGS ===== */
-function renderSettings(){$("cName").value=S.profile.name||"";bikeBtns();$("cMpg").value=S.cfg.mpg;$("cGas").value=S.cfg.gas;$("cBoost").value=S.cfg.boost;$("cClassic").value=classicX();$("cAnn").value=String(S.cfg.announce);$("cVoice").value=S.cfg.voice?"1":"0";$("cSound").checked=!!S.cfg.sound;$("cLights").checked=!!S.cfg.lights;$("cMap").checked=!!S.cfg.map;$("cAnim").checked=!!S.cfg.anim;themePick();condEdit();editList();}
+function renderSettings(){$("cName").value=S.profile.name||"";bikeBtns();$("cMpg").value=S.cfg.mpg;$("cGas").value=S.cfg.gas;$("cBoost").value=S.cfg.boost;$("cClassic").value=classicX();$("cDist").value=S.cfg.dist;$("cFuel").value=S.cfg.fuel;$("cTemp").value=S.cfg.temp;$("cCur").value=S.cfg.cur;if($("cCur").value!==S.cfg.cur){const o=document.createElement("option");o.value=o.textContent=S.cfg.cur;$("cCur").appendChild(o);$("cCur").value=S.cfg.cur;}$("cAnn").value=String(S.cfg.announce);$("cVoice").value=S.cfg.voice?"1":"0";$("cSound").checked=!!S.cfg.sound;$("cLights").checked=!!S.cfg.lights;$("cMap").checked=!!S.cfg.map;$("cAnim").checked=!!S.cfg.anim;themePick();condEdit();editList();}
 function bikeBtns(){$("bE").className=S.cfg.bike==="ebike"?"on":"";$("bC").className=S.cfg.bike==="classic"?"on":"";}
 $("bE").onclick=()=>{sfx.click();S.cfg.bike="ebike";save();bikeBtns();renderRide();};
 $("bC").onclick=()=>{sfx.click();S.cfg.bike="classic";save();bikeBtns();renderRide();};
-function saveCfg(quiet){S.profile.name=$("cName").value.trim().slice(0,20);S.cfg.mpg=+$("cMpg").value||25;S.cfg.gas=+$("cGas").value||3.5;S.cfg.boost=+$("cBoost").value||1;{const v=+$("cClassic").value;S.cfg.classicX=v>=1&&v<=3?v:(v>3?3:1.5);}S.cfg.announce=+$("cAnn").value;S.cfg.voice=$("cVoice").value==="1";S.cfg.sound=$("cSound").checked;S.cfg.lights=$("cLights").checked;S.cfg.map=$("cMap").checked;S.cfg.anim=$("cAnim").checked;save();renderAll();applyAnim();toast(quiet?"Saved <svg class=ico><use href=#i-check></use></svg>":"Settings saved <svg class=ico><use href=#i-check></use></svg>");}
-["cName","cMpg","cGas","cBoost","cClassic","cAnn","cVoice","cSound","cLights","cMap","cAnim"].forEach(id=>$(id).addEventListener("change",()=>saveCfg(true)));
+$("cFuel").addEventListener("change",()=>{const o=fu(),n=FUEL[$("cFuel").value]||FUEL.mpg,mUS=o.toUS(+$("cMpg").value||o.def),pug=o.vol==="gallon"?(+$("cGas").value||o.price):(+$("cGas").value||o.price)*3.785411784;
+ S.cfg.fuel=$("cFuel").value;$("cMpg").value=(+n.fromUS(mUS).toFixed(1));$("cGas").value=(+(n.vol==="gallon"?pug:pug/3.785411784).toFixed(2));saveCfg(true);});
+function saveCfg(quiet){S.profile.name=$("cName").value.trim().slice(0,20);S.cfg.dist=$("cDist").value;S.cfg.temp=$("cTemp").value;S.cfg.cur=$("cCur").value;S.cfg.mpg=+$("cMpg").value||fu().def;S.cfg.gas=+$("cGas").value||fu().price;S.cfg.boost=+$("cBoost").value||1;{const v=+$("cClassic").value;S.cfg.classicX=v>=1&&v<=3?v:(v>3?3:1.5);}S.cfg.announce=+$("cAnn").value;S.cfg.voice=$("cVoice").value==="1";S.cfg.sound=$("cSound").checked;S.cfg.lights=$("cLights").checked;S.cfg.map=$("cMap").checked;S.cfg.anim=$("cAnim").checked;save();applyI18n();renderAll();applyAnim();toast(quiet?"Saved <svg class=ico><use href=#i-check></use></svg>":"Settings saved <svg class=ico><use href=#i-check></use></svg>");}
+["cName","cMpg","cGas","cBoost","cClassic","cDist","cTemp","cCur","cAnn","cVoice","cSound","cLights","cMap","cAnim"].forEach(id=>$(id).addEventListener("change",()=>saveCfg(true)));
 $("closeSet").onclick=()=>{sfx.click();closePage();};
-function condEdit(){$("condEdit").innerHTML=S.conds.map((c,i)=>`<div class="lvl" style="margin:10px 0;align-items:center"><span>${esc(c.n)}<br><span class="small">+${condBonus(c)} pts/mile${c.w?" (auto-detected)":""}</span></span><span class="row" style="flex:0 0 auto;gap:4px"><button class="mini" ${i===0?"disabled":""} onclick="moveCond(${i},-1)" aria-label="Move up">▲</button><button class="mini" ${i===S.conds.length-1?"disabled":""} onclick="moveCond(${i},1)" aria-label="Move down">▼</button><button class="mini" onclick="delCond(${i})">Delete</button></span></div>`).join("")||'<div class="small" style="margin-top:8px">No bonus buttons. Add one below.</div>';}
+function condEdit(){$("condEdit").innerHTML=S.conds.map((c,i)=>`<div class="lvl" style="margin:10px 0;align-items:center"><span>${esc(c.n)}<br><span class="small">+${ppU(condBonus(c))} pts/${uWord()}${c.w?" (auto-detected)":""}</span></span><span class="row" style="flex:0 0 auto;gap:4px"><button class="mini" ${i===0?"disabled":""} onclick="moveCond(${i},-1)" aria-label="Move up">▲</button><button class="mini" ${i===S.conds.length-1?"disabled":""} onclick="moveCond(${i},1)" aria-label="Move down">▼</button><button class="mini" onclick="delCond(${i})">Delete</button></span></div>`).join("")||'<div class="small" style="margin-top:8px">No bonus buttons. Add one below.</div>';}
 function moveCond(i,d){const j=i+d;if(j<0||j>=S.conds.length)return;[S.conds[i],S.conds[j]]=[S.conds[j],S.conds[i]];save();condEdit();renderRide();sfx.click();}
 async function delCond(i){if(await ask("Delete the "+S.conds[i].n+" button?","Delete")){delete act[S.conds[i].n];S.conds.splice(i,1);save();condEdit();renderRide();toast("Button deleted");}}
-$("addCond").onclick=()=>{let n=$("condName").value.trim(),b=Math.round(+$("condPts").value);if(n&&b>0){if(!n.endsWith("?"))n+="?";if(S.conds.some(c=>c.n===n)){toast("You already have that button");return;}S.conds.push({n,b});$("condName").value="";$("condPts").value="";save();condEdit();renderRide();toast("Button added <svg class=ico><use href=#i-check></use></svg>");}else toast("Type a name and bonus points");};
+$("addCond").onclick=()=>{let n=$("condName").value.trim(),b=+((+$("condPts").value)*dk()).toFixed(2);if(n&&b>0){if(!n.endsWith("?"))n+="?";if(S.conds.some(c=>c.n===n)){toast("You already have that button");return;}S.conds.push({n,b});$("condName").value="";$("condPts").value="";save();condEdit();renderRide();toast("Button added <svg class=ico><use href=#i-check></use></svg>");}else toast("Type a name and bonus points");};
 $("resetConds").onclick=async()=>{if(await ask("Put the starting bonus buttons back in their original order? Buttons you added yourself stay, after them.","Reset")){const names=DEFAULT_CONDS.map(d=>d.n);S.conds=DEFAULT_CONDS.map(d=>Object.assign({},d)).concat(S.conds.filter(c=>!names.includes(c.n)&&!c.w));save();condEdit();renderRide();toast("Starting buttons restored <svg class=ico><use href=#i-check></use></svg>");}};
-function editList(){$("prizeEdit").innerHTML=sortedPrizes().map(([n,d,i])=>`<div class="lvl" style="margin:10px 0;align-items:center"><span>${esc(n)}</span><span class="row" style="flex:0 0 auto;gap:4px">$<input type="number" inputmode="decimal" value="${d}" style="width:78px" onchange="setPrice(${i},this.value)"><button class="mini" onclick="delPrize(${i})">Delete</button></span></div>`).join("");}
+function editList(){$("prizeEdit").innerHTML=sortedPrizes().map(([n,d,i])=>`<div class="lvl" style="margin:10px 0;align-items:center"><span>${esc(n)}</span><span class="row" style="flex:0 0 auto;gap:4px">${esc(cur())}<input type="number" inputmode="decimal" value="${d}" style="width:78px" onchange="setPrice(${i},this.value)"><button class="mini" onclick="delPrize(${i})">Delete</button></span></div>`).join("");}
 function setPrice(i,v){if(!S.prizes[i])return;S.prizes[i][1]=+v>0?+v:S.prizes[i][1];save();editList();renderRewards();toast("Price updated <svg class=ico><use href=#i-check></use></svg>");}
 async function delPrize(i){if(S.prizes[i]&&await ask("Delete "+S.prizes[i][0]+"?","Delete")){S.prizes.splice(i,1);save();editList();renderRewards();toast("Prize deleted");}}
 $("addPrize").onclick=()=>{const n=$("newName").value.trim(),d=+$("newUsd").value;if(n&&d>0){S.prizes.push([n,d]);$("newName").value="";$("newUsd").value="";save();editList();renderRewards();toast("Prize added <svg class=ico><use href=#i-check></use></svg>");}else toast("Type a prize name and a price");};
@@ -716,7 +1025,7 @@ function cardData(){const d=shareData||{kind:"totals"},name=S.profile.name,ride=
  const miles=ride?d.miles:S.miles,saved=ride?d.saved:S.carMiles*gasPerMile(),li=ride&&d.li!=null?d.li:levelOf(S.total),rows=[];
  if(saved>0)rows.push(`About ${usd(saved)} in gas saved`);else if(ride)rows.push(d.type==="errand"?"Errand ride":"Ride for fun");
  rows.push(ride?`${d.pts} points earned`:`${S.total.toLocaleString()} points earned`);rows.push(`Level ${li+1} · ${LEVELS[li][1]}`);
- return{ride,label,miles,big:miles>=100?Math.round(miles).toLocaleString():miles.toFixed(1),unit:(miles>=1.05||miles<0.95)?"miles":"mile",rows,stars:starCount()};}
+ return{ride,label,miles,big:miles*dk()>=100?Math.round(miles*dk()).toLocaleString():(miles*dk()).toFixed(1),unit:KM()?"km":((miles>=1.05||miles<0.95)?"miles":"mile"),rows,stars:starCount()};}
 async function drawCard(withRoute){
  const W=1080,H=1350,c=document.createElement("canvas");c.width=W;c.height=H;const x=c.getContext("2d");
  try{await Promise.race([Promise.all([document.fonts.load('700 80px Fredoka'),document.fonts.load('500 40px Fredoka')]),new Promise(r=>setTimeout(r,1200))]);}catch(e){}
@@ -792,8 +1101,8 @@ $("layBg").onclick=()=>{sfx.click();shareLayout="bg";refreshShare();};
 async function copyCaption(quiet){try{await navigator.clipboard.writeText(shareCaption());if(!quiet)toast("Caption copied. Paste it into your post.");return true;}catch(e){if(!quiet)toast("Couldn't copy here. Type a caption in your post instead.");return false;}}
 $("shareCopy").onclick=()=>{sfx.click();copyCaption();};
 function shareCaption(){const d=shareData||{kind:"totals"};
- if(d.kind==="ride"){const td=!d.t||new Date(d.t).toDateString()===new Date().toDateString();return d.saved>0?`Rode my bike instead of driving${td?" today":""}: ${d.miles.toFixed(1)} miles and about ${usd(d.saved)} in gas saved. Tracking it with Pedal Points: ${SITE_URL}`:`Got out for a ${d.miles.toFixed(1)}-mile bike ride${td?" today":""}. Tracking it with Pedal Points: ${SITE_URL}`;}
- return `I've ridden ${S.miles>=100?Math.round(S.miles).toLocaleString():S.miles.toFixed(1)} miles and saved about ${usd(S.carMiles*gasPerMile())} in gas by biking instead of driving. Tracking it with Pedal Points: ${SITE_URL}`;}
+ if(d.kind==="ride"){const td=!d.t||new Date(d.t).toDateString()===new Date().toDateString();return d.saved>0?`Rode my bike instead of driving${td?" today":""}: ${fmtD(d.miles)} and about ${usd(d.saved)} in gas saved. Tracking it with Pedal Points: ${SITE_URL}`:`Got out for a ${KM()?dnum(d.miles)+" km":d.miles.toFixed(1)+"-mile"} bike ride${td?" today":""}. Tracking it with Pedal Points: ${SITE_URL}`;}
+ return `I've ridden ${fmtD(S.miles)} and saved about ${usd(S.carMiles*gasPerMile())} in gas by biking instead of driving. Tracking it with Pedal Points: ${SITE_URL}`;}
 function savePic(){if(!shareBlob)return;const a=document.createElement("a");a.href=URL.createObjectURL(shareBlob);const _d=new Date();a.download="pedal-points-"+_d.getFullYear()+"-"+String(_d.getMonth()+1).padStart(2,"0")+"-"+String(_d.getDate()).padStart(2,"0")+".png";a.click();toast("Picture saved "+`<svg class=ico><use href=#i-check></use></svg>`);}
 /* Some apps (X in particular) fail when a picture and text arrive together,
    so the caption is copied first and a picture-only share is tried as a backup. */
@@ -813,23 +1122,25 @@ $("statsShare").onclick=()=>openShare("totals");
 /* ===== WELCOME + TOUR ===== */
 let wBike=S.cfg.bike;
 function wSet(){$("wE").className=wBike==="ebike"?"on":"";$("wC").className=wBike==="classic"?"on":"";}
-function showWelcome(){$("wName").value=S.profile.name||"";wBike=S.cfg.bike;wSet();$("welcome").classList.add("show");}
+function wFuelUI(){$("wMpg").placeholder="e.g. "+fu().def;$("wGas").placeholder="e.g. "+fu().price.toFixed(2);applyI18n();}
+function showWelcome(){$("wName").value=S.profile.name||"";wBike=S.cfg.bike;wSet();$("wUnits").value=KM()?"metric":(S.cfg.fuel==="mpguk"?"uk":"us");wFuelUI();$("welcome").classList.add("show");}
+$("wUnits").onchange=()=>{const v=$("wUnits").value;if(v==="us")Object.assign(S.cfg,{dist:"mi",fuel:"mpg",temp:"F"});else if(v==="uk")Object.assign(S.cfg,{dist:"mi",fuel:"mpguk",temp:"C",cur:"£"});else Object.assign(S.cfg,{dist:"km",fuel:"l100",temp:"C"});if(v==="us"&&S.cfg.cur==="£")S.cfg.cur="$";if(v!=="uk"&&S.cfg.cur==="£"&&REGION!=="GB")S.cfg.cur="$";wFuelUI();};
 $("wE").onclick=()=>{wBike="ebike";wSet();sfx.click()};$("wC").onclick=()=>{wBike="classic";wSet();sfx.click()};
-$("wGo").onclick=()=>{S.profile.name=$("wName").value.trim().slice(0,20);S.cfg.bike=wBike;const wm=+$("wMpg").value,wg=+$("wGas").value;S.cfg.mpg=wm>0?wm:25;S.cfg.gas=wg>0?wg:3.5;S.profile.setup=true;S.seenHelp=true;save();$("welcome").classList.remove("show");renderAll();sfx.click();showTerms(true);};
-const termsHtml=()=>TERMS.map(([ic,t])=>`<li>${ic} ${t}</li>`).join("");
+$("wGo").onclick=()=>{S.profile.name=$("wName").value.trim().slice(0,20);S.cfg.bike=wBike;const wm=+$("wMpg").value,wg=+$("wGas").value;S.cfg.mpg=wm>0?wm:fu().def;S.cfg.gas=wg>0?wg:fu().price;S.profile.setup=true;S.seenHelp=true;save();$("welcome").classList.remove("show");renderAll();sfx.click();showTerms(true);};
+const termsHtml=()=>TERMS.map(([ic,t])=>`<li>${ic} ${fmt(t)}</li>`).join("");
 let termsThenTour=false;
 function showTerms(thenTour){termsThenTour=thenTour;$("termsList").innerHTML=termsHtml();$("tAgree").checked=false;$("tGo").disabled=true;$("terms").classList.add("show");}
 $("tAgree").onchange=()=>{$("tGo").disabled=!$("tAgree").checked;};
 $("tGo").onclick=()=>{S.profile.agreed=TERMS_VERSION;save();$("terms").classList.remove("show");sfx.fanfare();if(termsThenTour)setTimeout(startTour,400);};
 $("helpTerms").innerHTML=termsHtml();
-const TOUR=[
+const TOUR=STR.en.tour=[
 {tab:"ride",el:"startRow",t:"Every ride starts here. Tap Start errand ride when the ride replaces a car trip, like the grocery store or post office. It earns double points. Tap Start leisure ride for a fun ride. During a ride, tap Pause when you stop somewhere, and Resume when you're back on the bike."},
 {tab:"ride",el:"condRow",t:"Bonus buttons. Cold, heat, rain and snow are picked up from the weather automatically. If rain was missed, tap Raining?. Tap Hauling? when you carry a heavy load, and Windy? when riding into the wind. Gold means on."},
 {tab:"ride",el:"altBikeRow",t:"Riding your other bike today? Tick this box before you start."},
 {tab:"ride",el:"levelCard",t:"Your level, points bank and streak. Tap Daily check-in once a day for a ride tip. Any little i button explains more about that section."},
-{tab:"ride",el:"trailCard",t:"Your road trip. Every mile you ride moves your bike along the road toward the next stop. Finish the whole trip to earn a gold star, then start a new lap."},
+{tab:"ride",el:"trailCard",t:"Your road trip. Every {{u}} you ride moves your bike along the road toward the next stop. Finish the whole trip to earn a gold star, then start a new lap."},
 {tab:"rewards",el:"prizeCard",t:"The Rewards tab: spend points on prizes with Cash in. Please note: points are just a game. They aren't real money, cash or gift cards. Cashing in is your own permission to treat yourself. Weekly quests and your trophy case are here too."},
-{tab:"stats",el:"addRideBtn",t:"The Stats tab shows your miles, the approximate gas money you've saved, and your last five rides, each with a Share button. Forgot to track a ride? Add it here."},
+{tab:"stats",el:"addRideBtn",t:"The Stats tab shows your {{U}}, the approximate gas money you've saved, and your last five rides, each with a Share button. Forgot to track a ride? Add it here."},
 {tab:"ride",el:"tabbar",top:true,t:"Switch between Ride, Rewards and Stats here, or swipe left and right."},
 {tab:"ride",el:"gearBtn",t:"The <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button opens Settings: your name, bike, car, theme, prizes, bonus buttons, phone battery saver and backups. Your changes save automatically. When you're finished, tap Save settings / Done at the bottom to go back."},
 {tab:"ride",el:"helpBtn",t:"Stuck? Tap the <span class=kref>?</span> button in the top left corner any time for step-by-step help, common questions and safety notes. Ride safe and have fun!"}];
@@ -839,7 +1150,7 @@ function tourClear(){if(tourEl){tourEl.classList.remove("spot");if(tourPos!==nul
 function tourShow(){tourClear();const s=TOUR[tourI];showTab(s.tab);const el=$(s.el);
  if(el){tourEl=el;if(getComputedStyle(el).position==="static"){tourPos=el.style.position;el.style.position="relative";}el.classList.add("spot");const w=el.closest(".card");if(w&&w!==el){tourWrap=w;w.classList.add("spotwrap");}if(getComputedStyle(el).position!=="fixed")el.scrollIntoView({block:"center",behavior:"smooth"});}
  const box=$("tourBox");if(s.top){box.style.top="16px";box.style.bottom="auto";}else{box.style.top="auto";box.style.bottom="16px";}
- $("tourStep").textContent=`Quick tour · ${tourI+1} of ${TOUR.length}`;$("tourText").innerHTML=s.t;$("tourNext").textContent=tourI===TOUR.length-1?"Got it, let's ride!":"Next";}
+ $("tourStep").textContent=`Quick tour · ${tourI+1} of ${TOUR.length}`;$("tourText").innerHTML=fmt(s.t);$("tourNext").textContent=tourI===TOUR.length-1?"Got it, let's ride!":"Next";}
 function tourEnd(){tourClear();tourOn=false;$("tourDim").style.display="none";$("tourBox").style.display="none";showTab("ride");}
 $("tourNext").onclick=()=>{sfx.click();if(++tourI>=TOUR.length)tourEnd();else tourShow();};
 $("tourSkip").onclick=()=>{sfx.click();tourEnd();};
@@ -854,7 +1165,7 @@ $("helpBtn").onclick=()=>{sfx.click();if(pageOpen==="help"){closePage();return;}
 $("closeHelp").onclick=()=>{sfx.click();closePage();};
 $("tourAgain").onclick=startTour;$("tourAgain2").onclick=startTour;
 
-S.streak=calcStreak();week();save();renderAll();applyAnim();recoverRide();
+S.streak=calcStreak();week();save();applyI18n();renderAll();applyAnim();recoverRide();
 if(!S.profile.setup)setTimeout(showWelcome,300);
 else if((S.profile.agreed||0)<TERMS_VERSION)setTimeout(()=>showTerms(false),300);
 </script></body></html>

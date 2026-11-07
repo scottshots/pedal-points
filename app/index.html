@@ -456,7 +456,7 @@ body.noanim #statWheel .spin{animation:none}
 
 <script>
 /* App version: raise this with every update. It shows in Help > About. */
-const APP_VERSION="18",APP_DATE="Nov 2026";
+const APP_VERSION="19",APP_DATE="Nov 2026";
 const $=id=>document.getElementById(id);
 /* ===== TEXT TABLE =====
    All on-screen text lives in STR, by language. STR.en.ui holds the page text (keyed by data-t / data-tp),
@@ -746,7 +746,10 @@ const STR={en:{ui:{
 "ph_e_g_3_50": "e.g. 3.50"
 }}};
 let LANG="en";
-const T=k=>((STR[LANG]&&STR[LANG].ui)||{})[k]??STR.en.ui[k];
+const T=k=>(typeof NATIVE!=="undefined"&&NATIVE&&typeof NATIVE_TXT!=="undefined"&&NATIVE_TXT[k])||((STR[LANG]&&STR[LANG].ui)||{})[k]||STR.en.ui[k];
+/* Installed app wording: rides keep counting with the screen off, and backups go to Documents. */
+const NATIVE_TXT={"save_a_backup_file_to":"Your points back up automatically after every ride to your phone's <b>Documents › Pedal Points</b> folder. Tap Save backup file to make a dated copy and send it somewhere safe, like your email or Google Drive.",
+ "4_while_you_ride_keep":"<b>4. While you ride:</b> put your phone in a handlebar mount or your pocket. Your {{U}} keep counting even with the screen off or another app open, and a notification shows a ride is in progress. Never handle your phone while moving. A live map pops up right under the Pause and End ride buttons."};
 function applyI18n(){document.querySelectorAll("[data-t]").forEach(e=>{const v=T(e.dataset.t);if(v!=null)e.innerHTML=fmt(v);});document.querySelectorAll("[data-tp]").forEach(e=>{const v=T(e.dataset.tp);if(v!=null)e.placeholder=fmt(v);});if(typeof setCxText==="function")setCxText();}
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
@@ -956,12 +959,24 @@ function mapUpdate(c){if(!map||!S.cfg.map||!riding)return;const ll=[c.latitude,c
 function mapStop(){$("mapCard").style.display="none";mapPts=[];}
 /* Battery: pause the moving pictures during rides or when turned off */
 function applyAnim(){const on=!!S.cfg.anim&&!riding;document.body.classList.toggle("noanim",!on);const sv=$("hills");try{on?sv.unpauseAnimations():sv.pauseAnimations();}catch(e){}}
-async function keepAwake(){try{wake=await navigator.wakeLock.request("screen")}catch(e){}}
+/* ===== ANDROID APP (Capacitor) =====
+   In the installed Android app, rides use a native GPS service that keeps counting with the
+   screen off (with a "ride in progress" notification), and backups save to the phone's
+   Documents > Pedal Points folder, automatically after every ride. In Chrome nothing changes. */
+const CAP=window.Capacitor,NATIVE=!!(CAP&&CAP.isNativePlatform&&CAP.isNativePlatform());
+const NP=n=>(NATIVE&&CAP.Plugins&&CAP.Plugins[n])||null;
+async function keepAwake(){if(NATIVE)return;try{wake=await navigator.wakeLock.request("screen")}catch(e){}}
 document.addEventListener("visibilitychange",()=>{if(riding&&!paused&&document.visibilityState==="visible")keepAwake();if(riding&&document.visibilityState==="hidden")saveActive();});
 
 /* ===== RIDES ===== */
 function watchErr(e){if(paused||!riding)return;toast(e.code===1?"Location is blocked. Tap the <span class=kref>?</span> button (top left), then \"It says there's a location problem.\"":"Still looking for your location. Make sure location is on.");}
-function startWatch(){if(!navigator.geolocation){toast("This phone can't share its location with the app.");return;}watch=navigator.geolocation.watchPosition(onPos,watchErr,{enableHighAccuracy:true,maximumAge:0});}
+async function startWatch(){const BG=NP("BackgroundGeolocation");
+ if(BG){try{const LN=NP("LocalNotifications");if(LN){const p=await LN.checkPermissions();if(p.display!=="granted")await LN.requestPermissions();}}catch(e){}
+  try{const id=await BG.addWatcher({backgroundTitle:"Pedal Points: ride in progress",backgroundMessage:"Counting your miles. Tap to open the app.",requestPermissions:true,stale:false,distanceFilter:5},
+    (loc,err)=>{if(err){if(err.code==="NOT_AUTHORIZED")toast("Location is off for Pedal Points. Turn it on in your phone's Settings, then Apps, Pedal Points, Permissions.");return;}
+     if(loc)onPos({coords:{latitude:loc.latitude,longitude:loc.longitude,accuracy:loc.accuracy,altitude:loc.altitude,speed:loc.speed},timestamp:loc.time||Date.now()});});
+   if(!riding||paused){BG.removeWatcher({id});return;}watch={bg:id};}catch(e){toast("GPS couldn't start: "+(e&&e.message||e));}return;}
+ if(!navigator.geolocation){toast("This phone can't share its location with the app.");return;}watch=navigator.geolocation.watchPosition(onPos,watchErr,{enableHighAccuracy:true,maximumAge:0});}
 function rideUI(){$("rideBtns").style.display=riding?"flex":"none";$("altBikeRow").style.display=riding?"none":"";$("startRow").style.display=riding?"none":"flex";$("liveRow").style.display=riding?"flex":"none";$("pausedMsg").style.display=riding&&paused?"block":"none";
  $("btnPause").innerHTML=paused?`<svg class=ico><use href=#i-play></use></svg> Resume`:`<svg class=ico><use href=#i-pause></use></svg> Pause`;$("btnPause").className="big"+(paused?" go":"");$("btnPause").style.background=paused?"":"#c98a12";$("btnPause").style.borderColor=paused?"":"#ffd54a";}
 /* A ride in progress is saved on the phone (miles and points only, never the route),
@@ -971,7 +986,8 @@ async function start(t){sfx.click();type=t;riding=true;paused=false;rideTrack=[]
 rideUI();liveNums();renderRide();applyAnim();mapStart();showTab("ride");window.scrollTo(0,0);
 await keepAwake();startWatch();saveActive();
 say(t==="errand"?"Errand ride started. Let's earn some points.":"Ride started. Let's earn some points.");}
-function pauseRide(){if(!riding||paused)return;sfx.click();paused=true;if(watch!=null)navigator.geolocation.clearWatch(watch);watch=null;try{wake&&wake.release()}catch(e){}wake=null;last=null;lastAlt=null;
+function stopWatch(){if(watch==null)return;const w=watch;watch=null;if(w&&w.bg){try{NP("BackgroundGeolocation").removeWatcher({id:w.bg});}catch(e){}}else{try{navigator.geolocation.clearWatch(w);}catch(e){}}}
+function pauseRide(){if(!riding||paused)return;sfx.click();paused=true;stopWatch();try{wake&&wake.release()}catch(e){}wake=null;last=null;lastAlt=null;
  saveActive();rideUI();say("Ride paused.");}
 async function resumeRide(){if(!riding||!paused)return;sfx.click();paused=false;last=null;lastAlt=null;spdWin=[];rideUI();if(S.cfg.map&&$("mapCard").style.display==="none")mapStart();
  await keepAwake();startWatch();saveActive();say("Ride resumed.");}
@@ -979,7 +995,7 @@ $("btnPause").onclick=()=>paused?resumeRide():pauseRide();
 function recoverRide(){const a=S.activeRide;if(!a)return;type=a.type||"leisure";dist=a.dist||0;pts=a.pts||0;climb=a.climb||0;maxSpd=a.maxSpd||0;spdWin=[];nextAnn=a.nextAnn||0;act=a.act||{};M=a.M||{};
  $("altBike").checked=!!a.alt;riding=true;paused=true;rideTrack=[];last=null;lastAlt=null;rideUI();liveNums();renderRide();
  setTimeout(()=>toast(`Your ${type} ride is paused at ${fmtD(dist,2)}. Tap Resume to keep going, or End ride to finish.`),600);}
-function end(){sfx.click();riding=false;paused=false;delete S.activeRide;save();if(watch!=null)navigator.geolocation.clearWatch(watch);watch=null;try{wake&&wake.release()}catch(e){}wake=null;
+function end(){sfx.click();riding=false;paused=false;delete S.activeRide;save();stopWatch();try{wake&&wake.release()}catch(e){}wake=null;
 rideUI();applyAnim();
 if(dist<0.05){toast("That ride was too short to count. Check that location is allowed.");}
 else{const c=liveCtx(),now=new Date();lastRoute=rideTrack.slice();awardRide({miles:dist,points:pts,climb,type,night:c.night,early:!!wx.sunrise&&now.getTime()>wx.sunrise&&now.getHours()<9,snow:!!wx.snow,rain:!!wx.rain,temp:wx.temp,haul:!!act["Hauling?"],classic:c.classic,winter:c.winter,extras:S.conds.filter(x=>!x.w&&act[x.n]&&x.n!=="Hauling?").map(x=>x.n.replace("?","")),ms:maxSpd,when:now});pendingBackup=true;}
@@ -1259,9 +1275,18 @@ $("addPrize").onclick=()=>{const n=$("newName").value.trim(),d=+$("newUsd").valu
 /* ===== BACKUP =====
    BACKUP HOOK: in a future native app, replace saveBackup() with a silent overwrite
    or Google Drive / iCloud sync, and set AUTO_BACKUP=true. */
-const AUTO_BACKUP=false,REMIND_EVERY=5;
-async function afterRide(){S.ridesSinceBackup=(S.ridesSinceBackup||0)+1;save();if(AUTO_BACKUP)saveBackup();else if(S.ridesSinceBackup>=REMIND_EVERY&&await ask(S.ridesSinceBackup+" rides since your last backup. Save a backup file now?","Save backup","Later"))saveBackup();}
-function saveBackup(){S.ridesSinceBackup=0;save();const b=new Blob([JSON.stringify(S,null,1)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(b);const _d=new Date();a.download="pedal-points-backup-"+_d.getFullYear()+"-"+String(_d.getMonth()+1).padStart(2,"0")+"-"+String(_d.getDate()).padStart(2,"0")+".json";a.click();toast("Backup saved to your phone's <b>Downloads</b> folder as "+a.download);}
+const AUTO_BACKUP=NATIVE,REMIND_EVERY=5;
+async function afterRide(){S.ridesSinceBackup=(S.ridesSinceBackup||0)+1;save();if(AUTO_BACKUP){if(await nativeBackup("pedal-points-auto-backup.json")){S.ridesSinceBackup=0;save();}}else if(S.ridesSinceBackup>=REMIND_EVERY&&await ask(S.ridesSinceBackup+" rides since your last backup. Save a backup file now?","Save backup","Later"))saveBackup();}
+const backupName=()=>{const d=new Date();return "pedal-points-backup-"+d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")+".json";};
+/* Installed app: write the backup to Documents/Pedal Points on the phone. Returns the file's uri, or null. */
+async function nativeBackup(name){const FS=NP("Filesystem");if(!FS)return null;try{const path="Pedal Points/"+name;
+ await FS.writeFile({path,data:JSON.stringify(S,null,1),directory:"DOCUMENTS",encoding:"utf8",recursive:true});const u=await FS.getUri({path,directory:"DOCUMENTS"});return (u&&u.uri)||path;}catch(e){return null;}}
+async function saveBackup(){if(NATIVE&&NP("Filesystem")){const name=backupName(),uri=await nativeBackup(name);
+  if(!uri){toast("The backup couldn't be saved. Try again, or check the app's storage permission.");return;}
+  S.ridesSinceBackup=0;save();toast("Backup saved in your phone's <b>Documents › Pedal Points</b> folder as "+name);
+  const SH=NP("Share");if(SH&&await ask("Backup saved on this phone. Also send a copy somewhere safe, like your email or Google Drive?","Send a copy","No thanks")){try{await SH.share({title:"Pedal Points backup",files:[uri]});}catch(e){}}
+  return;}
+ S.ridesSinceBackup=0;save();const b=new Blob([JSON.stringify(S,null,1)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(b);const _d=new Date();a.download="pedal-points-backup-"+_d.getFullYear()+"-"+String(_d.getMonth()+1).padStart(2,"0")+"-"+String(_d.getDate()).padStart(2,"0")+".json";a.click();toast("Backup saved to your phone's <b>Downloads</b> folder as "+a.download);}
 $("backup").onclick=saveBackup;
 $("restoreBtn").onclick=()=>$("restoreFile").click();
 $("restoreFile").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=async()=>{let d;try{d=JSON.parse(r.result);if(d.bank==null)throw 0;}catch(x){toast("That doesn't look like a Pedal Points backup file.");return;}if(await ask("Replace the points on this phone with this backup?","Replace")){localStorage.setItem("pur",JSON.stringify(d));location.reload();}};r.readAsText(f);};
@@ -1362,10 +1387,18 @@ $("shareCopy").onclick=()=>{sfx.click();copyCaption();};
 function shareCaption(){const d=shareData||{kind:"totals"};
  if(d.kind==="ride"){const td=!d.t||new Date(d.t).toDateString()===new Date().toDateString();return d.saved>0?`Rode my bike instead of driving${td?" today":""}: ${fmtD(d.miles)} and about ${usd(d.saved)} in gas saved. Tracking it with Pedal Points: ${SITE_URL}`:`Got out for a ${KM()?dnum(d.miles)+" km":d.miles.toFixed(1)+"-mile"} bike ride${td?" today":""}. Tracking it with Pedal Points: ${SITE_URL}`;}
  return `I've ridden ${fmtD(S.miles)} and saved about ${usd(S.carMiles*gasPerMile())} in gas by biking instead of driving. Tracking it with Pedal Points: ${SITE_URL}`;}
-function savePic(){if(!shareBlob)return;const a=document.createElement("a");a.href=URL.createObjectURL(shareBlob);const _d=new Date();a.download="pedal-points-"+_d.getFullYear()+"-"+String(_d.getMonth()+1).padStart(2,"0")+"-"+String(_d.getDate()).padStart(2,"0")+".png";a.click();toast("Picture saved "+`<svg class=ico><use href=#i-check></use></svg>`);}
+/* Installed app: Android's web view can't download files or use the web share menu, so the
+   share card is saved with the Filesystem plugin and sent with the native Share plugin. */
+const blobB64=b=>new Promise(r=>{const f=new FileReader();f.onload=()=>r(String(f.result).split(",")[1]);f.readAsDataURL(b);});
+async function nativeShareCard(){const FS=NP("Filesystem"),SH=NP("Share");if(!FS||!SH||!shareBlob)return false;
+ try{await FS.writeFile({path:"pedal-points.png",data:await blobB64(shareBlob),directory:"CACHE"});const u=await FS.getUri({path:"pedal-points.png",directory:"CACHE"});
+  await SH.share({title:"Pedal Points",text:shareCaption(),files:[u.uri]});}catch(e){if(!/cancel/i.test(String(e&&e.message||e)))toast("Sharing didn't work. Try Save picture instead.");}return true;}
+async function nativeSavePic(){const FS=NP("Filesystem");if(!FS||!shareBlob)return false;const d=new Date(),name="pedal-points-"+d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")+"-"+d.getHours()+d.getMinutes()+".png";
+ try{await FS.writeFile({path:"Pedal Points/"+name,data:await blobB64(shareBlob),directory:"DOCUMENTS",recursive:true});toast("Picture saved in your phone's <b>Documents › Pedal Points</b> folder");}catch(e){toast("The picture couldn't be saved.");}return true;}
+function savePic(){if(!shareBlob)return;if(NATIVE&&NP("Filesystem")){nativeSavePic();return;}const a=document.createElement("a");a.href=URL.createObjectURL(shareBlob);const _d=new Date();a.download="pedal-points-"+_d.getFullYear()+"-"+String(_d.getMonth()+1).padStart(2,"0")+"-"+String(_d.getDate()).padStart(2,"0")+".png";a.click();toast("Picture saved "+`<svg class=ico><use href=#i-check></use></svg>`);}
 /* Some apps (X in particular) fail when a picture and text arrive together,
    so the caption is copied first and a picture-only share is tried as a backup. */
-$("shareGo").onclick=async()=>{sfx.click();if(!shareBlob)return;const cap=shareCaption(),file=new File([shareBlob],"pedal-points.png",{type:"image/png"});
+$("shareGo").onclick=async()=>{sfx.click();if(!shareBlob)return;if(NATIVE&&await nativeShareCard())return;const cap=shareCaption(),file=new File([shareBlob],"pedal-points.png",{type:"image/png"});
  const copied=await copyCaption(true);
  if(navigator.canShare&&navigator.canShare({files:[file]})){
   try{await navigator.share({files:[file],text:cap});return;}catch(e){if(e&&e.name==="AbortError")return;}

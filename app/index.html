@@ -920,7 +920,7 @@ async function getWx(lat,lon){try{const r=await fetch(`https://api.open-meteo.co
 wx={temp:j.current.temperature_2m,snow:[71,73,75,77,85,86].includes(c),rain:[51,53,55,61,63,65,66,67,80,81,82].includes(c),sunrise:new Date(j.daily.sunrise[0]).getTime(),sunset:new Date(j.daily.sunset[0]).getTime()};
 if(M.on){wx.snow=M.snow;wx.rain=M.rain;}renderRide();}catch(e){}}
 function onPos(p){if(paused||!riding)return;const c=p.coords;if(c.accuracy>30)return;
-if(!last){last=c;lastT=p.timestamp||Date.now();spdWin=[];rideTrack.push([c.latitude,c.longitude]);getWx(c.latitude,c.longitude);mapUpdate(c);return;}
+if(!last){last=c;lastT=p.timestamp||Date.now();spdWin=[];rideTrack.push([c.latitude,c.longitude]);getWx(c.latitude.toFixed(2),c.longitude.toFixed(2));mapUpdate(c);return;}
 const d=hav(last,c);if(d<0.005)return;
 {const t=p.timestamp||Date.now();if(lastT&&t>lastT&&d/((t-lastT)/3.6e6)>SPD_GLITCH){last=c;lastT=t;lastAlt=null;spdWin=[];return;}
  trackSpeed(c,d,t);lastT=t;}

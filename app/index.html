@@ -1264,6 +1264,14 @@ function closeTopBox(){const o=openBoxes(),top=o[o.length-1];if(!top)return fals
  if(top.id==="terms"&&$("tLater").style.display==="none"){ovGuard=false;ovSync();return true;}
  if(top.id==="welcome"){ovGuard=false;ovSync();return true;}
  if(b)b.click();else top.classList.remove("show");return true;}
+/* In the Android app (with the Capacitor App plugin), the phone's Back button comes here:
+   close the top box or page first; on the Ride tab, leave the app (just tuck it away during a ride). */
+{const AP=NP("App");if(AP){try{AP.addListener("backButton",()=>{
+ if(openBoxes().length){closeTopBox();setTimeout(ovSync,50);return;}
+ if(pageOpen){closePage();return;}
+ if(curTab!=="ride"){showTab("ride");return;}
+ if(riding){try{AP.minimizeApp();}catch(e){}return;}
+ try{AP.exitApp();}catch(e){}});}catch(e){}}}
 window.addEventListener("popstate",()=>{if(ovSkip){ovSkip=false;return;}if(ovGuard){ovGuard=false;closeTopBox();setTimeout(ovSync,50);return;}if(pageOpen)hidePages();});
 let tx=null,ty=null;
 document.addEventListener("touchstart",e=>{if(pageOpen||tourOn){tx=null;return;}tx=e.touches[0].clientX;ty=e.touches[0].clientY;},{passive:true});

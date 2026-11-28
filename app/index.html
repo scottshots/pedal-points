@@ -217,6 +217,7 @@ body.noanim #statWheel .spin{animation:none}
  <div class="chips" id="heroChips"><span class="chip" id="streakTxt"></span><button class="chip ci" id="dailyBtn" style="display:none"><svg class=ico><use href=#i-checkin></use></svg> Daily tip</button></div></div>
 <div class="card" id="rideCard">
  <div class="row" id="startRow"><button class="big go pulse" id="sErrand"><span class="ic"><svg class=ico><use href=#i-cart></use></svg></span>Start errand ride</button><button class="big go pulse" id="sLeisure"><span class="ic"><svg class=ico><use href=#i-tree></use></svg></span>Start leisure ride</button></div>
+ <div id="firstHint" class="small" style="display:none;text-align:center;margin:6px 0 0;opacity:.9">New here? Tap <b>Start errand ride</b> on your next car-free trip to earn your first points.</div>
  <div class="row" id="rideBtns" style="display:none"><button class="big" id="btnPause" style="background:#c98a12;border-color:#ffd54a"><svg class=ico><use href=#i-pause></use></svg> Pause</button><button data-t="end_ride" class="big stop" id="btnEnd"><svg class=ico><use href=#i-flag></use></svg> End ride</button></div>
  <div id="gpsMsg" class="small" role="status" style="display:none;text-align:center;margin:4px 0 8px;color:var(--gold)">Weak GPS signal. Miles will start counting again when the signal improves.</div>
 <div data-t="paused_your_screen_can_turn" class="small" id="pausedMsg" style="display:none;text-align:center;margin:4px 0 8px;color:var(--gold)">Paused. Your screen can turn off now, and walking around won't count. Tap Resume when you're back on the bike.</div>
@@ -449,7 +450,7 @@ body.noanim #statWheel .spin{animation:none}
 <div class="small" style="text-align:center">The details are below. Scroll to read them all.</div>
 <ul class="terms" id="termsList"></ul>
 <div class="termsFoot"><label class="check" style="font-weight:600;justify-content:flex-start"><input type="checkbox" id="tAgree"> <span data-t="i_ve_read_this_and">I've read this and I understand</span></label>
-<button data-t="continue" class="big go" id="tGo">Continue</button></div>
+<button data-t="continue" class="big go" id="tGo">Continue</button><button class="ghost" id="tLater" style="display:none">Not now</button></div>
 </div></div>
 
 <div class="overlay" id="iconBox" style="z-index:2560"><div class="pop"><h2 id="iconTitle" style="font-size:1.1em">Pick an icon</h2><div class="icongrid" id="iconGrid"></div><button class="ghost" onclick="$('iconBox').classList.remove('show')">Cancel</button></div></div>
@@ -499,7 +500,7 @@ body.noanim #statWheel .spin{animation:none}
 
 <script>
 /* App version: raise this with every update. It shows in Help > About. */
-const APP_VERSION="25",APP_DATE="Nov 2026";
+const APP_VERSION="26",APP_DATE="Nov 2026";
 const $=id=>document.getElementById(id);
 /* ===== TEXT TABLE =====
    All on-screen text lives in STR, by language. STR.en.ui holds the page text (keyed by data-t / data-tp),
@@ -951,6 +952,11 @@ const QUESTS=STR.en.quests=[
 function weekId(){const d=new Date(),ws=S.cfg&&S.cfg.ws===0?0:1;d.setHours(0,0,0,0);d.setDate(d.getDate()-(d.getDay()-ws+7)%7);return d.toDateString();}
 function week(){if(S.week.id!==weekId())S.week={id:weekId(),errands:0,long:0,miles:0,rides:0,days:[],done:[]};return S.week;}
 function qVal(q){const w=week();return q.key==="days"?w.days.length:(w[q.key]||0);}
+/* Kilometer riders get round quest numbers (5 km, 25 km) instead of converted miles. Goals are kept in miles inside the app. */
+const longMi=()=>KM()?5/1.609344:3;
+function qGoal(q){return q.key==="miles"&&KM()?25/1.609344:q.goal;}
+function qText(q){if(KM()){if(q.id==="long1")return"Do one ride of 5 km or more";if(q.id==="mi15")return"Ride 25 km";}return fmt(q.t);}
+function qShow(q,v){return q.key==="miles"?`${dnum(v)}/${KM()?25:q.goal}`:`${v}/${q.goal}`;}
 function weekStartOf(ds){const d=new Date(ds);d.setHours(0,0,0,0);d.setDate(d.getDate()-(d.getDay()+6)%7);return d.getTime();}
 function rainOrShine(){const ws=new Set(S.days.map(weekStartOf));let t=weekStartOf(new Date().toDateString());for(let i=0;i<4;i++){if(!ws.has(t))return false;const d=new Date(t);d.setDate(d.getDate()-7);t=d.getTime();}return true;}
 function weekendPair(ds){const d=new Date(ds),o=new Date(ds);if(d.getDay()===6)o.setDate(o.getDate()+1);else if(d.getDay()===0)o.setDate(o.getDate()-1);else return false;return S.days.includes(o.toDateString());}
@@ -975,8 +981,20 @@ wx={temp:j.current.temperature_2m,snow:[71,73,75,77,85,86].includes(c),rain:[51,
 if(M.on){wx.snow=M.snow;wx.rain=M.rain;}renderRide();}catch(e){}}
 let goodFixAt=0;
 /* Shows "Weak GPS signal" when no usable GPS reading has come in for 20 seconds of riding. */
-setInterval(()=>{const m=$("gpsMsg");if(!m)return;m.style.display=riding&&!paused&&goodFixAt&&Date.now()-goodFixAt>2e4?"block":"none";},5000);
-function onPos(p){if(paused||!riding)return;const c=p.coords;if(!goodFixAt)goodFixAt=Date.now();if(c.accuracy>50)return;goodFixAt=Date.now();
+let locIsOff=false;
+setInterval(gpsMsgUI,5000);
+function gpsMsgUI(){const m=$("gpsMsg");if(!m)return;
+ if(riding&&locIsOff){m.innerHTML=`Location is off for Pedal Points, so ${uWords()} can't be counted. <button class="mini" onclick="locHelp()" style="width:auto;margin:4px auto 0;display:block">Turn on location</button>`;m.style.display="block";return;}
+ m.textContent=`Weak GPS signal. ${KM()?"Kilometers":"Miles"} will start counting again when the signal improves.`;
+ m.style.display=riding&&!paused&&goodFixAt&&Date.now()-goodFixAt>2e4?"block":"none";}
+/* Location is off or blocked: say so plainly (instead of "weak signal") and offer to turn it on. */
+async function locOff(){if(!riding||paused)return;const first=!locIsOff;locIsOff=true;stopWatch();gpsMsgUI();if(mapReady||$("mapCard").style.display!=="none")$("mapMsg").textContent="Location is off, so the map can't show where you are.";
+ if(first)locHelp();}
+async function locHelp(){const BG=NP("BackgroundGeolocation");
+ if(BG){if(await ask(`Pedal Points needs your location to count ${uWords()}, and it's turned off. Turn it on in your phone's settings: Permissions, then Location, then Allow.`,"Open settings","Not now")){try{await BG.openSettings();}catch(e){toast("Open your phone's Settings, then Apps, Pedal Points, Permissions, Location.");}}return;}
+ $("infoTitle").innerHTML=`<svg class=ico><use href=#i-pin></use></svg> Turn on location`;$("infoBody").innerHTML=`<p>Pedal Points needs your location to count ${uWords()}, and it's blocked right now.</p><p>In Chrome, tap the icon to the left of the web address, then Permissions (or Site settings), and set Location to Allow. Also make sure location is on in your phone's settings. Then come back and tap Resume or start a new ride.</p>`;$("infoBox").classList.add("show");}
+async function locBlockedWeb(){if(NATIVE)return false;try{const r=await navigator.permissions.query({name:"geolocation"});return r.state==="denied";}catch(e){return false;}}
+function onPos(p){if(paused||!riding)return;if(locIsOff){locIsOff=false;gpsMsgUI();}const c=p.coords;if(!goodFixAt)goodFixAt=Date.now();if(c.accuracy>50)return;goodFixAt=Date.now();
 if(!last){last=c;lastT=p.timestamp||Date.now();spdWin=[];rideTrack.push([c.latitude,c.longitude]);getWx(c.latitude.toFixed(2),c.longitude.toFixed(2));mapUpdate(c);return;}
 const d=hav(last,c);if(d<Math.max(0.005,(+c.accuracy||0)/1609.34))return;
 {const t=p.timestamp||Date.now();if(lastT&&t>lastT&&d/((t-lastT)/3.6e6)>DIST_GLITCH){spdWin=[];if(++badFix>=3){last=c;lastT=t;lastAlt=null;badFix=0;}return;}badFix=0;
@@ -1018,18 +1036,18 @@ async function mapStart(){$("mapShow").style.display=riding&&!S.cfg.map?"":"none
  if(!canGL()){$("mapMsg").textContent=NO_MAP_MSG;return;}
  try{await loadMapLib();}catch(e){$("mapMsg").textContent="The map couldn't load. Your miles are still being counted.";return;}
  if(!riding)return;
- if(!map){try{map=new maplibregl.Map({container:"map",style:MAP_STYLE,center:[-98.35,39.5],zoom:3,attributionControl:{compact:true},dragRotate:false,pitchWithRotate:false,touchPitch:false});
+ if(!map){$("map").style.visibility="hidden";try{map=new maplibregl.Map({container:"map",style:MAP_STYLE,center:[-98.35,39.5],zoom:3,attributionControl:{compact:true},dragRotate:false,pitchWithRotate:false,touchPitch:false});
    map.touchZoomRotate.disableRotation();
    map.on("load",()=>{map.addSource("route",{type:"geojson",data:routeGeo()});map.addLayer({id:"route",type:"line",source:"route",layout:{"line-cap":"round","line-join":"round"},paint:{"line-color":"#ffd54a","line-width":5}});
     map.addSource("me",{type:"geojson",data:meGeo()});map.addLayer({id:"me",type:"circle",source:"me",paint:{"circle-radius":8,"circle-color":"#2e86ff","circle-stroke-color":"#ffffff","circle-stroke-width":3}});mapReady=true;mapDraw(true);});
    map.on("error",()=>{if(!mapReady)$("mapMsg").textContent="The map couldn't load. Your miles are still being counted.";});
   }catch(e){map=null;$("mapMsg").textContent=NO_MAP_MSG;return;}}
- else{map.resize();if(mapReady){mapDraw(true);if(!mapPts.length)$("mapMsg").textContent="Finding you…";}}}
+ else{map.resize();if(!mapPts.length)$("map").style.visibility="hidden";if(mapReady){mapDraw(true);if(!mapPts.length)$("mapMsg").textContent="Finding you…";}}}
 const routeGeo=()=>({type:"Feature",geometry:{type:"LineString",coordinates:mapPts.length>1?mapPts:[]}});
 const meGeo=()=>({type:"FeatureCollection",features:mapPts.length?[{type:"Feature",geometry:{type:"Point",coordinates:mapPts[mapPts.length-1]}}]:[]});
 let lastDraw=0;
 function mapDraw(jump){if(!map||!mapReady)return;if(!mapPts.length){try{map.getSource("route").setData(routeGeo());map.getSource("me").setData(meGeo());}catch(e){}return;}if(!jump&&Date.now()-lastDraw<3000)return;lastDraw=Date.now();const ll=mapPts[mapPts.length-1];try{map.getSource("route").setData(routeGeo());map.getSource("me").setData(meGeo());}catch(e){}
- if(jump){map.jumpTo({center:ll,zoom:16});$("mapMsg").textContent="The gold line is the route you've ridden so far. It's private: never saved or sent anywhere.";}
+ if(jump){map.jumpTo({center:ll,zoom:16});$("map").style.visibility="";$("mapMsg").textContent="The gold line is the route you've ridden so far. It's private: never saved or sent anywhere.";}
  else{const now=Date.now();if(now-lastPan>3000&&!map.getBounds().contains(ll)){map.panTo(ll,{animate:false});lastPan=now;}}}
 function mapUpdate(c){if(!riding)return;mapPts.push([c.longitude,c.latitude]);
  if(mapPts.length>3000)mapPts=mapPts.filter((p,i)=>i%2===0||i===mapPts.length-1);
@@ -1048,14 +1066,14 @@ const NP=n=>(NATIVE&&CAP.Plugins&&CAP.Plugins[n])||null;
 if(NATIVE){document.body.classList.add("native");try{localStorage.setItem("ppAndroid","1")}catch(e){}}
 else{try{if(localStorage.getItem("ppAndroid")||/; wv\)/.test(navigator.userAgent))document.body.classList.add("native");}catch(e){}}
 async function keepAwake(){if(NATIVE)return;try{wake=await navigator.wakeLock.request("screen")}catch(e){}}
-document.addEventListener("visibilitychange",()=>{if(riding&&!paused&&document.visibilityState==="visible")keepAwake();if(riding&&document.visibilityState==="hidden")saveActive();});
+document.addEventListener("visibilitychange",()=>{if(riding&&!paused&&document.visibilityState==="visible"&&locIsOff){stopWatch();startWatch();}if(riding&&!paused&&document.visibilityState==="visible")keepAwake();if(riding&&document.visibilityState==="hidden")saveActive();});
 
 /* ===== RIDES ===== */
-function watchErr(e){if(paused||!riding)return;toast(e.code===1?"Location is blocked. Tap the <span class=kref>?</span> button (top left), then \"It says there's a location problem.\"":"Still looking for your location. Make sure location is on.");}
+function watchErr(e){if(paused||!riding)return;if(e.code===1){locOff();return;}toast(e.code===1?"Location is blocked. Tap the <span class=kref>?</span> button (top left), then \"It says there's a location problem.\"":"Still looking for your location. Make sure location is on.");}
 async function startWatch(){const BG=NP("BackgroundGeolocation");
  if(BG){try{const LN=NP("LocalNotifications");if(LN){const p=await LN.checkPermissions();if(p.display!=="granted")await LN.requestPermissions();}}catch(e){}
   try{const id=await BG.addWatcher({backgroundTitle:"Pedal Points: ride in progress",backgroundMessage:"Counting your miles. Tap to open the app.",requestPermissions:true,stale:false,distanceFilter:5},
-    (loc,err)=>{if(err){if(err.code==="NOT_AUTHORIZED")toast("Location is off for Pedal Points. Turn it on in your phone's Settings, then Apps, Pedal Points, Permissions.");return;}
+    (loc,err)=>{if(err){if(err.code==="NOT_AUTHORIZED")locOff();return;}locIsOff=false;
      if(loc)onPos({coords:{latitude:loc.latitude,longitude:loc.longitude,accuracy:loc.accuracy,altitude:loc.altitude,speed:loc.speed},timestamp:loc.time||Date.now()});});
    if(!riding||paused){BG.removeWatcher({id});return;}watch={bg:id};}catch(e){toast("GPS couldn't start: "+(e&&e.message||e));}return;}
  if(!navigator.geolocation){toast("This phone can't share its location with the app.");return;}watch=navigator.geolocation.watchPosition(onPos,watchErr,{enableHighAccuracy:true,maximumAge:0});}
@@ -1064,7 +1082,10 @@ function rideUI(){$("rideBtns").style.display=riding?"flex":"none";$("altPill").
 /* A ride in progress is saved on the phone (miles and points only, never the route),
    so it survives a pause or Chrome closing the app. */
 function saveActive(){if(!riding)return;S.activeRide={type,dist,pts,climb,maxSpd,nextAnn,act,M,alt:$("altBike").checked,at:Date.now()};lastActiveSave=Date.now();save();}
-async function start(t){sfx.click();type=t;riding=true;paused=false;rideTrack=[];mapPts=[];badFix=0;goodFixAt=Date.now();recAt=0;dist=0;pts=0;climb=0;maxSpd=0;spdWin=[];last=null;lastAlt=null;nextAnn=+S.cfg.announce||0;
+async function start(t){sfx.click();
+ if((S.profile.agreed||0)<TERMS_VERSION){showTerms(false,()=>start(t));return;}
+ if(await locBlockedWeb()){locIsOff=true;locHelp();return;}
+ locIsOff=false;type=t;riding=true;paused=false;rideTrack=[];mapPts=[];badFix=0;goodFixAt=Date.now();recAt=0;dist=0;pts=0;climb=0;maxSpd=0;spdWin=[];last=null;lastAlt=null;nextAnn=+S.cfg.announce||0;
 rideUI();liveNums();renderRide();applyAnim();mapStart();showTab("ride");window.scrollTo(0,0);
 await keepAwake();startWatch();saveActive();
 say(t==="errand"?"Errand ride started. Let's earn some points.":"Ride started. Let's earn some points.");}
@@ -1085,7 +1106,9 @@ async function end(){sfx.click();
   if(!await ask(`This ride was paused ${ago} ago. Count its ${fmtD(dist,2)} today, or throw it away?`,"Count it today","Throw it away")){dist=0;pts=0;recAt=0;riding=false;paused=false;stopWatch();try{wake&&wake.release()}catch(e){}wake=null;rideUI();applyAnim();delete S.activeRide;save();mapStop();act={};M={};$("altBike").checked=false;climb=0;maxSpd=0;spdWin=[];liveNums();renderRide();toast("That ride was thrown away.");return;}}
  recAt=0;riding=false;paused=false;stopWatch();try{wake&&wake.release()}catch(e){}wake=null;
 rideUI();applyAnim();
-if(dist<0.05){toast("That ride was too short to count. Check that location is allowed.");}
+if(dist<0.05){$("infoTitle").innerHTML=`<svg class=ico><use href=#i-flag></use></svg> Ride ended`;
+ $("infoBody").innerHTML=locIsOff?`<p>Location was off, so no ${uWords()} were counted and this ride didn't earn points.</p><p>Turn on location for Pedal Points, then start your next ride.</p>`:`<p>This ride didn't earn points: it was under ${fmt("{{d:0.05}}")}, too short to count.</p><p>If you did ride farther, make sure location is allowed, keep the app open, and stay where your phone can see the sky.</p>`;
+ $("infoBox").classList.add("show");locIsOff=false;}
 else{const c=liveCtx(),now=new Date();lastRoute=rideTrack.slice();awardRide({miles:dist,points:pts,climb,type,night:c.night,early:!!wx.sunrise&&now.getTime()>wx.sunrise&&now.getHours()<9,snow:!!wx.snow,rain:!!wx.rain,temp:wx.temp,haul:!!(act["Cargo?"]||act["Hauling?"]),classic:c.classic,winter:c.winter,extras:S.conds.filter(x=>!x.w&&act[x.n]&&!isCargo(x.n)).map(x=>x.n.replace("?","")),ms:maxSpd,when:now});pendingBackup=true;}
 delete S.activeRide;save();
 mapStop();
@@ -1106,8 +1129,8 @@ function awardRide(r){
   if(!S.days.includes(day)){S.days.push(day);if(S.days.length>500)S.days=S.days.slice(-500);S.streak=calcStreak();
    if(S.streak>1){const sb=Math.min(S.streak,7)*10;bonus+=sb;lines.push(`<svg class=ico><use href=#i-flame></use></svg> ${S.streak}-day streak bonus: +${sb}`);}}
   const w=week();
-  if(r.when.getTime()>=new Date(w.id).getTime()){const g0=goalVal(w);w.miles+=miles;w.rides=(w.rides||0)+1;if(r.type==="errand")w.errands++;if(miles>=3)w.long=(w.long||0)+1;if(!w.days.includes(day))w.days.push(day);goalCheck(g0,goalVal(w));}
-  QUESTS.forEach(q=>{if(!w.done.includes(q.id)&&qVal(q)>=q.goal){w.done.push(q.id);bonus+=q.pts;ev.push(`<svg class=ico><use href=#i-target></use></svg> Quest complete: ${fmt(q.t)} (+${q.pts})`);}});
+  if(r.when.getTime()>=new Date(w.id).getTime()){const g0=goalVal(w);w.miles+=miles;w.rides=(w.rides||0)+1;if(r.type==="errand")w.errands++;if(miles>=longMi())w.long=(w.long||0)+1;if(!w.days.includes(day))w.days.push(day);goalCheck(g0,goalVal(w));}
+  QUESTS.forEach(q=>{if(!w.done.includes(q.id)&&qVal(q)>=qGoal(q)-1e-9){w.done.push(q.id);bonus+=q.pts;ev.push(`<svg class=ico><use href=#i-target></use></svg> Quest complete: ${qText(q)} (+${q.pts})`);}});
  }
  const ridePts=Math.round(r.points),total=ridePts+bonus;
  S.bank+=total;S.total+=total;S.miles+=miles;if(miles>=0.05)S.rideCount=(S.rideCount||0)+1;
@@ -1149,7 +1172,7 @@ $("sumOk").onclick=()=>{sfx.click();$("summary").classList.remove("show");if(pen
 /* ===== ADD A RIDE BY HAND ===== */
 let mType="errand";
 function setMType(t){mType=t;$("mErr").className=t==="errand"?"on":"";$("mLei").className=t==="leisure"?"on":"";}
-function openAdd(){sfx.click();$("mMiles").value="";$("mClimb").value="";$("mWhen").value="0";$("mClassic").checked=S.cfg.bike==="classic";$("mNight").checked=false;$("mCold").checked=false;
+function openAdd(){if((S.profile.agreed||0)<TERMS_VERSION){sfx.click();showTerms(false,openAdd);return;}sfx.click();$("mMiles").value="";$("mClimb").value="";$("mWhen").value="0";$("mClassic").checked=S.cfg.bike==="classic";$("mNight").checked=false;$("mCold").checked=false;
  $("mConds").innerHTML=S.conds.map((c,i)=>`<label class="check"><input type="checkbox" data-i="${i}"> <span>${esc(c.n.replace("?",""))} (+${ppU(condBonus(c))} per ${uWord()})</span></label>`).join("");
  setMType("errand");openPage("add");}
 $("mSave").onclick=()=>{const mi=parseFloat($("mMiles").value)/dk();if(!(mi>0)){toast(`Type how many ${KM()?"kilometers":"miles"} you rode`);return;}if(mi>200){toast("That's a long way! Please check the number.");return;}
@@ -1230,7 +1253,18 @@ function showTab(t){const prev=curTab;curTab=t;document.querySelectorAll(".tab")
 function openPage(p){if(pageOpen==="settings"&&p!=="settings")saveCfg();const had=!!pageOpen;document.querySelectorAll(".page").forEach(s=>s.classList.remove("show"));pageOpen=p;document.querySelectorAll(".tab").forEach(s=>s.classList.remove("show"));$("page-"+p).classList.add("show");document.body.classList.add("paged");window.scrollTo(0,0);if(had)history.replaceState({page:p},"");else history.pushState({page:p},"");}
 function hidePages(){if(pageOpen==="settings")saveCfg();document.querySelectorAll(".page").forEach(s=>s.classList.remove("show"));document.body.classList.remove("paged");pageOpen=null;showTab(curTab);}
 function closePage(){if(history.state&&history.state.page)history.back();else hidePages();}
-window.addEventListener("popstate",()=>{if(pageOpen)hidePages();});
+/* Android Back: closes an open box (or the tour) first, instead of leaving the app.
+   While any box is open, one extra history step is kept so Back lands here. */
+const OV_CLOSE={askBox:"askNo",infoBox:"infoOk",checkBox:"checkOk",shareBox:"shareClose",editBox:"eCancel",summary:"sumOk",terms:"tLater",tourBox:"tourSkip"};
+let ovGuard=false,ovSkip=false;
+function openBoxes(){const o=[...document.querySelectorAll(".overlay.show")];if($("tourBox")&&$("tourBox").style.display==="block")o.push($("tourBox"));return o.sort((a,b)=>(+getComputedStyle(a).zIndex||0)-(+getComputedStyle(b).zIndex||0));}
+function ovSync(){const t=$("tourBox"),n=document.querySelectorAll(".overlay.show").length+(t&&t.style.display==="block"?1:0);if(n&&!ovGuard){ovGuard=true;history.pushState(Object.assign({},history.state,{ov:1}),"");}else if(!n&&ovGuard){ovGuard=false;if(history.state&&history.state.ov){ovSkip=true;history.back();}}}
+new MutationObserver(ovSync).observe(document.body,{subtree:true,attributes:true,attributeFilter:["class","style"]});
+function closeTopBox(){const o=openBoxes(),top=o[o.length-1];if(!top)return false;const b=$(OV_CLOSE[top.id]);
+ if(top.id==="terms"&&$("tLater").style.display==="none"){ovGuard=false;ovSync();return true;}
+ if(top.id==="welcome"){ovGuard=false;ovSync();return true;}
+ if(b)b.click();else top.classList.remove("show");return true;}
+window.addEventListener("popstate",()=>{if(ovSkip){ovSkip=false;return;}if(ovGuard){ovGuard=false;closeTopBox();setTimeout(ovSync,50);return;}if(pageOpen)hidePages();});
 let tx=null,ty=null;
 document.addEventListener("touchstart",e=>{if(pageOpen||tourOn){tx=null;return;}tx=e.touches[0].clientX;ty=e.touches[0].clientY;},{passive:true});
 document.addEventListener("touchend",e=>{if(tx==null)return;const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;tx=null;if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.5){const i=TABS.indexOf(curTab)+(dx<0?1:-1);if(i>=0&&i<TABS.length){sfx.click();showTab(TABS[i]);}}},{passive:true});
@@ -1246,7 +1280,7 @@ function renderBank(){const li=levelOf(S.total),cur=LEVELS[li][0],nx=LEVELS[li+1
  $("dailyBtn").style.display=(S.checkins||[]).includes(new Date().toDateString())?"none":"inline-flex";
  const H=S.cfg;$("heroChips").style.display=H.hideStreak?"none":"";$("rideNext").style.display=H.hideQuest?"none":"";$("trailCard").style.display=H.hideTrip?"none":"";renderRideNext();}
 function renderRideNext(){const w=week(),q=QUESTS.find(x=>!w.done.includes(x.id)),out=[];
- if(q){const v=Math.min(q.goal,qVal(q));out.push(`<div class="pline"><svg class=ico><use href=#i-target></use></svg><div class="g">This week: ${fmt(q.t)}<div class="pbar"><i style="width:${v/q.goal*100}%"></i></div></div><span class="s">${q.key==="miles"?dnum(v):v}/${q.key==="miles"?(+dnum(q.goal,1)).toString():q.goal} · +${q.pts}</span></div>`);}
+ if(q){const G=qGoal(q),v=Math.min(G,qVal(q));out.push(`<div class="pline"><svg class=ico><use href=#i-target></use></svg><div class="g">This week: ${qText(q)}<div class="pbar"><i style="width:${v/G*100}%"></i></div></div><span class="s">${qShow(q,v)} · +${q.pts}</span></div>`);}
  else out.push(`<div class="pline"><svg class=ico><use href=#i-boxcheck></use></svg><div class="g">All of this week's quests done!</div></div>`);
  const nx=sortedPrizes().map(([n,d])=>[n,cost(d)]).find(([,c])=>c>S.bank);
  const ok=sortedPrizes().filter(([,d])=>cost(d)<=S.bank).length;
@@ -1416,11 +1450,11 @@ function themePick(){const lv=levelOf(S.total),btn=([id,name,need,kind,desc])=>n
  $("themePick").innerHTML=`<div class="themes">${THEMES.map(btn).join("")}</div>`;}
 let prevT=null;function previewTheme(id,need){sfx.click();clearTimeout(prevT);document.body.dataset.theme=id;renderTrail();window.scrollTo({top:0,behavior:"smooth"});toast(`Preview: reach level ${need+1} to keep this theme`);prevT=setTimeout(()=>{document.body.dataset.theme=S.cfg.theme;renderTrail();},5000);}
 function setTheme(id){sfx.click();S.cfg.theme=id;save();applyTheme();renderTrail();themePick();toast("Theme saved <svg class=ico><use href=#i-check></use></svg>");}
-function condBtns(){$("condRow").innerHTML=S.conds.map((c,i)=>{const on=c.w?wx[c.w]:act[c.n];return `<button class="${on?"on":""}" onclick="tapCond(${i})">${esc(c.n)}</button>`}).join("");$("condRow").style.display=S.conds.length?"flex":"none";}
+function condBtns(){$("condRow").innerHTML=S.conds.map((c,i)=>{const on=c.w?wx[c.w]:act[c.n];return `<button class="${on?"on":""}" aria-pressed="${on?"true":"false"}" onclick="tapCond(${i})">${on?"✓ ":""}${esc(c.n)}</button>`}).join("");$("condRow").style.display=S.conds.length?"flex":"none";}
 function tapCond(i){sfx.click();const c=S.conds[i];if(!c)return;if(c.w==="snow"){M={on:true,snow:!wx.snow,rain:false};wx.snow=M.snow;wx.rain=false;}else if(c.w==="rain"){M={on:true,rain:!wx.rain,snow:false};wx.rain=M.rain;wx.snow=false;}else act[c.n]=!act[c.n];renderRide();}
 /* Riders can rename the two start buttons in Settings. Errand rides still earn double. */
 function startLabels(){const f=(id,v,def,ic)=>{const t=(v||"").trim()||def,b=$(id);b.innerHTML=`<span class="ic"><svg class=ico><use href=#${ic}></use></svg></span>`+esc(t);b.style.fontSize=t.length>22?".8em":t.length>16?".9em":"";b.style.overflowWrap="anywhere";};f("sErrand",S.cfg.lblE,"Start errand ride","i-cart");f("sLeisure",S.cfg.lblL,"Start leisure ride","i-tree");}
-function renderRide(){condBtns();startLabels();
+function renderRide(){condBtns();startLabels();$("firstHint").style.display=!riding&&!(S.rides||[]).length&&!S.total?"":"none";
  $("altBikeLbl").innerHTML=S.cfg.bike==="classic"?"Riding my e-bike today":`Riding my classic bike today (x${cxs()})`;{const a=$("altBike").checked;$("altPill").textContent=S.cfg.bike==="classic"?"E-bike today":`Classic bike ×${cxs()}`;$("altPill").className=a?"on":"";$("altPill").setAttribute("aria-pressed",a?"true":"false");}
  const c=liveCtx(),t=[];if(riding&&type==="errand")t.push("<svg class=ico><use href=#i-cart></use></svg> Errand x2");if(c.night)t.push("<svg class=ico><use href=#i-moon></use></svg> Night +"+ppU(10));
  if(c.temp!=null)t.push(c.temp<=32?`<svg class=ico><use href=#i-cold></use></svg> ${fmtT(c.temp)} +${ppU(5)}`:c.temp>=95?`<svg class=ico><use href=#i-hot></use></svg> ${fmtT(c.temp)} +${ppU(3)}`:`<svg class=ico><use href=#i-thermo></use></svg> ${fmtT(c.temp)}`);
@@ -1430,7 +1464,7 @@ function renderRide(){condBtns();startLabels();
  $("conds").innerHTML=t.map(x=>`<span class="tag">${x}</span>`).join("");$("conds").style.display=riding?"":"none";$("ppm").textContent=KM()?trim1(rateFor(c)/dk()):Math.round(rateFor(c));}
 function renderRewards(){const w=week(),nextMon=new Date(w.id);nextMon.setDate(nextMon.getDate()+7);const dl=Math.max(1,Math.ceil((nextMon-Date.now())/864e5));
  $("questReset").textContent=`New quests in ${dl} day${dl===1?"":"s"} (every ${S.cfg.ws===0?"Sunday":"Monday"})`;
- $("quests").innerHTML=QUESTS.map(q=>{const v=Math.min(q.goal,qVal(q)),done=w.done.includes(q.id);return `<div class="qrow${done?" done":""}">${done?"<svg class=ico><use href=#i-boxcheck></use></svg>":"<svg class=ico><use href=#i-boxempty></use></svg>"}<div class="g">${fmt(q.t)}<div class="pbar"><i style="width:${v/q.goal*100}%"></i></div></div><span class="s">${q.key==="miles"?dnum(v):v}/${q.key==="miles"?(+dnum(q.goal,1)).toString():q.goal} · +${q.pts}</span></div>`}).join("");
+ $("quests").innerHTML=QUESTS.map(q=>{const G=qGoal(q),v=Math.min(G,qVal(q)),done=w.done.includes(q.id);return `<div class="qrow${done?" done":""}">${done?"<svg class=ico><use href=#i-boxcheck></use></svg>":"<svg class=ico><use href=#i-boxempty></use></svg>"}<div class="g">${qText(q)}<div class="pbar"><i style="width:${v/G*100}%"></i></div></div><span class="s">${qShow(q,v)} · +${q.pts}</span></div>`}).join("");
  $("prizes").innerHTML=sortedPrizes().map(([n,d,i])=>{const c=cost(d);return `<li><div class="lvl"><span><span class="pico">${pIcon(n)}</span>${esc(n)} · ${usd(d)}</span><span class="small">${c} pts</span></div><div class="row"><div class="bar"><div style="width:${Math.min(100,S.bank/c*100)}%"></div></div><button class="mini${S.bank>=c?" go":""}" ${S.bank<c?"disabled":""} onclick="cash(${i})">Redeem</button></div></li>`}).join("")||'<div class="small" style="margin-top:8px">No prizes yet. Add some in Settings (the <span class=kref><svg class=ico><use href=#i-gear></use></svg></span> gear button, top right).</div>';
  $("badgeCount").textContent=`${S.badges.filter(n=>BADGES.some(b=>b[0]===n)).length} of ${BADGES.length} trophies earned`;
  $("badges").innerHTML=BADGES.map(([n,h,ic],i)=>{const got=S.badges.includes(n);return `<button type="button" class="trophy${got?"":" locked"}" onclick="trophyTap(${i})" aria-label="${esc(n)}${got?", earned":", locked. Tap to see how to earn it"}"><div class="ti" aria-hidden="true">${ic}</div><div class="tn">${got?"":"<svg class=ico><use href=#i-lock></use></svg> "}${n}</div></button>`}).join("");}
@@ -1646,12 +1680,13 @@ const numIn=v=>{const n=parseFloat(String(v).trim().replace(/\s/g,"").replace(",
 function showWelcome(){$("wName").value=S.profile.name||"";wBike=S.cfg.bike;wSet();$("wUnits").value=KM()?"metric":(S.cfg.fuel==="mpguk"?"uk":"us");wFuelUI();$("welcome").classList.add("show");}
 $("wUnits").onchange=()=>{const v=$("wUnits").value;if(v==="us")Object.assign(S.cfg,{dist:"mi",fuel:"mpg",temp:"F"});else if(v==="uk")Object.assign(S.cfg,{dist:"mi",fuel:"mpguk",temp:"C",cur:"£"});else Object.assign(S.cfg,{dist:"km",fuel:"l100",temp:"C"});if(v==="us"&&S.cfg.cur==="£")S.cfg.cur="$";if(v!=="uk"&&S.cfg.cur==="£"&&REGION!=="GB")S.cfg.cur="$";wFuelUI();};
 $("wE").onclick=()=>{wBike="ebike";wSet();sfx.click()};$("wC").onclick=()=>{wBike="classic";wSet();sfx.click()};
-$("wGo").onclick=()=>{S.profile.name=$("wName").value.trim().slice(0,20);S.cfg.bike=wBike;const wm=numIn($("wMpg").value),wg=numIn($("wGas").value);S.cfg.mpg=wm>0?wm:fu().def;S.cfg.gas=wg>0?wg:fu().price;S.profile.setup=true;S.seenHelp=true;save();$("welcome").classList.remove("show");renderAll();sfx.click();showTerms(true);};
+$("wGo").onclick=()=>{S.profile.name=$("wName").value.trim().slice(0,20);S.cfg.bike=wBike;const wm=numIn($("wMpg").value),wg=numIn($("wGas").value);S.cfg.mpg=wm>0?wm:fu().def;S.cfg.gas=wg>0?wg:fu().price;S.profile.setup=true;S.seenHelp=true;save();$("welcome").classList.remove("show");renderAll();sfx.click();S.tourSeen={};save();setTimeout(()=>startTour(TOUR_LAUNCH,"launch"),400);};
 const termsHtml=()=>TERMS.map(([ic,t])=>`<li>${ic} ${fmt(t)}</li>`).join("");
-let termsThenTour=false;
-function showTerms(thenTour){termsThenTour=thenTour;$("termsList").innerHTML=termsHtml();$("termsList").scrollTop=0;$("tAgree").checked=false;$("tGo").style.opacity=".55";$("terms").classList.add("show");}
+let termsThenTour=false,termsThen=null;
+function showTerms(thenTour,then){termsThenTour=thenTour;termsThen=then||null;$("tLater").style.display=then?"":"none";$("termsList").innerHTML=termsHtml();$("termsList").scrollTop=0;$("tAgree").checked=false;$("tGo").style.opacity=".55";$("terms").classList.add("show");}
 $("tAgree").onchange=()=>{$("tGo").style.opacity=$("tAgree").checked?"":".55";$("tAgree").closest(".check").classList.remove("nudge");};
-$("tGo").onclick=()=>{if(!$("tAgree").checked){const l=$("tAgree").closest(".check");l.classList.add("nudge");toast("Tick the box first: I've read this and I understand");return;}S.profile.agreed=TERMS_VERSION;save();$("terms").classList.remove("show");sfx.fanfare();if(termsThenTour){S.tourSeen={};save();setTimeout(()=>startTour(TOUR_LAUNCH,"launch"),400);}};
+$("tGo").onclick=()=>{if(!$("tAgree").checked){const l=$("tAgree").closest(".check");l.classList.add("nudge");toast("Tick the box first: I've read this and I understand");return;}S.profile.agreed=TERMS_VERSION;save();$("terms").classList.remove("show");sfx.fanfare();if(termsThenTour){S.tourSeen={};save();setTimeout(()=>startTour(TOUR_LAUNCH,"launch"),400);}if(termsThen){const f=termsThen;termsThen=null;setTimeout(f,300);}};
+$("tLater").onclick=()=>{sfx.click();termsThen=null;$("terms").classList.remove("show");};
 $("helpTerms").innerHTML=termsHtml();
 const TOUR=STR.en.tour=[
 {tab:"ride",el:"startRow",t:"Every ride starts here. Tap Start errand ride when the ride replaces a car trip, like the grocery store or post office. It earns double points. Tap Start leisure ride for a fun ride. You can rename both buttons in Settings. During a ride, tap Pause when you stop somewhere, and Resume when you're back on the bike."},
@@ -1673,7 +1708,7 @@ const TOUR_TAB={
  stats:[TOUR[6]],
  ride:[TOUR[1],TOUR[2],TOUR[4]]};
 let tourI=0,tourEl=null,tourWrap=null,tourPos=null,tourList=TOUR,tourKey="";
-function tabTour(t){if(tourOn||pageOpen||riding||!S.profile.agreed||!S.tourSeen||S.tourSeen[t]||!TOUR_TAB[t])return;S.tourSeen[t]=1;save();startTour(TOUR_TAB[t],t);}
+function tabTour(t){if(tourOn||pageOpen||riding||!S.profile.setup||!S.tourSeen||S.tourSeen[t]||!TOUR_TAB[t])return;S.tourSeen[t]=1;save();startTour(TOUR_TAB[t],t);}
 function startTour(list,key){if(!Array.isArray(list)){list=TOUR;key="all";}tourList=list;tourKey=key||"";if(pageOpen)closePage();setTimeout(()=>{tourOn=true;tourI=0;$("tourDim").style.display="block";$("tourBox").style.display="block";tourShow();},300);}
 function tourClear(){if(tourEl){tourEl.classList.remove("spot");if(tourPos!==null)tourEl.style.position=tourPos;}if(tourWrap)tourWrap.classList.remove("spotwrap");tourEl=tourWrap=null;tourPos=null;}
 function tourShow(){tourClear();const s=tourList[tourI];showTab(s.tab);const el=$(s.el);
@@ -1704,12 +1739,12 @@ $("shareAppBtn").onclick=shareApp;
 $("mapHide").onclick=()=>setMap(false);$("mapShow").onclick=()=>setMap(true);
 $("tipJump").onclick=()=>{sfx.click();$("coffeeCard").scrollIntoView({behavior:"smooth",block:"center"});};$("supShare").onclick=()=>shareApp();
 $("undoBtn").onclick=()=>{$("undoBar").style.display="none";const h=S.cashed&&S.cashed[0];if(!h||Date.now()-h.t>120000)return;S.bank+=h.c;S.cashed.shift();save();renderAll();sfx.click();toast("Undone. Your "+h.c+" points are back.");};
-const WHATS_NEW=["A new look: the new Pedal Points logo, and a calmer Ride screen with your points up top.","Rewards has a tidy This week card with your weekly goal and quests together.","Set your weekly goal in miles, rides or days you ride, and pick whether your week starts Sunday or Monday (Settings, under Ride buttons and weekly goal).","Give each prize an icon: tap the icon next to a prize in Settings, under Edit prizes.","Choose what shows on the Ride screen in Settings, under Home screen.","Show me the tour again now lets you pick a quick tour or the full tour."];
+const WHATS_NEW_25=["A new look: the new Pedal Points logo, and a calmer Ride screen with your points up top.","Rewards has a tidy This week card with your weekly goal and quests together.","Set your weekly goal in miles, rides or days you ride, and pick whether your week starts Sunday or Monday (Settings, under Ride buttons and weekly goal).","Give each prize an icon: tap the icon next to a prize in Settings, under Edit prizes.","Choose what shows on the Ride screen in Settings, under Home screen.","Show me the tour again now lets you pick a quick tour or the full tour."];
+const WHATS_NEW=["Location off? The app now says so and helps you turn it on, instead of showing a weak GPS signal message.","Every ride now ends with a result, even one too short to count.","Kilometer riders get round quest goals, like 5 km and 25 km.","Bonus buttons show a check mark when they're on.","The phone's Back button closes an open box first, instead of closing the app.","You can look around Rewards and Stats before reading the safety notes. They show before your first ride."];
 function whatsNew(){$("infoTitle").innerHTML=`<svg class=ico><use href=#i-sparkle></use></svg> What's new in version ${APP_VERSION}`;$("infoBody").innerHTML="<ul>"+WHATS_NEW.map(x=>`<li style="margin-bottom:8px">${x}</li>`).join("")+"</ul>";$("infoBox").classList.add("show");}
 
 S.streak=calcStreak();week();save();applyI18n();renderAll();applyAnim();recoverRide();
 if(!S.profile.setup)setTimeout(showWelcome,300);
-else if((S.profile.agreed||0)<TERMS_VERSION)setTimeout(()=>showTerms(false),300);
 else if(!riding&&S.seenVer!==APP_VERSION&&(S.seenVer||(S.rides||[]).length||S.total>0))setTimeout(whatsNew,700);
 S.seenVer=APP_VERSION;save();
 </script></body></html>
